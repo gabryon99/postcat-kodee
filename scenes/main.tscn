@@ -1,0 +1,164 @@
+[gd_scene load_steps=17 format=3 uid="uid://dop85vkr3mb2g"]
+
+[ext_resource type="PackedScene" uid="uid://cooagrp6vnti7" path="res://scenes/boulder.tscn" id="1_8lew4"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/Referee.gdj" id="1_xu7tv"]
+[ext_resource type="PackedScene" uid="uid://chg68bxe8gyhx" path="res://scenes/world.tscn" id="2_g3d4t"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/ComboManager.gdj" id="2_l4xqi"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/MailboxGenerator.gdj" id="3_5q27g"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/LevelManager.gdj" id="3_kn65t"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/ScoreManager.gdj" id="4_r8rnm"]
+[ext_resource type="PackedScene" uid="uid://ntp6wvus8jab" path="res://scenes/kodee.tscn" id="4_vf74w"]
+[ext_resource type="PackedScene" uid="uid://q5y5t5qtww7w" path="res://scenes/bottom_mailbox_orbit_point.tscn" id="6_i5whb"]
+[ext_resource type="Shader" path="res://shaders/toonsky.gdshader" id="7_15tcf"]
+[ext_resource type="PackedScene" uid="uid://dbe4dmfsf0v08" path="res://scenes/upper_mailbox_orbit_point.tscn" id="7_mgbi2"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/HUD.gdj" id="12_s6m8c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vqnnd"]
+shader = ExtResource("7_15tcf")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.330196, 0.75695, 1, 1)
+shader_parameter/sunset_bottom_color = Color(0.68634, 0.614087, 1, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.01
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 3.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_lhxy8"]
+sky_material = SubResource("ShaderMaterial_vqnnd")
+
+[sub_resource type="Environment" id="Environment_6nahn"]
+background_mode = 1
+background_color = Color(0.539776, 0.782806, 1, 1)
+sky = SubResource("Sky_lhxy8")
+sky_custom_fov = 80.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_2f3ec"]
+font_size = 32
+
+[node name="Main" type="Node3D"]
+
+[node name="Referee" type="Node" parent="." node_paths=PackedStringArray("kodee", "dog")]
+script = ExtResource("1_xu7tv")
+kodee = NodePath("../World/KodeeOrbitPoint")
+dog = NodePath("../World/DogOrbitPoint")
+max_distance_dog_and_kodee = 1.7
+bounciness = 2.0
+min_max_speed_dog = -2.0
+overtake_speed = -0.065
+
+[node name="ComboManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_l4xqi")
+
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("score_manager")]
+unique_name_in_owner = true
+script = ExtResource("3_kn65t")
+current_level = 1
+maximum_level = 5
+score_manager = NodePath("../ScoreManager")
+
+[node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("combo_manager")]
+unique_name_in_owner = true
+script = ExtResource("4_r8rnm")
+combo_manager = NodePath("../ComboManager")
+
+[node name="MailboxGenerator" type="Node" parent="." node_paths=PackedStringArray("world", "score_manager")]
+script = ExtResource("3_5q27g")
+number_of_towers = 16
+world = NodePath("../World")
+random_seed = "banana"
+score_manager = NodePath("../ScoreManager")
+bottom_mailbox = ExtResource("6_i5whb")
+upper_mailbox = ExtResource("7_mgbi2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6nahn")
+
+[node name="Light" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.928875, 0.975126)
+
+[node name="World" parent="." instance=ExtResource("2_g3d4t")]
+sides = 16
+
+[node name="DogOrbitPoint" type="Node3D" parent="World"]
+transform = Transform3D(-6.77365e-09, -0.44221, 0.896911, -1, 3.71539e-09, -5.72037e-09, -8.02767e-10, -0.896911, -0.44221, 0, 0, 0)
+
+[node name="Dog" parent="World/DogOrbitPoint" instance=ExtResource("1_8lew4")]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 3.92317e-15, 2.34725e-14, -3.92317e-15, 0.5, 4.78645e-10, -2.34725e-14, -4.78645e-10, 0.5, 2.08165e-12, 2.08165e-12, 0.75)
+rotation_speed = Vector3(90, 2.08165e-12, 2.08165e-12)
+angular_speed = -1.0
+initial_angular_speed = -1.0
+maximum_angular_speed = -3.0
+
+[node name="KodeeOrbitPoint" type="Node3D" parent="World"]
+unique_name_in_owner = true
+transform = Transform3D(-2.80971e-08, 0.642788, 0.766044, -1, -4.37114e-08, -3.48787e-16, 3.34849e-08, -0.766044, 0.642788, 0, 2.08189e-12, 0)
+
+[node name="Up_mvp" type="CSGSphere3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(0.025, -1.09518e-16, 5.29947e-17, -5.74292e-17, 0.0250001, -9.68047e-10, 1.28491e-16, 1.21468e-09, 0.0250001, 2.08165e-12, 2.08165e-12, 1.6)
+
+[node name="Down_mvp" type="CSGSphere3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(0.025, -6.47065e-17, 9.10882e-17, 9.41597e-17, 0.0250001, 1.26435e-09, 4.95734e-17, -2.61541e-10, 0.0250001, 2.08165e-12, 2.08165e-12, 0.575)
+
+[node name="Left_mvp" type="CSGSphere3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(0.025, -4.70188e-16, 5.87028e-17, 2.47706e-16, 0.025, -2.05993e-09, 6.94026e-17, -3.99498e-10, 0.025, -0.35, 2.08165e-12, 0.575)
+
+[node name="Center_mvp" type="CSGSphere3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(0.025, -3.59166e-16, 9.36361e-17, 1.92195e-16, 0.025, -5.73292e-10, 6.94026e-17, -3.99498e-10, 0.025, 2.08165e-12, 2.08165e-12, 0.575)
+
+[node name="Right_mvp" type="CSGSphere3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(0.025, -3.59166e-16, 9.36361e-17, 1.92195e-16, 0.025, -5.73292e-10, 6.94026e-17, -3.99498e-10, 0.025, 0.35, 2.08165e-12, 0.575)
+
+[node name="Kodee" parent="World/KodeeOrbitPoint" node_paths=PackedStringArray("up_move_point", "down_move_point", "left_move_point", "center_move_point", "right_move_point") instance=ExtResource("4_vf74w")]
+unique_name_in_owner = true
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -5.31796e-09, -3.48787e-16, -5.40886e-08, 1, 2.08165e-12, 2.08165e-12, 0.6)
+reset_vertical_position_time = 0.8
+up_move_point = NodePath("../Up_mvp")
+down_move_point = NodePath("../Down_mvp")
+left_move_point = NodePath("../Left_mvp")
+center_move_point = NodePath("../Center_mvp")
+right_move_point = NodePath("../Right_mvp")
+angular_speed = -1.0
+initial_angular_speed = -1.0
+maximum_angular_speed = -3.0
+
+[node name="Camera" type="Camera3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(1, -9.87195e-14, 1.16802e-14, 5.74334e-15, 0.107029, -0.994256, 2.19196e-14, 0.994256, 0.107029, -0.0367592, -0.969667, 1.39358)
+fov = 90.0
+
+[node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("score_manager", "score_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_s6m8c")
+score_manager = NodePath("../ScoreManager")
+score_label = NodePath("ScoreLabel")
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+layout_mode = 2
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_2f3ec")

@@ -1,0 +1,29 @@
+// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
+
+registeredName = Referee
+fqName = me.gabryon.kodeedelivery.managers.Referee
+relativeSourcePath = src/main/kotlin/me/gabryon/kodeedelivery/managers/Referee.kt
+baseType = Node
+supertypes = [
+	godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+	
+]
+properties = [
+	kodee,
+	dog,
+	max_distance_dog_and_kodee,
+	bounciness,
+	dog_max_speed_curviness,
+	min_max_speed_dog,
+	overtake_speed
+]
+functions = [
+	_ready,
+	_process
+]

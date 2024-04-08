@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ntp6wvus8jab"]
+
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Kodee.gdj" id="1_dr7ii"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yvdpl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0fr8"]
+albedo_color = Color(0.388235, 0.298039, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmqch"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Kodee" type="Area3D" node_paths=PackedStringArray("reset_position_timer") groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+script = ExtResource("1_dr7ii")
+reset_position_timer = NodePath("ResetPositionTimer")
+angular_speed = 1.0
+initial_angular_speed = 1.0
+maximum_angular_speed = 3.0
+delta_speed = 0.25
+
+[node name="Box" type="CSGMesh3D" parent="." groups=["Player"]]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_yvdpl")
+material = SubResource("StandardMaterial3D_s0fr8")
+
+[node name="ResetPositionTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164642, 0.00271261, 0)
+shape = SubResource("BoxShape3D_pmqch")

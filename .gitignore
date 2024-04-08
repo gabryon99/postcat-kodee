@@ -1,0 +1,14 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+.godot
+
+# Ignore Gradle build output directory
+build
+builds/
+
+# Ignore Intellij directory
+.idea
+
+# Ignore embedded jre
+jre
+jre-arm64
