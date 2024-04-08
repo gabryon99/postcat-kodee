@@ -13,28 +13,28 @@ import godot.core.asStringName
 import godot.global.GD
 import godot.signals.signal
 
-enum class HorizontalMovePoint {
-    LEFT, CENTER, RIGHT;
-
-    fun left(): HorizontalMovePoint = when (this) {
-        LEFT -> LEFT
-        CENTER -> LEFT
-        RIGHT -> CENTER
-    }
-
-    fun right(): HorizontalMovePoint = when (this) {
-        LEFT -> CENTER
-        CENTER -> RIGHT
-        RIGHT -> RIGHT
-    }
-}
-
-enum class VerticalMovePoint {
-    UP, DOWN;
-}
-
 @RegisterClass
-class Kodee : Area3D(), DeltaDependantOrbiting {
+class Kodee : Area3D(), Orbiting {
+
+    enum class HorizontalMovePoint {
+        LEFT, CENTER, RIGHT;
+
+        fun left(): HorizontalMovePoint = when (this) {
+            LEFT -> RIGHT
+            CENTER -> LEFT
+            RIGHT -> CENTER
+        }
+
+        fun right(): HorizontalMovePoint = when (this) {
+            LEFT -> CENTER
+            CENTER -> RIGHT
+            RIGHT -> LEFT
+        }
+    }
+
+    enum class VerticalMovePoint {
+        UP, DOWN;
+    }
 
     //region Reset Timer Fields
     @Export
@@ -137,7 +137,6 @@ class Kodee : Area3D(), DeltaDependantOrbiting {
     }
 
     private fun updateHorizontalPosition(movePoint: HorizontalMovePoint, reset: Boolean = false) {
-
         val movePointNode = horizontalMovePoints[movePoint.ordinal]
         position = positionMutate {
             x = movePointNode.position.x
