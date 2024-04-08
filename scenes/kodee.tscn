@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://ntp6wvus8jab"]
+[gd_scene load_steps=6 format=3 uid="uid://ntp6wvus8jab"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Kodee.gdj" id="1_dr7ii"]
+[ext_resource type="Texture2D" uid="uid://dl0mxytr0y76p" path="res://assets/Kodee_Assets_Digital_Kodee-greeting.png" id="2_u7u0y"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_yvdpl"]
+[sub_resource type="QuadMesh" id="QuadMesh_ax8b1"]
+size = Vector2(0.4, 0.4)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0fr8"]
-albedo_color = Color(0.388235, 0.298039, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30van"]
+transparency = 1
+albedo_texture = ExtResource("2_u7u0y")
+billboard_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pmqch"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -21,8 +25,8 @@ delta_speed = 0.25
 
 [node name="Box" type="CSGMesh3D" parent="." groups=["Player"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = SubResource("BoxMesh_yvdpl")
-material = SubResource("StandardMaterial3D_s0fr8")
+mesh = SubResource("QuadMesh_ax8b1")
+material = SubResource("StandardMaterial3D_30van")
 
 [node name="ResetPositionTimer" type="Timer" parent="."]
 wait_time = 0.5

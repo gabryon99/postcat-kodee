@@ -6,7 +6,7 @@ fqName = me.gabryon.kodeedelivery.actors.UpMailbox
 relativeSourcePath = src/main/kotlin/me/gabryon/kodeedelivery/actors/UpMailbox.kt
 baseType = Node3D
 supertypes = [
-	me.gabryon.kodeedelivery.actors.MailBox,
+    me.gabryon.kodeedelivery.actors.MailBox,
 	godot.Node3D,
 	me.gabryon.kodeedelivery.managers.Scorable,
 	godot.Node,
@@ -15,14 +15,14 @@ supertypes = [
 	kotlin.Any
 ]
 signals = [
-	scored
+    scored
 ]
 properties = [
-	score,
+    score,
 	delivered_color
 ]
 functions = [
-	_ready,
+    _ready,
 	_process,
 	on_body_entered
 ]

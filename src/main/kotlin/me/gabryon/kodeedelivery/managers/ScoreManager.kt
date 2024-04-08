@@ -50,7 +50,6 @@ class ScoreManager : Node() {
 
         debugContext {
             scoreChanged.emit(oldScore, currentScore)
-            info<ScoreManager>("Emitted!!!")
             info<ScoreManager>("Current Score = $currentScore, New Points = $points, Multiplier = ${comboManager.currentComboMultiplier}")
         }
     }
