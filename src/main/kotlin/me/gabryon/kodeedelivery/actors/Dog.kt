@@ -13,7 +13,7 @@ import godot.core.asStringName
 import kotlin.apply
 
 @RegisterClass
-class Dog: Area3D(), DeltaDependantOrbiting {
+class Dog: Area3D(), Orbiting {
 
     @Export
     @RegisterProperty

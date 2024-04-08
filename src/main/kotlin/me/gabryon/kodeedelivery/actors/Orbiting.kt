@@ -23,9 +23,7 @@ interface Orbiting : HasParent {
     @Export
     @RegisterProperty
     var maximumAngularSpeed: Double
-}
 
-interface DeltaDependantOrbiting : Orbiting {
     @Export
     @RegisterProperty
     var deltaSpeed: Double
@@ -36,7 +34,7 @@ fun Orbiting.orbit(delta: Double) {
     orbitPoint.rotateY((angularSpeed * delta).toFloat())
 }
 
-fun DeltaDependantOrbiting.accelerate(delta: Double = deltaSpeed, maxSpeed: Double = Double.NEGATIVE_INFINITY) {
+fun Orbiting.accelerate(delta: Double = deltaSpeed, maxSpeed: Double = Double.NEGATIVE_INFINITY) {
     // NOTE: speeds are in negative, signs are swapped.
     if (angularSpeed <= maximumAngularSpeed) {
         return
@@ -44,7 +42,7 @@ fun DeltaDependantOrbiting.accelerate(delta: Double = deltaSpeed, maxSpeed: Doub
     angularSpeed = GD.clamp(angularSpeed - delta, maxSpeed, initialAngularSpeed)
 }
 
-fun DeltaDependantOrbiting.decelerate(delta: Double = deltaSpeed) {
+fun Orbiting.decelerate(delta: Double = deltaSpeed) {
     // NOTE: speeds are in negative, signs are swapped.
     if (angularSpeed >= initialAngularSpeed) {
         return
