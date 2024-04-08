@@ -1,32 +1,35 @@
 package me.gabryon.kodeedelivery
 
-import godot.CSGCylinder3D
 import godot.Node
 import godot.Node3D
 import godot.PackedScene
 import godot.RandomNumberGenerator
 import godot.annotation.Export
 import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.core.Vector3
 import godot.core.asStringName
 import godot.extensions.instanceAs
 import godot.global.GD
 import godot.util.PI
+import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.actors.MailBox
+import me.gabryon.kodeedelivery.levels.LevelLogic
+import me.gabryon.kodeedelivery.levels.MailboxHorizontalPosition
+import me.gabryon.kodeedelivery.levels.MailboxVerticalPosition
 import me.gabryon.kodeedelivery.managers.ScoreManager
+import me.gabryon.kodeedelivery.utility.debugContext
 
 @RegisterClass
 class MailboxGenerator : Node() {
 
     @Export
     @RegisterProperty
-    var numberOfTowers: Int = 10
+    lateinit var world: Node3D
 
     @Export
     @RegisterProperty
-    lateinit var world: CSGCylinder3D
+    lateinit var kodee: Kodee
 
     @Export
     @RegisterProperty
@@ -40,14 +43,24 @@ class MailboxGenerator : Node() {
     @RegisterProperty
     lateinit var scoreManager: ScoreManager
 
+    //region Packed Scenes
     @Export
     @RegisterProperty
     lateinit var bottomMailbox: PackedScene
+
     @Export
     @RegisterProperty
     lateinit var upperMailbox: PackedScene
+    //endregion
 
-    val randGen = RandomNumberGenerator().apply {
+    /**
+     * How many batches of mailboxes should be spawned before of Kodee.
+     */
+    @Export
+    @RegisterProperty
+    var spawnBatch: Int = 3
+
+    private val randGen = RandomNumberGenerator().apply {
         seed = randomSeed.hashCode().toLong()
     }
 
@@ -55,10 +68,11 @@ class MailboxGenerator : Node() {
      * Create a new type of Mailbox to add to the current scene. When a new mailbox
      * is created, it is automatically connected to the [ScoreManager].
      */
-    private fun createMailbox(mailboxScene: PackedScene, angle: Double, off: Double) {
+    private fun createMailbox(mailboxScene: PackedScene, angle: Double, positionOffset: Double) {
+
         val mailbox = mailboxScene.instanceAs<Node3D>()?.apply {
             rotation = Vector3(0, GD.radToDeg(angle), 0)
-            position = Vector3(0, off, 0)
+            position = Vector3(0, positionOffset, 0)
         }
         requireNotNull(mailbox) { "Could not instantiate a new MailboxScene." }
 
@@ -70,50 +84,53 @@ class MailboxGenerator : Node() {
         world.callDeferred("add_child".asStringName(), mailbox)
     }
 
-    /**
-     * Generates a random mailbox scene.
-     *
-     * @return The randomly selected mailbox scene.
-     */
-    private fun getRandomMailboxScene(): PackedScene {
-        val mailboxHeight = randGen.randf()
-        return when {
-            mailboxHeight >= 0.5 -> bottomMailbox
-            else -> upperMailbox
-        }
-    }
+    fun spawnMailboxes(levelLogic: LevelLogic) {
 
-    @RegisterFunction
-    override fun _ready() {
+        if (spawnBatch == 0) return
 
-        var step = 2 * PI
-        var skip = false
+        var kodeeAngle = kodee.rotation.y
+        var deltaAngle = 2*PI  // 45 degrees
 
-        for (i in 0..(numberOfTowers / 2)) {
-            if (skip) { skip = false; continue }
+        repeat(spawnBatch) {
 
-            val angle = step * i
-            skip = true
-
-            val mailboxPosition = randGen.randf()
-
-            // rnd \in [0, 0.3) => 1 mailbox left
-            // rnd \in [0.3, 0.6) => 1 mailbox right
-            // rnd \in [0.6, 1) => 2 mailboxes per side
-
-            when {
-                mailboxPosition in 0.0 ..< 0.3 -> {
-                    createMailbox(getRandomMailboxScene(), angle, sideOffset)
+            when (levelLogic.mailboxesPerFace(randGen)) {
+                1 -> {
+                    val (hPos, vPos) = levelLogic.generateMailbox(randGen)
+                    val scene = if (vPos == MailboxVerticalPosition.UP) {
+                        upperMailbox
+                    } else {
+                        bottomMailbox
+                    }
+                    val horizontalOffset = if (hPos == MailboxHorizontalPosition.LEFT) {
+                        -sideOffset
+                    } else {
+                        sideOffset
+                    }
+                    createMailbox(scene, kodeeAngle + deltaAngle, horizontalOffset)
                 }
-                 mailboxPosition in 0.3 ..< 0.6 -> {
-                    createMailbox(getRandomMailboxScene(), angle, -sideOffset)
+                2 -> {
+                    val (_, vPos1) = levelLogic.generateMailbox(randGen)
+                    val (_, vPos2) = levelLogic.generateMailbox(randGen)
+                    val scene1 = if (vPos1 == MailboxVerticalPosition.UP) {
+                        upperMailbox
+                    } else {
+                        bottomMailbox
+                    }
+                    val scene2 = if (vPos2 == MailboxVerticalPosition.UP) {
+                        upperMailbox
+                    } else {
+                        bottomMailbox
+                    }
+                    createMailbox(scene1, kodeeAngle + deltaAngle, -sideOffset)
+                    createMailbox(scene2, kodeeAngle + deltaAngle, sideOffset)
                 }
-                else -> {
-                    createMailbox(getRandomMailboxScene(), angle, sideOffset)
-                    createMailbox(getRandomMailboxScene(), angle, -sideOffset)
-                }
+                else -> {}
             }
+
+            kodeeAngle += deltaAngle
         }
+
+        spawnBatch = 0
     }
 
 }

@@ -15,14 +15,15 @@ signals = [
     
 ]
 properties = [
-    number_of_towers,
-	world,
+    world,
+	kodee,
 	random_seed,
 	side_offset,
 	score_manager,
 	bottom_mailbox,
-	upper_mailbox
+	upper_mailbox,
+	spawn_batch
 ]
 functions = [
-    _ready
+    
 ]

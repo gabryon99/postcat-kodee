@@ -91,25 +91,28 @@ overtake_speed = -0.065
 unique_name_in_owner = true
 script = ExtResource("2_l4xqi")
 
-[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("score_manager")]
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("score_manager", "mailbox_generator")]
 unique_name_in_owner = true
 script = ExtResource("3_kn65t")
 current_level = 1
 score_manager = NodePath("../ScoreManager")
+mailbox_generator = NodePath("../MailboxGenerator")
 
 [node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("combo_manager")]
 unique_name_in_owner = true
 script = ExtResource("4_r8rnm")
 combo_manager = NodePath("../ComboManager")
 
-[node name="MailboxGenerator" type="Node" parent="." node_paths=PackedStringArray("world", "score_manager")]
+[node name="MailboxGenerator" type="Node" parent="." node_paths=PackedStringArray("world", "kodee", "score_manager")]
+unique_name_in_owner = true
 script = ExtResource("3_5q27g")
-number_of_towers = 16
 world = NodePath("../World")
-random_seed = "banana"
+kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
+random_seed = "salvokuntivogliobene"
 score_manager = NodePath("../ScoreManager")
 bottom_mailbox = ExtResource("6_i5whb")
 upper_mailbox = ExtResource("7_mgbi2")
+spawn_batch = 8
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6nahn")
@@ -167,7 +170,7 @@ initial_angular_speed = -1.0
 maximum_angular_speed = -3.0
 
 [node name="Camera" type="Camera3D" parent="World/KodeeOrbitPoint"]
-transform = Transform3D(1, -9.87195e-14, 1.16802e-14, 5.74334e-15, 0.107029, -0.994256, 2.19196e-14, 0.994256, 0.107029, -0.0367592, -0.969667, 1.39358)
+transform = Transform3D(1, -1.0339e-13, 5.83056e-16, -8.69552e-15, 0.107029, -0.994256, 2.75015e-14, 0.994256, 0.107029, -0.0367592, -1.09659, 1.50008)
 fov = 90.0
 
 [node name="Background" type="MeshInstance3D" parent="World/KodeeOrbitPoint"]

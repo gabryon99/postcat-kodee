@@ -16,10 +16,11 @@ signals = [
 ]
 properties = [
     current_level,
-	maximum_level,
-	score_manager
+	score_manager,
+	mailbox_generator
 ]
 functions = [
     _ready,
-	on_next_level
+	on_next_level,
+	_process
 ]

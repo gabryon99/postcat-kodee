@@ -43,6 +43,8 @@ abstract class MailBox : Node3D(), Scorable {
     @RegisterFunction
     override fun _process(delta: Double) {
         if (shouldDespawn()) {
+            // Mailboxes are always wrapped in a parent 3D Node to
+            // make orbiting easier...
             // getParent()!!.queueFree()
         }
     }
