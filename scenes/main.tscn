@@ -91,12 +91,13 @@ overtake_speed = -0.065
 unique_name_in_owner = true
 script = ExtResource("2_l4xqi")
 
-[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("score_manager", "mailbox_generator")]
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("score_manager", "mailbox_generator", "kodee", "dog")]
 unique_name_in_owner = true
 script = ExtResource("3_kn65t")
-current_level = 1
 score_manager = NodePath("../ScoreManager")
 mailbox_generator = NodePath("../MailboxGenerator")
+kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
+dog = NodePath("../World/DogOrbitPoint/Dog")
 
 [node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("combo_manager")]
 unique_name_in_owner = true
@@ -177,10 +178,10 @@ transform = Transform3D(1, 1.56142e-08, 3.34849e-08, 1.56142e-08, 0.642788, -0.7
 sky_mode = 1
 
 [node name="Camera" type="Camera3D" parent="World/KodeeOrbitPoint"]
-transform = Transform3D(1, -1.0339e-13, 5.83056e-16, -8.69552e-15, 0.107029, -0.994256, 2.75015e-14, 0.994256, 0.107029, -0.0367592, -1.09659, 1.50008)
+transform = Transform3D(1, -1.05825e-13, -6.30288e-15, -1.14171e-14, 0.107029, -0.994256, 2.97851e-14, 0.994256, 0.107029, -0.0367592, -1.34003, 1.70435)
 fov = 90.0
 
-[node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("score_manager", "score_label")]
+[node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("score_manager", "level_manager", "score_label", "level_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -188,9 +189,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_s6m8c")
 score_manager = NodePath("../ScoreManager")
+level_manager = NodePath("../LevelManager")
 score_label = NodePath("ScoreLabel")
+level_label = NodePath("LevelLabel")
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
 layout_mode = 2
 text = "Score: 0"
+label_settings = SubResource("LabelSettings_2f3ec")
+
+[node name="LevelLabel" type="Label" parent="HUD"]
+layout_mode = 2
+text = "Level: 0"
 label_settings = SubResource("LabelSettings_2f3ec")

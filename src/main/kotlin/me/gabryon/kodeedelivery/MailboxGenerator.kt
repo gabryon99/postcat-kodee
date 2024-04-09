@@ -14,9 +14,7 @@ import godot.util.PI
 import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.actors.MailBox
 import me.gabryon.kodeedelivery.levels.LevelLogic
-import me.gabryon.kodeedelivery.levels.MailboxHorizontalPosition
 import me.gabryon.kodeedelivery.levels.MailboxPosition
-import me.gabryon.kodeedelivery.levels.MailboxVerticalPosition
 import me.gabryon.kodeedelivery.managers.ScoreManager
 import me.gabryon.kodeedelivery.utility.angularDistance
 import me.gabryon.kodeedelivery.utility.debugContext
@@ -80,9 +78,16 @@ class MailboxGenerator : Node() {
         return mailbox
     }
 
+    private lateinit var currentLevelLogic: LevelLogic
     private var currentMailboxIterator: Iterator<MailboxPosition>? = null
     private var currentMailbox: MailboxPosition? = null
     private var currentMailboxDistanceLeft: Double = 0.0
+
+    fun setLevelLogic(levelLogic: LevelLogic) {
+        currentLevelLogic = levelLogic
+        currentMailboxIterator = null
+        currentMailbox = null
+    }
 
     /**
      * Remove mailboxes that are not visible anymore in the scene.
@@ -94,20 +99,20 @@ class MailboxGenerator : Node() {
         while (topBox != null && angularDistance(topBox.angularPosition, kodeeRotation) <= -PI / 2.0) {
             generatedBoxes.removeFirst() // Since we are peeking we remove the current box
 
-            debugContext {
-                info<MailboxGenerator>("removing box=$topBox")
-            }
+//            debugContext {
+//                info<MailboxGenerator>("removing box=$topBox")
+//            }
 
             topBox.mailbox.callDeferred("queue_free".asStringName())
             topBox = generatedBoxes.firstOrNull()
         }
     }
 
-    private fun spawnBoxes(deltaTime: Double, levelLogic: LevelLogic) {
+    private fun spawnBoxes(deltaTime: Double) {
 
         var distanceTraveledThisFrame = kodee.angularSpeed.absoluteValue * deltaTime
         val mailboxIterator =
-            (currentMailboxIterator ?: levelLogic.mailboxes().iterator().also { currentMailboxIterator = it })
+            (currentMailboxIterator ?: currentLevelLogic.mailboxes().iterator().also { currentMailboxIterator = it })
 
         fun getNextMailbox(): MailboxPosition = mailboxIterator.next().also {
             currentMailbox = it
@@ -123,8 +128,8 @@ class MailboxGenerator : Node() {
                 return
             }
 
-            val scene = if (mailbox.ver == MailboxVerticalPosition.TOP) upperMailbox else bottomMailbox
-            val offset = if (mailbox.hoz == MailboxHorizontalPosition.LEFT) -sideOffset else sideOffset
+            val scene = if (mailbox.ver == MailboxPosition.VerticalPosition.TOP) upperMailbox else bottomMailbox
+            val offset = if (mailbox.hoz == MailboxPosition.HorizontalPosition.LEFT) sideOffset else -sideOffset
             val angularPosition =
                 boxesSpawnPoint + (distanceTraveledThisFrame - currentMailboxDistanceLeft)
 
@@ -139,10 +144,10 @@ class MailboxGenerator : Node() {
         }
     }
 
-    fun runLevelLogic(deltaTime: Double, levelLogic: LevelLogic) {
+    fun runLevelLogic(deltaTime: Double) {
         // Remove old boxes that are not visible anymore
         despawnBoxes()
         // Generate new boxes for the current frame
-        spawnBoxes(deltaTime, levelLogic)
+        spawnBoxes(deltaTime)
     }
 }

@@ -7,16 +7,15 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.signals.signal
+import me.gabryon.kodeedelivery.levels.LevelLogic
 import me.gabryon.kodeedelivery.utility.debugContext
 
 @RegisterClass
 class ScoreManager : Node() {
 
-    @Export
     @RegisterSignal
     val nextLevel by signal()
 
-    @Export
     @RegisterSignal
     val scoreChanged by signal<Int, Int>("oldScore", "newScore")
 
@@ -26,8 +25,9 @@ class ScoreManager : Node() {
 
     @Export
     @RegisterProperty
-    var pointsToNextLevel: Int = 1000
+    lateinit var levelManager: LevelManager
 
+    var pointsToNextLevel: Int = Int.MAX_VALUE
     private var storedScore = 0
 
     @Export
@@ -43,14 +43,14 @@ class ScoreManager : Node() {
 
         storedScore += points
 
+        debugContext {
+            scoreChanged.emit(oldScore, currentScore)
+            info<ScoreManager>("NextLevel = ${pointsToNextLevel}, Stored Score = ${storedScore}, Current Score = $currentScore, New Points = $points, Multiplier = ${comboManager.currentComboMultiplier}")
+        }
+
         if (storedScore >= pointsToNextLevel) {
             storedScore = 0
             nextLevel.emit()
-        }
-
-        debugContext {
-            scoreChanged.emit(oldScore, currentScore)
-            info<ScoreManager>("Current Score = $currentScore, New Points = $points, Multiplier = ${comboManager.currentComboMultiplier}")
         }
     }
 }

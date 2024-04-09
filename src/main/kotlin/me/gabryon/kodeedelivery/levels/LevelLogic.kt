@@ -2,26 +2,16 @@ package me.gabryon.kodeedelivery.levels
 
 import godot.RandomNumberGenerator
 
-enum class MailboxHorizontalPosition {
-    LEFT, RIGHT;
+data class MailboxPosition(
+    val hoz: HorizontalPosition,
+    val ver: VerticalPosition,
+    val distanceFromPrevious: Double
+) {
+    enum class HorizontalPosition { LEFT, RIGHT }
+    enum class VerticalPosition { TOP, BOTTOM }
 }
 
-enum class MailboxVerticalPosition {
-    TOP, BOTTOM;
-}
-
-data class MailboxPosition(val hoz: MailboxHorizontalPosition, val ver: MailboxVerticalPosition, val distanceFromPrevious: Double)
-
-
-/**
- * Represents a slice in a level of a game.
- *
- * @param boxes An array of mailbox positions in the slice.
- * @param angularPos Where to place the slice.
- */
-data class Slice(val boxes: Array<MailboxPosition>, val angularPos: Double)
-
-interface LevelLogic {
+sealed interface LevelLogic {
 
     /**
      * Maximum running speed of the main character. The speed value should always be negative.
@@ -33,6 +23,15 @@ interface LevelLogic {
      */
     val pointsToNextLevel: Int
 
+    val rng: RandomNumberGenerator
+
     fun mailboxes(): Sequence<MailboxPosition>
 }
 
+suspend inline fun SequenceScope<MailboxPosition>.yieldBox(
+    hoz: MailboxPosition.HorizontalPosition,
+    ver: MailboxPosition.VerticalPosition,
+    distanceFromPrevious: Double
+) {
+    yield(MailboxPosition(hoz, ver, distanceFromPrevious))
+}

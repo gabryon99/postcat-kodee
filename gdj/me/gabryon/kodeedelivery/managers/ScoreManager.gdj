@@ -17,7 +17,7 @@ signals = [
 ]
 properties = [
     current_score,
-	points_to_next_level,
+	level_manager,
 	combo_manager
 ]
 functions = [

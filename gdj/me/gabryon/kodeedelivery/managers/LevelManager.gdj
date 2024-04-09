@@ -17,7 +17,9 @@ signals = [
 properties = [
     current_level,
 	score_manager,
-	mailbox_generator
+	mailbox_generator,
+	kodee,
+	dog
 ]
 functions = [
     _ready,

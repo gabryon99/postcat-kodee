@@ -18,9 +18,12 @@ signals = [
 ]
 properties = [
     score_manager,
-	score_label
+	level_manager,
+	score_label,
+	level_label
 ]
 functions = [
     _ready,
-	on_score_changed
+	on_score_changed,
+	on_next_level
 ]

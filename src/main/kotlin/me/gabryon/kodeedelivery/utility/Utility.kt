@@ -1,10 +1,18 @@
 package me.gabryon.kodeedelivery.utility
 
+import godot.global.GD.abs
+import godot.global.GD.fmod
 import godot.util.PI
-import godot.global.GD.abs as abs
-import godot.global.GD.fmod as fmod
+import kotlin.experimental.ExperimentalTypeInference
 
 const val DPI = PI * 2
+
+@OptIn(ExperimentalTypeInference::class)
+fun <T> infiniteSequence(@BuilderInference block: suspend SequenceScope<T>.() -> Unit): Sequence<T> = Sequence {
+    iterator {
+        while (true) block()
+    }
+}
 
 fun absoluteAngularDistance(from: Double, to: Double): Double {
     val angle1 = fmod(from, DPI)

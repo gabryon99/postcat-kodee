@@ -4,11 +4,7 @@ import godot.Area3D
 import godot.Input.isActionJustReleased
 import godot.Node3D
 import godot.Timer
-import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.*
 import godot.core.asStringName
 import godot.global.GD
 import godot.signals.signal
@@ -20,7 +16,7 @@ class Kodee : Area3D(), Orbiting {
         LEFT, CENTER, RIGHT;
 
         fun left(): HorizontalMovePoint = when (this) {
-            LEFT -> RIGHT
+            LEFT -> LEFT
             CENTER -> LEFT
             RIGHT -> CENTER
         }
@@ -28,7 +24,7 @@ class Kodee : Area3D(), Orbiting {
         fun right(): HorizontalMovePoint = when (this) {
             LEFT -> CENTER
             CENTER -> RIGHT
-            RIGHT -> LEFT
+            RIGHT -> RIGHT
         }
     }
 
@@ -40,9 +36,11 @@ class Kodee : Area3D(), Orbiting {
     @Export
     @RegisterProperty
     lateinit var resetPositionTimer: Timer
+
     @Export
     @RegisterProperty
     var resetHorizontalPositionTime: Double = 0.5
+
     @Export
     @RegisterProperty
     var resetVerticalPositionTime: Double = 1.0
@@ -52,21 +50,25 @@ class Kodee : Area3D(), Orbiting {
     @Export
     @RegisterProperty
     lateinit var upMovePoint: Node3D
+
     @Export
     @RegisterProperty
     lateinit var downMovePoint: Node3D
+
     @Export
     @RegisterProperty
     lateinit var leftMovePoint: Node3D
+
     @Export
     @RegisterProperty
     lateinit var centerMovePoint: Node3D
+
     @Export
     @RegisterProperty
     lateinit var rightMovePoint: Node3D
 
     val rotationY: Double
-        get() = (getParent() as Node3D).rotation.y
+        get() = parent.rotation.y
 
     private lateinit var horizontalMovePoints: List<Node3D>
     private lateinit var verticalMovePoints: List<Node3D>
@@ -83,13 +85,17 @@ class Kodee : Area3D(), Orbiting {
 
     @RegisterSignal
     val comboChanged by signal<Int>("delta")
+
     @RegisterSignal
     val comboLost by signal()
 
     private var mailboxTouched: Boolean = false
 
+    private lateinit var parent: Node3D
+
     @RegisterFunction
     override fun _ready() {
+        parent = getParent() as Node3D
         // Initialize vertical points
         verticalMovePoints = listOf(upMovePoint, downMovePoint)
         // Initialize horizontal move points
@@ -171,7 +177,7 @@ class Kodee : Area3D(), Orbiting {
         if (skipCollidingAreas.isEmpty() && !mailboxTouched) {
             comboLost.emit()
             decelerate()
-            GD.prints("[info][kodee] :: kodee didn't score anything")
+            //GD.prints("[info][kodee] :: kodee didn't score anything")
         }
 
         if (skipCollidingAreas.isEmpty() && mailboxTouched) {
@@ -185,6 +191,7 @@ class Kodee : Area3D(), Orbiting {
             body.isInGroup("MailboxSkip".asStringName()) -> {
                 skipCollidingAreas.add(body)
             }
+
             body.isInGroup("Mailbox".asStringName()) -> {
                 mailboxTouched = true
                 comboChanged.emit(1)
@@ -199,5 +206,4 @@ class Kodee : Area3D(), Orbiting {
         updateVerticalPosition(VerticalMovePoint.DOWN, reset = false)
         updateHorizontalPosition(HorizontalMovePoint.CENTER, reset = false)
     }
-
 }
