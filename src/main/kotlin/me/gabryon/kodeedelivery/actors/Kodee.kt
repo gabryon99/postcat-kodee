@@ -65,8 +65,11 @@ class Kodee : Area3D(), Orbiting {
     @RegisterProperty
     lateinit var rightMovePoint: Node3D
 
-    lateinit var horizontalMovePoints: List<Node3D>
-    lateinit var verticalMovePoints: List<Node3D>
+    val rotationY: Double
+        get() = (getParent() as Node3D).rotation.y
+
+    private lateinit var horizontalMovePoints: List<Node3D>
+    private lateinit var verticalMovePoints: List<Node3D>
     private var currentHorizontalPoint = HorizontalMovePoint.CENTER
     private var currentVerticalPoint = VerticalMovePoint.DOWN
     //endregion
@@ -144,7 +147,6 @@ class Kodee : Area3D(), Orbiting {
 
         // Did Kodee actually move from its position?
         if (reset && currentHorizontalPoint != movePoint) {
-            GD.prints("[info][kodee] :: starting reset position timer...")
             resetPositionTimer.start(resetHorizontalPositionTime)
         }
         if (reset && resetPositionTimer.timeLeft > 0) {

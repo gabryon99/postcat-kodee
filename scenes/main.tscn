@@ -112,7 +112,6 @@ random_seed = "salvokuntivogliobene"
 score_manager = NodePath("../ScoreManager")
 bottom_mailbox = ExtResource("6_i5whb")
 upper_mailbox = ExtResource("7_mgbi2")
-spawn_batch = 8
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6nahn")
@@ -134,7 +133,7 @@ maximum_angular_speed = -3.0
 
 [node name="KodeeOrbitPoint" type="Node3D" parent="World"]
 unique_name_in_owner = true
-transform = Transform3D(-2.80971e-08, 0.642788, 0.766044, -1, -4.37114e-08, -3.48787e-16, 3.34849e-08, -0.766044, 0.642788, 0, 2.08189e-12, 0)
+transform = Transform3D(-2.80971e-08, 0.642788, 0.766044, -1, -4.37114e-08, 2.24196e-16, 3.34849e-08, -0.766044, 0.642788, 0, 2.08189e-12, 0)
 
 [node name="Up_mvp" type="CSGSphere3D" parent="World/KodeeOrbitPoint"]
 transform = Transform3D(0.025, -1.09518e-16, 5.29947e-17, -5.74292e-17, 0.0250001, -9.68047e-10, 1.28491e-16, 1.21468e-09, 0.0250001, 2.08165e-12, 2.08165e-12, 1.6)
@@ -169,10 +168,6 @@ angular_speed = -1.0
 initial_angular_speed = -1.0
 maximum_angular_speed = -3.0
 
-[node name="Camera" type="Camera3D" parent="World/KodeeOrbitPoint"]
-transform = Transform3D(1, -1.0339e-13, 5.83056e-16, -8.69552e-15, 0.107029, -0.994256, 2.75015e-14, 0.994256, 0.107029, -0.0367592, -1.09659, 1.50008)
-fov = 90.0
-
 [node name="Background" type="MeshInstance3D" parent="World/KodeeOrbitPoint"]
 transform = Transform3D(1, 4.60923e-08, -1.26013e-08, -1.99745e-08, 0.163653, -0.986518, -4.34087e-08, 0.986518, 0.163653, -4.04617e-09, 4.04957, 1.76751)
 mesh = SubResource("QuadMesh_yaqs6")
@@ -180,6 +175,10 @@ mesh = SubResource("QuadMesh_yaqs6")
 [node name="Light" type="DirectionalLight3D" parent="World/KodeeOrbitPoint"]
 transform = Transform3D(1, 1.56142e-08, 3.34849e-08, 1.56142e-08, 0.642788, -0.766044, -3.34849e-08, 0.766044, 0.642788, 1.36716e-08, -0.241645, 0.295611)
 sky_mode = 1
+
+[node name="Camera" type="Camera3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(1, -1.0339e-13, 5.83056e-16, -8.69552e-15, 0.107029, -0.994256, 2.75015e-14, 0.994256, 0.107029, -0.0367592, -1.09659, 1.50008)
+fov = 90.0
 
 [node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("score_manager", "score_label")]
 anchors_preset = 15

@@ -12,7 +12,7 @@ import godot.global.GD
 import me.gabryon.kodeedelivery.actors.Dog
 import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.actors.accelerate
-import me.gabryon.kodeedelivery.utility.angleDistance
+import me.gabryon.kodeedelivery.utility.absoluteAngularDistance
 import me.gabryon.kodeedelivery.utility.debugContext
 
 // Only Wout and Gabriele know what happen here on 5th of April 2024.
@@ -61,7 +61,7 @@ class Referee : Node() {
 
         val kodeeAngle = kodee.rotation.y
         val dogAngle = dog.rotation.y
-        val currentDistance = angleDistance(dog.rotation.y, kodee.rotation.y)
+        val currentDistance = absoluteAngularDistance(dog.rotation.y, kodee.rotation.y)
 
         val x = (currentDistance / maxDistanceDogAndKodee)
         val y = GD.pow(GD.clamp(3 * x - 2, -1.0, 1.0), bounciness)

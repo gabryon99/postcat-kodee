@@ -7,14 +7,24 @@ enum class MailboxHorizontalPosition {
 }
 
 enum class MailboxVerticalPosition {
-    UP, DOWN;
+    TOP, BOTTOM;
 }
+
+data class MailboxPosition(val hoz: MailboxHorizontalPosition, val ver: MailboxVerticalPosition, val distanceFromPrevious: Double)
+
+
+/**
+ * Represents a slice in a level of a game.
+ *
+ * @param boxes An array of mailbox positions in the slice.
+ * @param angularPos Where to place the slice.
+ */
+data class Slice(val boxes: Array<MailboxPosition>, val angularPos: Double)
 
 interface LevelLogic {
 
     /**
-     * Maximum running speed of the main character. The speed
-     * value should always be negative.
+     * Maximum running speed of the main character. The speed value should always be negative.
      */
     val maximumCharacterSpeed: Double
 
@@ -23,7 +33,6 @@ interface LevelLogic {
      */
     val pointsToNextLevel: Int
 
-    fun mailboxesPerFace(rng: RandomNumberGenerator): Int
-
-    fun generateMailbox(rng: RandomNumberGenerator): Pair<MailboxHorizontalPosition, MailboxVerticalPosition>
+    fun mailboxes(): Sequence<MailboxPosition>
 }
+

@@ -7,6 +7,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import me.gabryon.kodeedelivery.MailboxGenerator
 import me.gabryon.kodeedelivery.levels.DebugLevel
+import me.gabryon.kodeedelivery.levels.LevelLogic
 import me.gabryon.kodeedelivery.utility.debugContext
 
 @RegisterClass
@@ -38,7 +39,7 @@ class LevelManager : Node() {
     @RegisterProperty
     lateinit var mailboxGenerator: MailboxGenerator
 
-    var currentLevelLogic = DebugLevel()
+    var currentLevelLogic: LevelLogic = DebugLevel
 
     @RegisterFunction
     override fun _ready() {
@@ -60,7 +61,7 @@ class LevelManager : Node() {
 
     @RegisterFunction
     override fun _process(delta: Double) {
-        mailboxGenerator.spawnMailboxes(currentLevelLogic)
+        mailboxGenerator.runLevelLogic(delta, currentLevelLogic)
     }
 
 }

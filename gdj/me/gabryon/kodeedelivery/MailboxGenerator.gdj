@@ -21,8 +21,7 @@ properties = [
 	side_offset,
 	score_manager,
 	bottom_mailbox,
-	upper_mailbox,
-	spawn_batch
+	upper_mailbox
 ]
 functions = [
     

@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cooagrp6vnti7"]
+[gd_scene load_steps=5 format=3 uid="uid://cooagrp6vnti7"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Dog.gdj" id="1_3ite4"]
+[ext_resource type="Texture2D" uid="uid://b0q1cspk8ir41" path="res://assets/Spaghetti-43.jpg" id="2_dadl4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kuote"]
+albedo_texture = ExtResource("2_dadl4")
+uv1_scale = Vector3(2, 2, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_urjgv"]
 
@@ -8,6 +13,8 @@
 script = ExtResource("1_3ite4")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radial_segments = 36
+material = SubResource("StandardMaterial3D_kuote")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_urjgv")
