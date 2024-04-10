@@ -179,6 +179,7 @@ sky_mode = 1
 
 [node name="Camera" type="Camera3D" parent="World/KodeeOrbitPoint"]
 transform = Transform3D(1, -1.05825e-13, -6.30288e-15, -1.14171e-14, 0.107029, -0.994256, 2.97851e-14, 0.994256, 0.107029, -0.0367592, -1.34003, 1.70435)
+current = true
 fov = 90.0
 
 [node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("score_manager", "level_manager", "score_label", "level_label")]

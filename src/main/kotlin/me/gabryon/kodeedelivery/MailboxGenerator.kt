@@ -98,11 +98,6 @@ class MailboxGenerator : Node() {
 
         while (topBox != null && angularDistance(topBox.angularPosition, kodeeRotation) <= -PI / 2.0) {
             generatedBoxes.removeFirst() // Since we are peeking we remove the current box
-
-//            debugContext {
-//                info<MailboxGenerator>("removing box=$topBox")
-//            }
-
             topBox.mailbox.callDeferred("queue_free".asStringName())
             topBox = generatedBoxes.firstOrNull()
         }
