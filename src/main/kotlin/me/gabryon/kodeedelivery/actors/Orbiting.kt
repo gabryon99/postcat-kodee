@@ -34,18 +34,12 @@ fun Orbiting.orbit(delta: Double) {
     orbitPoint.rotateY((angularSpeed * delta).toFloat())
 }
 
-fun Orbiting.accelerate(delta: Double = deltaSpeed, maxSpeed: Double = Double.NEGATIVE_INFINITY) {
+fun Orbiting.accelerate(delta: Double = deltaSpeed, maxSpeed: Double = maximumAngularSpeed) {
     // NOTE: speeds are in negative, signs are swapped.
-    if (angularSpeed <= maximumAngularSpeed) {
-        return
-    }
     angularSpeed = GD.clamp(angularSpeed - delta, maxSpeed, initialAngularSpeed)
 }
 
 fun Orbiting.decelerate(delta: Double = deltaSpeed) {
     // NOTE: speeds are in negative, signs are swapped.
-    if (angularSpeed >= initialAngularSpeed) {
-        return
-    }
     angularSpeed = GD.clamp(angularSpeed + delta, maximumAngularSpeed, initialAngularSpeed)
 }
