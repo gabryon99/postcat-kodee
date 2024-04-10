@@ -1,16 +1,15 @@
-[gd_scene load_steps=22 format=3 uid="uid://dop85vkr3mb2g"]
+[gd_scene load_steps=21 format=3 uid="uid://dop85vkr3mb2g"]
 
 [ext_resource type="PackedScene" uid="uid://cooagrp6vnti7" path="res://scenes/boulder.tscn" id="1_8lew4"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/Referee.gdj" id="1_xu7tv"]
 [ext_resource type="PackedScene" uid="uid://chg68bxe8gyhx" path="res://scenes/world.tscn" id="2_g3d4t"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/ComboManager.gdj" id="2_l4xqi"]
-[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/MailboxGenerator.gdj" id="3_5q27g"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/LevelManager.gdj" id="3_kn65t"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/ScoreManager.gdj" id="4_r8rnm"]
 [ext_resource type="PackedScene" uid="uid://ntp6wvus8jab" path="res://scenes/kodee.tscn" id="4_vf74w"]
 [ext_resource type="PackedScene" uid="uid://q5y5t5qtww7w" path="res://scenes/bottom_mailbox_orbit_point.tscn" id="6_i5whb"]
 [ext_resource type="Shader" path="res://shaders/toonsky.gdshader" id="7_15tcf"]
-[ext_resource type="PackedScene" uid="uid://dbe4dmfsf0v08" path="res://scenes/upper_mailbox_orbit_point.tscn" id="7_mgbi2"]
+[ext_resource type="PackedScene" uid="uid://dbe4dmfsf0v08" path="res://scenes/top_mailbox_orbit_point.tscn" id="7_mgbi2"]
 [ext_resource type="Texture2D" uid="uid://lvk4strbq5uj" path="res://assets/ground-texture.png" id="10_0xduk"]
 [ext_resource type="Texture2D" uid="uid://dw6u5n3c4f3hj" path="res://assets/toon-city.png" id="12_f7k7l"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/HUD.gdj" id="12_s6m8c"]
@@ -78,7 +77,7 @@ font_color = Color(0.194349, 0.194349, 0.194349, 1)
 
 [node name="Main" type="Node3D"]
 
-[node name="Referee" type="Node" parent="." node_paths=PackedStringArray("kodee", "dog")]
+[node name="Referee" type="Node" parent="." node_paths=PackedStringArray("kodee", "dog", "kodee_script", "dog_script")]
 script = ExtResource("1_xu7tv")
 kodee = NodePath("../World/KodeeOrbitPoint")
 dog = NodePath("../World/DogOrbitPoint")
@@ -86,16 +85,21 @@ max_distance_dog_and_kodee = 1.7
 bounciness = 2.0
 min_max_speed_dog = -2.0
 overtake_speed = -0.065
+kodee_script = NodePath("../World/KodeeOrbitPoint/Kodee")
+dog_script = NodePath("../World/DogOrbitPoint/Dog")
 
-[node name="ComboManager" type="Node" parent="."]
+[node name="ComboManager" type="Node" parent="." node_paths=PackedStringArray("kodee")]
 unique_name_in_owner = true
 script = ExtResource("2_l4xqi")
+kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
 
-[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("score_manager", "mailbox_generator", "kodee", "dog")]
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("score_manager", "world", "kodee", "dog")]
 unique_name_in_owner = true
 script = ExtResource("3_kn65t")
 score_manager = NodePath("../ScoreManager")
-mailbox_generator = NodePath("../MailboxGenerator")
+bottom_mailbox = ExtResource("6_i5whb")
+top_mailbox = ExtResource("7_mgbi2")
+world = NodePath("../World")
 kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
 dog = NodePath("../World/DogOrbitPoint/Dog")
 
@@ -103,16 +107,6 @@ dog = NodePath("../World/DogOrbitPoint/Dog")
 unique_name_in_owner = true
 script = ExtResource("4_r8rnm")
 combo_manager = NodePath("../ComboManager")
-
-[node name="MailboxGenerator" type="Node" parent="." node_paths=PackedStringArray("world", "kodee", "score_manager")]
-unique_name_in_owner = true
-script = ExtResource("3_5q27g")
-world = NodePath("../World")
-kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
-random_seed = "salvokuntivogliobene"
-score_manager = NodePath("../ScoreManager")
-bottom_mailbox = ExtResource("6_i5whb")
-upper_mailbox = ExtResource("7_mgbi2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6nahn")
@@ -130,7 +124,7 @@ transform = Transform3D(0.5, 3.92317e-15, 2.34725e-14, -3.92317e-15, 0.5, 4.7864
 rotation_speed = Vector3(90, 2.08165e-12, 2.08165e-12)
 angular_speed = -1.0
 initial_angular_speed = -1.0
-maximum_angular_speed = -3.0
+maximum_angular_speed = -2.0
 
 [node name="KodeeOrbitPoint" type="Node3D" parent="World"]
 unique_name_in_owner = true
@@ -167,7 +161,7 @@ center_move_point = NodePath("../Center_mvp")
 right_move_point = NodePath("../Right_mvp")
 angular_speed = -1.0
 initial_angular_speed = -1.0
-maximum_angular_speed = -3.0
+maximum_angular_speed = -2.0
 
 [node name="Background" type="MeshInstance3D" parent="World/KodeeOrbitPoint"]
 transform = Transform3D(1, 4.60923e-08, -1.26013e-08, -1.99745e-08, 0.163653, -0.986518, -4.34087e-08, 0.986518, 0.163653, -4.04617e-09, 4.04957, 1.76751)
