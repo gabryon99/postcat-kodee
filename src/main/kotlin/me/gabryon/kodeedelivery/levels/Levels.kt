@@ -22,7 +22,7 @@ data object DebugLevel0 : LevelLogic {
 
 data object DebugLevel1 : LevelLogic {
 
-    override val maximumCharacterSpeed: Double = -2.0
+    override val maximumCharacterSpeed: Double = -2.0 increasedBy 10.0
     override val pointsToNextLevel: Int = -1
 
     /**

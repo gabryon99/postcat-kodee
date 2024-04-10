@@ -1,4 +1,4 @@
-package me.gabryon.kodeedelivery
+package me.gabryon.kodeedelivery.managers
 
 import godot.Node3D
 import godot.PackedScene
@@ -10,7 +10,6 @@ import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.actors.MailBox
 import me.gabryon.kodeedelivery.levels.LevelLogic
 import me.gabryon.kodeedelivery.levels.MailboxPosition
-import me.gabryon.kodeedelivery.managers.ScoreManager
 import me.gabryon.kodeedelivery.utility.angularDistance
 import me.gabryon.kodeedelivery.utility.loop
 import kotlin.math.absoluteValue
