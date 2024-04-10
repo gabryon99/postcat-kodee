@@ -16,7 +16,8 @@ signals = [
 ]
 properties = [
     maximum_multiplier,
-	multiplier_increase
+	multiplier_increase,
+	kodee
 ]
 functions = [
     _ready,

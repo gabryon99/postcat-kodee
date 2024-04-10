@@ -47,21 +47,19 @@ class Referee : Node() {
     @RegisterProperty
     var overtakeSpeed: Double = 0.1
 
+    @Export
+    @RegisterProperty
     lateinit var kodeeScript: Kodee
+    @Export
+    @RegisterProperty
     lateinit var dogScript: Dog
-
-    @RegisterFunction
-    override fun _ready() {
-        kodeeScript = getNodeAs<Kodee>("%Kodee".asStringName())!!
-        dogScript = getNodeAs<Dog>("%Dog".asStringName())!!
-    }
 
     @RegisterFunction
     override fun _process(delta: Double) {
 
         val kodeeAngle = kodee.rotation.y
         val dogAngle = dog.rotation.y
-        val currentDistance = absoluteAngularDistance(dog.rotation.y, kodee.rotation.y)
+        val currentDistance = absoluteAngularDistance(dogAngle, kodeeAngle)
 
         val x = (currentDistance / maxDistanceDogAndKodee)
         val y = GD.pow(GD.clamp(3 * x - 2, -1.0, 1.0), bounciness)

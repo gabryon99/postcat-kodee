@@ -19,11 +19,8 @@ class ComboManager : Node() {
         const val DEFAULT_MULTIPLIER = 1.0
     }
 
-    var comboCounter: Int = 0
-        private set
-
-    var maxComboCounterReached: Int = 0
-        private set
+    private var comboCounter: Int = 0
+    private var maxComboCounterReached: Int = 0
 
     @Export
     @RegisterProperty
@@ -32,12 +29,15 @@ class ComboManager : Node() {
     @RegisterProperty
     var multiplierIncrease: Double = 0.1
 
+    @Export
+    @RegisterProperty
+    lateinit var kodee: Kodee
+
     var currentComboMultiplier: Double = DEFAULT_MULTIPLIER
         private set
 
     @RegisterFunction
     override fun _ready() {
-        val kodee = getNodeAs<Kodee>("%Kodee".asStringName())!!
         kodee.run {
             comboChanged.connect(this@ComboManager, ComboManager::onComboChanged)
             comboLost.connect(this@ComboManager, ComboManager::onComboLost)

@@ -1,12 +1,7 @@
 package me.gabryon.kodeedelivery
 
-import godot.Node
 import godot.Node3D
 import godot.PackedScene
-import godot.RandomNumberGenerator
-import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterProperty
 import godot.core.Vector3
 import godot.core.asStringName
 import godot.extensions.instanceAs
@@ -17,48 +12,29 @@ import me.gabryon.kodeedelivery.levels.LevelLogic
 import me.gabryon.kodeedelivery.levels.MailboxPosition
 import me.gabryon.kodeedelivery.managers.ScoreManager
 import me.gabryon.kodeedelivery.utility.angularDistance
-import me.gabryon.kodeedelivery.utility.debugContext
+import me.gabryon.kodeedelivery.utility.loop
 import kotlin.math.absoluteValue
 
-data class MailboxWrapper(val mailbox: Node3D, val angularPosition: Double)
+class MailboxGenerator(
+    private var currentLevelLogic: LevelLogic,
+    private val world: Node3D,
+    private val kodee: Kodee,
+    private val sideOffset: Double,
+    private val bottomMailbox: PackedScene,
+    private val topMailbox: PackedScene,
+    private val scoreManager: ScoreManager,
+) {
 
-@RegisterClass
-class MailboxGenerator : Node() {
+    data class MailboxWrapper(val mailbox: Node3D, val angularPosition: Double)
 
-    @Export
-    @RegisterProperty
-    lateinit var world: Node3D
-
-    @Export
-    @RegisterProperty
-    lateinit var kodee: Kodee
+    private var currentMailboxIterator: Iterator<MailboxPosition>? = null
+    private var currentMailbox: MailboxPosition? = null
+    private var currentMailboxDistanceLeft: Double = 0.0
 
     private val boxesSpawnPoint: Double
         get() = kodee.rotationY + PI
 
-    @Export
-    @RegisterProperty
-    var randomSeed: String = "UappaLulla"
-
-    @Export
-    @RegisterProperty
-    var sideOffset: Double = 0.5
-
-    @Export
-    @RegisterProperty
-    lateinit var scoreManager: ScoreManager
-
-    //region Packed Scenes
-    @Export
-    @RegisterProperty
-    lateinit var bottomMailbox: PackedScene
-
-    @Export
-    @RegisterProperty
-    lateinit var upperMailbox: PackedScene
-    //endregion
-
-    private val generatedBoxes: ArrayDeque<MailboxWrapper> = ArrayDeque()
+    private val generatedBoxes = ArrayDeque<MailboxWrapper>()
 
     /**
      * Create a new type of Mailbox to add to the current scene. When a new mailbox
@@ -78,23 +54,12 @@ class MailboxGenerator : Node() {
         return mailbox
     }
 
-    private lateinit var currentLevelLogic: LevelLogic
-    private var currentMailboxIterator: Iterator<MailboxPosition>? = null
-    private var currentMailbox: MailboxPosition? = null
-    private var currentMailboxDistanceLeft: Double = 0.0
-
-    fun setLevelLogic(levelLogic: LevelLogic) {
-        currentLevelLogic = levelLogic
-        currentMailboxIterator = null
-        currentMailbox = null
-    }
-
     /**
      * Remove mailboxes that are not visible anymore in the scene.
      */
     private fun despawnBoxes() {
-        var topBox = generatedBoxes.firstOrNull()
         val kodeeRotation = kodee.rotationY
+        var topBox = generatedBoxes.firstOrNull()
 
         while (topBox != null && angularDistance(topBox.angularPosition, kodeeRotation) <= -PI / 2.0) {
             generatedBoxes.removeFirst() // Since we are peeking we remove the current box
@@ -116,14 +81,14 @@ class MailboxGenerator : Node() {
 
         var mailbox = currentMailbox ?: getNextMailbox()
 
-        while (true) {
+        loop {
 
             if (distanceTraveledThisFrame < currentMailboxDistanceLeft) {
                 currentMailboxDistanceLeft -= distanceTraveledThisFrame
                 return
             }
 
-            val scene = if (mailbox.ver == MailboxPosition.VerticalPosition.TOP) upperMailbox else bottomMailbox
+            val scene = if (mailbox.ver == MailboxPosition.VerticalPosition.TOP) topMailbox else bottomMailbox
             val offset = if (mailbox.hoz == MailboxPosition.HorizontalPosition.LEFT) sideOffset else -sideOffset
             val angularPosition =
                 boxesSpawnPoint + (distanceTraveledThisFrame - currentMailboxDistanceLeft)
@@ -137,6 +102,12 @@ class MailboxGenerator : Node() {
             mailbox = getNextMailbox()
             distanceTraveledThisFrame -= currentMailboxDistanceLeft
         }
+    }
+
+    fun changeLevelLogic(levelLogic: LevelLogic) {
+        currentLevelLogic = levelLogic
+        currentMailboxIterator = null
+        currentMailbox = null
     }
 
     fun runLevelLogic(deltaTime: Double) {

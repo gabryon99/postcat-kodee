@@ -15,14 +15,16 @@ signals = [
     
 ]
 properties = [
-    current_level,
-	score_manager,
-	mailbox_generator,
+    score_manager,
+	bottom_mailbox,
+	top_mailbox,
+	side_offset,
+	world,
 	kodee,
 	dog
 ]
 functions = [
     _ready,
-	on_next_level,
-	_process
+	_process,
+	on_next_level
 ]

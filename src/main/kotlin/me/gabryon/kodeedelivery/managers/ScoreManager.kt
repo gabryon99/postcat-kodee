@@ -1,14 +1,10 @@
 package me.gabryon.kodeedelivery.managers
 
 import godot.Node
-import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.*
 import godot.signals.signal
-import me.gabryon.kodeedelivery.levels.LevelLogic
 import me.gabryon.kodeedelivery.utility.debugContext
+import me.gabryon.kodeedelivery.utility.safeAdd
 
 @RegisterClass
 class ScoreManager : Node() {
@@ -39,9 +35,10 @@ class ScoreManager : Node() {
         require(points >= 0) { "The points to add must be positive." }
 
         val oldScore = currentScore
-        currentScore += (points * comboManager.currentComboMultiplier).toInt()
+        val newScore = (points * comboManager.currentComboMultiplier).toInt()
 
-        storedScore += points
+        currentScore = currentScore safeAdd newScore
+        storedScore = storedScore safeAdd points
 
         debugContext {
             scoreChanged.emit(oldScore, currentScore)

@@ -21,9 +21,10 @@ properties = [
 	bounciness,
 	dog_max_speed_curviness,
 	min_max_speed_dog,
-	overtake_speed
+	overtake_speed,
+	kodee_script,
+	dog_script
 ]
 functions = [
-	_ready,
 	_process
 ]
