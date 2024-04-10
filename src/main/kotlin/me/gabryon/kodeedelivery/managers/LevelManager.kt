@@ -7,7 +7,6 @@ import godot.annotation.Export
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
-import me.gabryon.kodeedelivery.MailboxGenerator
 import me.gabryon.kodeedelivery.actors.Dog
 import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.levels.*
@@ -102,7 +101,7 @@ class LevelManager : Node() {
      * @return The next level.
      */
     private fun Array<LevelLogic>.nextLevel(currentLevel: Int): NextLevel {
-        val maxLevel = this.size
+        val maxLevel = this.lastIndex
         val newLevel = (currentLevel + 1).coerceAtMost(maxLevel)
         val newLogic = this[newLevel]
         return NextLevel(newLevel, newLogic)

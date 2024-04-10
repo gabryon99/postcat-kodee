@@ -40,9 +40,10 @@ class ScoreManager : Node() {
         currentScore = currentScore safeAdd newScore
         storedScore = storedScore safeAdd points
 
+        scoreChanged.emit(oldScore, currentScore)
+
         debugContext {
-            scoreChanged.emit(oldScore, currentScore)
-            info<ScoreManager>("NextLevel = ${pointsToNextLevel}, Stored Score = ${storedScore}, Current Score = $currentScore, New Points = $points, Multiplier = ${comboManager.currentComboMultiplier}")
+//            info<ScoreManager>("NextLevel = ${pointsToNextLevel}, Stored Score = ${storedScore}, Current Score = $currentScore, New Points = $points, Multiplier = ${comboManager.currentComboMultiplier}")
         }
 
         if (storedScore >= pointsToNextLevel) {

@@ -21,7 +21,7 @@ abstract class MailBox : Node3D(), Scorable {
     @RegisterProperty
     lateinit var deliveredColor: Color // This is a debug property!
 
-    lateinit var kodeeOrbit: Node3D
+    private lateinit var kodeeOrbit: Node3D
 
     @RegisterSignal
     override val scored by signal<Int>("points")
@@ -29,18 +29,15 @@ abstract class MailBox : Node3D(), Scorable {
     @RegisterFunction
     override fun _ready() {
         val currentScene = getTree()!!.currentScene!!
-        kodeeOrbit = currentScene.getNodeAs<Node3D>("%KodeeOrbitPoint".asStringName())!!
+        kodeeOrbit = currentScene.getNodeAs("%KodeeOrbitPoint".asStringName())!!
         val area3D = findChild("MailboxArea", recursive = true) as Area3D
         area3D.areaEntered.connect(this, MailBox::onBodyEntered)
     }
 
     @RegisterFunction
     fun onBodyEntered(body: Node3D) {
-
         if (body.isInGroup("Player".asStringName())) {
-
             scored.emit(score)
-
             val mailbox = findChild("Model") as CSGMesh3D
             mailbox.material = StandardMaterial3D().apply {
                 albedoColor = deliveredColor
