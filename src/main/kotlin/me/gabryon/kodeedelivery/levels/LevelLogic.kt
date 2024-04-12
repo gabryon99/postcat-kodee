@@ -1,6 +1,8 @@
 package me.gabryon.kodeedelivery.levels
 
 import godot.RandomNumberGenerator
+import godot.extensions.godotStatic
+import godot.global.GD
 
 /**
  * Represents the position of a mailbox in a level.
@@ -19,7 +21,9 @@ data class MailboxPosition(
 }
 
 object LevelUtility {
-    val rng = RandomNumberGenerator().apply { seed = "vogliobeneasallo97".hashCode().toLong() }
+    val rng by godotStatic {
+        RandomNumberGenerator().apply { seed = "vogliobeneasallo97".hashCode().toLong() }
+    }
 }
 
 /**
