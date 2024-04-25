@@ -1,5 +1,6 @@
 package me.gabryon.kodeedelivery.managers
 
+import godot.AudioStreamPlayer3D
 import godot.Node
 import godot.Node3D
 import godot.PackedScene
@@ -10,6 +11,7 @@ import godot.annotation.RegisterProperty
 import me.gabryon.kodeedelivery.actors.Dog
 import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.levels.*
+import me.gabryon.kodeedelivery.utility.child
 
 @RegisterClass
 class LevelManager : Node() {
@@ -59,6 +61,8 @@ class LevelManager : Node() {
     lateinit var dog: Dog
     //endregion
 
+    private val nextLevelSound by child<AudioStreamPlayer3D>("NextLevelSound")
+
     @RegisterFunction
     override fun _ready() {
         // Setup managers first and then create the mailbox generator
@@ -86,6 +90,11 @@ class LevelManager : Node() {
     fun onNextLevel() {
         levels.nextLevel(currentLevel).run {
             currentLevel = newLevel
+
+            if (newLevelLogic != currentLevelLogic) {
+                nextLevelSound.play()
+            }
+
             currentLevelLogic = newLevelLogic
             scoreManager.pointsToNextLevel = newLevelLogic.pointsToNextLevel
             kodee.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
@@ -101,8 +110,7 @@ class LevelManager : Node() {
      * @return The next level.
      */
     private fun Array<LevelLogic>.nextLevel(currentLevel: Int): NextLevel {
-        val maxLevel = this.lastIndex
-        val newLevel = (currentLevel + 1).coerceAtMost(maxLevel)
+        val newLevel = (currentLevel + 1).coerceAtMost(lastIndex)
         val newLogic = this[newLevel]
         return NextLevel(newLevel, newLogic)
     }

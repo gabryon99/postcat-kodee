@@ -2,6 +2,7 @@ package me.gabryon.kodeedelivery.managers
 
 import godot.Node
 import godot.Node3D
+import godot.ProgressBar
 import godot.annotation.Export
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
@@ -27,6 +28,10 @@ class Referee : Node() {
     @Export
     @RegisterProperty
     var maxDistanceDogAndKodee: Double = 1.0
+
+    @Export
+    @RegisterProperty
+    lateinit var distanceBar: ProgressBar
 
     @Export
     @RegisterProperty
@@ -71,6 +76,8 @@ class Referee : Node() {
             val y2 = dogMaxSpeedCurve(x)
             dogScript.accelerate(delta = deltaSpeedDiff * y, maxSpeed = y2)
         }
+
+        distanceBar.value = currentDistance * 100
 
 //        debugContext {
 //            info<Referee>(
