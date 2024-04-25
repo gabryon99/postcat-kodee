@@ -21,7 +21,6 @@ signals = [
 	combo_lost
 ]
 properties = [
-	reset_position_timer,
 	reset_horizontal_position_time,
 	reset_vertical_position_time,
 	up_move_point,

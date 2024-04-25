@@ -18,6 +18,7 @@ properties = [
 	kodee,
 	dog,
 	max_distance_dog_and_kodee,
+	distance_bar,
 	bounciness,
 	dog_max_speed_curviness,
 	min_max_speed_dog,

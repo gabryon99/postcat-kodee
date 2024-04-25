@@ -1,9 +1,6 @@
 package me.gabryon.kodeedelivery.actors
 
-import godot.Area3D
-import godot.CSGMesh3D
-import godot.Node3D
-import godot.StandardMaterial3D
+import godot.*
 import godot.annotation.Export
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
@@ -13,7 +10,7 @@ import godot.core.asStringName
 import godot.extensions.getNodeAs
 import godot.signals.signal
 import me.gabryon.kodeedelivery.managers.Scorable
-import kotlin.apply
+import me.gabryon.kodeedelivery.utility.child
 
 abstract class MailBox : Node3D(), Scorable {
 
@@ -26,6 +23,8 @@ abstract class MailBox : Node3D(), Scorable {
     @RegisterSignal
     override val scored by signal<Int>("points")
 
+    private val letterboxSound by child<AudioStreamPlayer3D>("LetterboxSound")
+
     @RegisterFunction
     override fun _ready() {
         val currentScene = getTree()!!.currentScene!!
@@ -37,11 +36,9 @@ abstract class MailBox : Node3D(), Scorable {
     @RegisterFunction
     fun onBodyEntered(body: Node3D) {
         if (body.isInGroup("Player".asStringName())) {
+            letterboxSound.play()
+            // Signal new score!
             scored.emit(score)
-            val mailbox = findChild("Model") as CSGMesh3D
-            mailbox.material = StandardMaterial3D().apply {
-                albedoColor = deliveredColor
-            }
         }
     }
 }

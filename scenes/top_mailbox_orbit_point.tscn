@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbe4dmfsf0v08"]
+[gd_scene load_steps=8 format=3 uid="uid://dbe4dmfsf0v08"]
 
+[ext_resource type="AudioStream" uid="uid://b8k7lc2daqb74" path="res://assets/sounds/letterbox_close.mp3" id="2_svcvj"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/UpMailbox.gdj" id="2_va3mc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qag42"]
@@ -44,3 +45,6 @@ shape = SubResource("BoxShape3D_w38wx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mailbox/SkipArea"]
 transform = Transform3D(1, 1.42109e-14, -3.18604e-23, 2.43305e-32, 1, -4.25449e-24, -2.66455e-23, -7.49584e-24, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_pjmxi")
+
+[node name="LetterboxSound" type="AudioStreamPlayer3D" parent="Mailbox"]
+stream = ExtResource("2_svcvj")
