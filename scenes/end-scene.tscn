@@ -1,0 +1,178 @@
+[gd_scene load_steps=17 format=3 uid="uid://budecmrwf0ixh"]
+
+[ext_resource type="Texture2D" uid="uid://d2sn5ijwbp2mr" path="res://assets/official/newsky.png" id="1_jewbt"]
+[ext_resource type="FontFile" uid="uid://dbwknxjawgftk" path="res://assets/JetBrainsSans-Bold.ttf" id="2_e0yk1"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PointsLabel.gdj" id="3_4bjox"]
+[ext_resource type="FontFile" uid="uid://dktik3u7nkjc" path="res://assets/JetBrains Sans.ttf" id="3_uyvke"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PrizeLabel.gdj" id="4_2nxx4"]
+[ext_resource type="Texture2D" uid="uid://b234y7adqutqp" path="res://assets/button/button-fill.png" id="4_5il15"]
+[ext_resource type="PackedScene" uid="uid://c5wovbmagubj6" path="res://scenes/cloud.tscn" id="5_dbix1"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartGameButton.gdj" id="5_i4lrb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dy3na"]
+font = ExtResource("2_e0yk1")
+font_size = 80
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c3dl2"]
+font = ExtResource("3_uyvke")
+font_size = 37
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pi36v"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gtmh"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5moi0"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuk06"]
+texture = ExtResource("4_5il15")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smw2k"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_ssskc"]
+default_font = ExtResource("3_uyvke")
+default_font_size = 16
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 0
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("2_e0yk1")
+Button/styles/disabled = SubResource("StyleBoxFlat_pi36v")
+Button/styles/focus = SubResource("StyleBoxFlat_1gtmh")
+Button/styles/hover = SubResource("StyleBoxFlat_5moi0")
+Button/styles/normal = SubResource("StyleBoxTexture_kuk06")
+Button/styles/pressed = SubResource("StyleBoxFlat_smw2k")
+
+[node name="EndScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jewbt")
+expand_mode = 5
+
+[node name="PointsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_right = 1.0
+anchor_bottom = 0.374
+offset_top = -1.14441e-05
+offset_bottom = -35.72
+text = "9999 points!
+Well done!"
+label_settings = SubResource("LabelSettings_dy3na")
+horizontal_alignment = 1
+script = ExtResource("3_4bjox")
+
+[node name="PrizeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.462
+anchor_right = 1.022
+anchor_bottom = 0.55
+offset_left = 144.0
+offset_top = 0.639984
+offset_right = -127.84
+offset_bottom = -1.52588e-05
+text = "Gets 1000 points to win a special limited gadget."
+label_settings = SubResource("LabelSettings_c3dl2")
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("4_2nxx4")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.869
+anchor_right = 1.0
+anchor_bottom = 0.956
+offset_left = 128.0
+offset_top = -0.320023
+offset_right = -128.0
+offset_bottom = -0.680038
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ssskc")
+text = "Try again"
+script = ExtResource("5_i4lrb")
+
+[node name="Cloud" parent="." instance=ExtResource("5_dbix1")]
+position = Vector2(616, 200)
+
+[node name="Cloud2" parent="." instance=ExtResource("5_dbix1")]
+position = Vector2(56, 512)
+scale = Vector2(0.25, 0.25)
