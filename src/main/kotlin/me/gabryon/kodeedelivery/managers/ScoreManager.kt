@@ -3,7 +3,6 @@ package me.gabryon.kodeedelivery.managers
 import godot.Node
 import godot.annotation.*
 import godot.signals.signal
-import me.gabryon.kodeedelivery.utility.debugContext
 import me.gabryon.kodeedelivery.utility.safeAdd
 
 @RegisterClass
@@ -40,11 +39,9 @@ class ScoreManager : Node() {
         currentScore = currentScore safeAdd newScore
         storedScore = storedScore safeAdd points
 
-        scoreChanged.emit(oldScore, currentScore)
+        ScoreStorage.userScore = currentScore
 
-        debugContext {
-//            info<ScoreManager>("NextLevel = ${pointsToNextLevel}, Stored Score = ${storedScore}, Current Score = $currentScore, New Points = $points, Multiplier = ${comboManager.currentComboMultiplier}")
-        }
+        scoreChanged.emit(oldScore, currentScore)
 
         if (storedScore >= pointsToNextLevel) {
             storedScore = 0
