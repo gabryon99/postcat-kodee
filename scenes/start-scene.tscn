@@ -1,0 +1,185 @@
+[gd_scene load_steps=17 format=3 uid="uid://ccloja1xf3wpi"]
+
+[ext_resource type="Texture2D" uid="uid://d2sn5ijwbp2mr" path="res://assets/official/newsky.png" id="1_oqhvk"]
+[ext_resource type="FontFile" uid="uid://dbwknxjawgftk" path="res://assets/JetBrainsSans-Bold.ttf" id="2_8ph3o"]
+[ext_resource type="PackedScene" uid="uid://c5wovbmagubj6" path="res://scenes/cloud.tscn" id="2_kpx6n"]
+[ext_resource type="Texture2D" uid="uid://b234y7adqutqp" path="res://assets/button/button-fill.png" id="3_5wksy"]
+[ext_resource type="FontFile" uid="uid://dktik3u7nkjc" path="res://assets/JetBrains Sans.ttf" id="4_avjnp"]
+[ext_resource type="Texture2D" uid="uid://cevka2eywox2l" path="res://assets/logo-better.png" id="5_rtvin"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartGameButton.gdj" id="6_d48si"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PersonalRecordLabel.gdj" id="7_7wqdl"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/OpenAboutButton.gdj" id="7_auahq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsmg6"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq62t"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anqut"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1l2c3"]
+texture = ExtResource("3_5wksy")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruo0c"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_htc1j"]
+default_font = ExtResource("4_avjnp")
+default_font_size = 16
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 0
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("2_8ph3o")
+Button/styles/disabled = SubResource("StyleBoxFlat_xsmg6")
+Button/styles/focus = SubResource("StyleBoxFlat_kq62t")
+Button/styles/hover = SubResource("StyleBoxFlat_anqut")
+Button/styles/normal = SubResource("StyleBoxTexture_1l2c3")
+Button/styles/pressed = SubResource("StyleBoxFlat_ruo0c")
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6jmf"]
+font = ExtResource("4_avjnp")
+font_size = 42
+font_color = Color(0, 0, 0, 1)
+
+[node name="StartScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_oqhvk")
+expand_mode = 5
+
+[node name="Cloud" parent="." instance=ExtResource("2_kpx6n")]
+position = Vector2(616, 200)
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 2
+anchor_top = 0.619
+anchor_right = 0.989
+anchor_bottom = 0.712
+offset_left = 128.0
+offset_top = 7.67998
+offset_right = -120.08
+offset_bottom = -0.360016
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_htc1j")
+text = "Start"
+script = ExtResource("6_d48si")
+
+[node name="About" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.719
+anchor_right = 1.0
+anchor_bottom = 0.805
+offset_left = 128.0
+offset_top = -0.320053
+offset_right = -128.0
+offset_bottom = 0.599915
+theme = SubResource("Theme_htc1j")
+text = "About
+"
+script = ExtResource("7_auahq")
+
+[node name="PersonalRecordLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.925
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -9.15527e-05
+grow_horizontal = 2
+grow_vertical = 0
+text = "Personal record: None"
+label_settings = SubResource("LabelSettings_g6jmf")
+horizontal_alignment = 1
+script = ExtResource("7_7wqdl")
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -7.92
+offset_top = 112.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_rtvin")
+
+[node name="Cloud2" parent="." instance=ExtResource("2_kpx6n")]
+position = Vector2(56, 512)
+scale = Vector2(0.25, 0.25)
