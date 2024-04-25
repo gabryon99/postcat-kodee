@@ -1,11 +1,11 @@
 package me.gabryon.kodeedelivery.levels
 
-import me.gabryon.kodeedelivery.utility.increasedBy
+import me.gabryon.kodeedelivery.utility.increasedByFactorOf
 import me.gabryon.kodeedelivery.utility.infiniteSequence
 
 data object DebugLevel0 : LevelLogic {
 
-    override val maximumCharacterSpeed: Double = -2.0
+    override val maximumCharacterSpeed: Double = -1.0
     override val pointsToNextLevel: Int = 500
 
     /**
@@ -22,7 +22,7 @@ data object DebugLevel0 : LevelLogic {
 
 data object DebugLevel1 : LevelLogic {
 
-    override val maximumCharacterSpeed: Double = -2.0 increasedBy 10.0
+    override val maximumCharacterSpeed: Double = -2.0 increasedByFactorOf 10.0
     override val pointsToNextLevel: Int = -1
 
     /**
@@ -54,7 +54,7 @@ data object DebugLevel1 : LevelLogic {
  */
 data object Level1 : LevelLogic {
     override val maximumCharacterSpeed: Double
-        get() = -2.0
+        get() = -1.0
     override val pointsToNextLevel: Int
         get() = 2500
 
@@ -104,7 +104,7 @@ data object Level1 : LevelLogic {
  */
 data object Level2 : LevelLogic {
 
-    override val maximumCharacterSpeed = Level1.maximumCharacterSpeed increasedBy 5.0
+    override val maximumCharacterSpeed = Level1.maximumCharacterSpeed increasedByFactorOf 0.05
 
     override val pointsToNextLevel = -1
 
@@ -165,7 +165,7 @@ data object Level2 : LevelLogic {
  */
 data object Level3 : LevelLogic {
 
-    override val maximumCharacterSpeed = Level2.maximumCharacterSpeed increasedBy 5.0
+    override val maximumCharacterSpeed = Level2.maximumCharacterSpeed increasedByFactorOf 0.05
 
     override val pointsToNextLevel = -1 // Never reachable :)
 
@@ -179,7 +179,7 @@ data object Level3 : LevelLogic {
 
         when {
             generateTwoTowers -> generateTwoTowers()
-            generateOneTower -> generateOneTower()
+            generateOneTower && !generateTwoTowers -> generateOneTower()
         }
     }
 
