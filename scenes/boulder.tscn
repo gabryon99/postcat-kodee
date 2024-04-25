@@ -1,20 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://cooagrp6vnti7"]
+[gd_scene load_steps=20 format=3 uid="uid://cooagrp6vnti7"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Dog.gdj" id="1_3ite4"]
-[ext_resource type="Texture2D" uid="uid://b0q1cspk8ir41" path="res://assets/Spaghetti-43.jpg" id="2_dadl4"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kuote"]
-albedo_texture = ExtResource("2_dadl4")
-uv1_scale = Vector3(2, 2, 1)
+[ext_resource type="Texture2D" uid="uid://c3dd8vb0rfnsv" path="res://assets/official/dog-body.png" id="2_q3g1b"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/SinusoidalAnimation.gdj" id="4_d2d3q"]
+[ext_resource type="Texture2D" uid="uid://bytnt17qgytur" path="res://assets/official/Ears.png" id="4_t16qn"]
+[ext_resource type="Texture2D" uid="uid://oxmwspmf454g" path="res://assets/official/hairs.png" id="4_v1by2"]
+[ext_resource type="Texture2D" uid="uid://dqyd5qq0u88p0" path="res://assets/official/eyes_mouth.png" id="6_551ti"]
+[ext_resource type="Texture2D" uid="uid://158wh2vadqcg" path="res://assets/official/nose.png" id="7_jp65u"]
+[ext_resource type="AudioStream" uid="uid://da4boj6qqf6tc" path="res://assets/sounds/dog_panting.mp3" id="8_gdhwy"]
+[ext_resource type="AudioStream" uid="uid://bld3eslq7b1rc" path="res://assets/sounds/slurp.mp3" id="9_uwqhk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_urjgv"]
 
-[node name="Dog" type="Area3D" groups=["Boulder"]]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlelf"]
+albedo_texture = ExtResource("2_q3g1b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0hxx"]
+transparency = 1
+albedo_texture = ExtResource("4_t16qn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_j7551"]
+material = SubResource("StandardMaterial3D_r0hxx")
+size = Vector2(1, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3o7yf"]
+transparency = 1
+albedo_texture = ExtResource("4_v1by2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6icqe"]
+material = SubResource("StandardMaterial3D_3o7yf")
+size = Vector2(0.28, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj1ie"]
+transparency = 1
+albedo_texture = ExtResource("6_551ti")
+
+[sub_resource type="QuadMesh" id="QuadMesh_cx084"]
+material = SubResource("StandardMaterial3D_kj1ie")
+size = Vector2(0.8, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2fk1"]
+transparency = 1
+albedo_texture = ExtResource("7_jp65u")
+
+[sub_resource type="QuadMesh" id="QuadMesh_p27vr"]
+material = SubResource("StandardMaterial3D_s2fk1")
+size = Vector2(0.2, 0.1)
+
+[node name="Dog" type="Node3D"]
 script = ExtResource("1_3ite4")
+rotation_speed = Vector3(90, 2.08165e-12, 2.08165e-12)
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
-radial_segments = 36
-material = SubResource("StandardMaterial3D_kuote")
+[node name="Body" type="Area3D" parent="." groups=["Boulder"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Sphere" type="CollisionShape3D" parent="Body"]
 shape = SubResource("SphereShape3D_urjgv")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Body"]
+radial_segments = 36
+rings = 24
+material = SubResource("StandardMaterial3D_mlelf")
+
+[node name="Face" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0115741, 2.08165e-12)
+
+[node name="ears" type="MeshInstance3D" parent="Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.190014, 0.450633)
+mesh = SubResource("QuadMesh_j7551")
+skeleton = NodePath("../..")
+script = ExtResource("4_d2d3q")
+speed = 0.003
+amplitude = 0.02
+
+[node name="hairs" type="MeshInstance3D" parent="Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267663, 0.523661)
+mesh = SubResource("QuadMesh_6icqe")
+
+[node name="eyes_mouth" type="MeshInstance3D" parent="Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.0555558, 0.553289)
+mesh = SubResource("QuadMesh_cx084")
+script = ExtResource("4_d2d3q")
+amplitude = 0.02
+
+[node name="nose" type="MeshInstance3D" parent="Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0185185, 0.0501893, 0.745604)
+mesh = SubResource("QuadMesh_p27vr")
+script = ExtResource("4_d2d3q")
+speed = 0.003
+amplitude = 0.008
+
+[node name="DogPantingSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_gdhwy")
+volume_db = -25.0
+autoplay = true
+
+[node name="Slurp" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_uwqhk")

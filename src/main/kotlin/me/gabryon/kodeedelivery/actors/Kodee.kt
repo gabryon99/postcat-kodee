@@ -1,41 +1,22 @@
 package me.gabryon.kodeedelivery.actors
 
-import godot.Area3D
+import godot.*
 import godot.Input.isActionJustReleased
-import godot.Node3D
-import godot.Timer
 import godot.annotation.*
+import godot.core.asNodePath
 import godot.core.asStringName
 import godot.global.GD
 import godot.signals.signal
+import me.gabryon.kodeedelivery.utility.child
 
 @RegisterClass
 class Kodee : Area3D(), Orbiting {
 
-    enum class HorizontalMovePoint {
-        LEFT, CENTER, RIGHT;
-
-        fun left(): HorizontalMovePoint = when (this) {
-            LEFT -> LEFT
-            CENTER -> LEFT
-            RIGHT -> CENTER
-        }
-
-        fun right(): HorizontalMovePoint = when (this) {
-            LEFT -> CENTER
-            CENTER -> RIGHT
-            RIGHT -> RIGHT
-        }
-    }
-
-    enum class VerticalMovePoint {
-        UP, DOWN;
-    }
+    enum class HorizontalMovePoint { LEFT, CENTER, RIGHT }
+    enum class VerticalMovePoint { UP, DOWN }
 
     //region Reset Timer Fields
-    @Export
-    @RegisterProperty
-    lateinit var resetPositionTimer: Timer
+    private val resetPositionTimer by child<Timer>("ResetPositionTimer")
 
     @Export
     @RegisterProperty
@@ -90,8 +71,13 @@ class Kodee : Area3D(), Orbiting {
     val comboLost by signal()
 
     private var mailboxTouched: Boolean = false
-
     private lateinit var parent: Node3D
+
+    private val animationPlayer by child<AnimationPlayer>("AnimationPlayer")
+
+    //region Audio
+    private val swooshPlayer by child<AudioStreamPlayer3D>("Swoosh")
+    //endregion
 
     @RegisterFunction
     override fun _ready() {
@@ -107,6 +93,8 @@ class Kodee : Area3D(), Orbiting {
 
         // Timers and other funny stuff
         resetPositionTimer.timeout.connect(this, Kodee::onResetPositionTimeout, 0)
+
+        animationPlayer.play("running".asStringName())
     }
 
     @RegisterFunction
@@ -114,10 +102,10 @@ class Kodee : Area3D(), Orbiting {
         orbit(delta)
 
         if (isActionJustReleased("left".asStringName())) {
-            updateHorizontalPosition(currentHorizontalPoint.left(), reset = true)
+            updateHorizontalPosition(HorizontalMovePoint.LEFT, reset = true)
         }
         if (isActionJustReleased("right".asStringName())) {
-            updateHorizontalPosition(currentHorizontalPoint.right(), reset = true)
+            updateHorizontalPosition(HorizontalMovePoint.RIGHT, reset = true)
         }
         if (isActionJustReleased("up".asStringName())) {
             updateVerticalPosition(VerticalMovePoint.UP, reset = true)
@@ -146,21 +134,29 @@ class Kodee : Area3D(), Orbiting {
     }
 
     private fun updateHorizontalPosition(movePoint: HorizontalMovePoint, reset: Boolean = false) {
-        val movePointNode = horizontalMovePoints[movePoint.ordinal]
-        position = positionMutate {
-            x = movePointNode.position.x
+
+        val movePointNode = horizontalMovePoints[movePoint.ordinal].also {
+            currentHorizontalPoint = movePoint
         }
 
         // Did Kodee actually move from its position?
-        if (reset && currentHorizontalPoint != movePoint) {
+        if (reset) {
+            GD.prints("[info] :: Reset timer position")
+            swooshPlayer.play()
             resetPositionTimer.start(resetHorizontalPositionTime)
         }
         if (reset && resetPositionTimer.timeLeft > 0) {
+            swooshPlayer.play()
             resetPositionTimer.stop()
             resetPositionTimer.start(resetHorizontalPositionTime)
         }
 
-        currentHorizontalPoint = movePoint
+        createTween()?.apply {
+            tweenProperty(this@Kodee, "position:x".asNodePath(), movePointNode.position.x, 0.25)
+                ?.setEase(Tween.EaseType.EASE_IN)
+                ?.setTrans(Tween.TransitionType.TRANS_LINEAR)
+                ?.from(position.x)
+        }
     }
 
     private val skipCollidingAreas = mutableSetOf<Area3D>()

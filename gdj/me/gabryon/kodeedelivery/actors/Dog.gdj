@@ -4,12 +4,10 @@
 registeredName = Dog
 fqName = me.gabryon.kodeedelivery.actors.Dog
 relativeSourcePath = src/main/kotlin/me/gabryon/kodeedelivery/actors/Dog.kt
-baseType = Area3D
+baseType = Node3D
 supertypes = [
-	godot.Area3D,
-	me.gabryon.kodeedelivery.actors.Orbiting,
-	godot.CollisionObject3D,
 	godot.Node3D,
+	me.gabryon.kodeedelivery.actors.Orbiting,
 	godot.Node,
 	godot.Object,
 	godot.core.KtObject,
@@ -27,8 +25,8 @@ properties = [
 	delta_speed
 ]
 functions = [
-	_process,
 	_ready,
+	_process,
 	_physics_process,
 	on_area_enter
 ]
