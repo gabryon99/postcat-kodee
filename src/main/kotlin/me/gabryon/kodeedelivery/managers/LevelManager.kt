@@ -42,8 +42,7 @@ class LevelManager : Node() {
     @RegisterProperty
     var sideOffset: Double = 0.5
 
-    var currentLevel: Int = -1
-        private set
+    private var currentLevel: Int = -1
 
     private lateinit var currentLevelLogic: LevelLogic
     private lateinit var mailboxGenerator: MailboxGenerator
@@ -63,6 +62,9 @@ class LevelManager : Node() {
 
     private val nextLevelSound by child<AudioStreamPlayer3D>("NextLevelSound")
 
+    val pointsToNextLevel: Int
+        get() = currentLevelLogic.pointsToNextLevel
+
     @RegisterFunction
     override fun _ready() {
         // Setup managers first and then create the mailbox generator
@@ -73,7 +75,6 @@ class LevelManager : Node() {
             currentLevelLogic = newLevelLogic
             kodee.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             dog.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
-            scoreManager.pointsToNextLevel = newLevelLogic.pointsToNextLevel
         }
 
         mailboxGenerator = MailboxGenerator(
@@ -96,7 +97,6 @@ class LevelManager : Node() {
             }
 
             currentLevelLogic = newLevelLogic
-            scoreManager.pointsToNextLevel = newLevelLogic.pointsToNextLevel
             kodee.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             dog.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             mailboxGenerator.changeLevelLogic(newLevelLogic)

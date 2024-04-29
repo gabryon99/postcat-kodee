@@ -1,5 +1,7 @@
 package me.gabryon.kodeedelivery.utility
 
+import godot.FileAccess
+import godot.global.GD
 import godot.global.GD.abs
 import godot.global.GD.fmod
 import godot.util.PI
@@ -83,5 +85,23 @@ fun angularDistance(from: Double, to: Double): Double {
         diff > PI -> diff - DPI
         diff < -PI -> diff + DPI
         else -> diff
+    }
+}
+
+/**
+ * Provides access to a file specified by the given path using the specified modes.
+ * The file resource is automatically closed.
+ *
+ * @param path The path of the file to access.
+ * @param modes The modes to open the file with.
+ * @param body The lambda expression to execute within the file context.
+ * @return The result of executing the lambda expression on the file context, or null if an error occurred.
+ */
+inline fun <T> fileAccess(path: String, modes: FileAccess.ModeFlags, body: FileAccess.() -> T): T? {
+    val file = FileAccess.open(path, modes)
+    return try {
+        file?.body()
+    } finally {
+        file?.close()
     }
 }
