@@ -83,7 +83,7 @@ script = ExtResource("4_d2d3q")
 amplitude = 0.02
 
 [node name="nose" type="MeshInstance3D" parent="Face"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0185185, 0.0501893, 0.745604)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0185185, 0.0501893, 0.516755)
 mesh = SubResource("QuadMesh_p27vr")
 script = ExtResource("4_d2d3q")
 speed = 0.003

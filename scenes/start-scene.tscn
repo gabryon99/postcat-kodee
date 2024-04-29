@@ -122,6 +122,7 @@ expand_mode = 5
 
 [node name="Cloud" parent="." instance=ExtResource("2_kpx6n")]
 position = Vector2(616, 200)
+speed = -8.0
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 2
@@ -183,3 +184,4 @@ texture = ExtResource("5_rtvin")
 [node name="Cloud2" parent="." instance=ExtResource("2_kpx6n")]
 position = Vector2(56, 512)
 scale = Vector2(0.25, 0.25)
+speed = 10.0

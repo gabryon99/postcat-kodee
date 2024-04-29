@@ -1,12 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://dop85vkr3mb2g"]
+[gd_scene load_steps=25 format=3 uid="uid://dop85vkr3mb2g"]
 
 [ext_resource type="PackedScene" uid="uid://cooagrp6vnti7" path="res://scenes/boulder.tscn" id="1_8lew4"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/Referee.gdj" id="1_xu7tv"]
 [ext_resource type="PackedScene" uid="uid://chg68bxe8gyhx" path="res://scenes/world.tscn" id="2_g3d4t"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/ComboManager.gdj" id="2_l4xqi"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/LevelManager.gdj" id="3_kn65t"]
+[ext_resource type="PackedScene" uid="uid://q5y5t5qtww7w" path="res://scenes/bottom_mailbox_orbit_point.tscn" id="4_la7fi"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/ScoreManager.gdj" id="4_r8rnm"]
 [ext_resource type="PackedScene" uid="uid://ntp6wvus8jab" path="res://scenes/kodee.tscn" id="4_vf74w"]
+[ext_resource type="PackedScene" uid="uid://dbe4dmfsf0v08" path="res://scenes/top_mailbox_orbit_point.tscn" id="5_0x125"]
 [ext_resource type="AudioStream" uid="uid://cjelikokby2u8" path="res://assets/sounds/levelup.mp3" id="7_ay1vm"]
 [ext_resource type="Texture2D" uid="uid://bbel3f6t11itc" path="res://assets/official/Ground.png" id="8_c5mtw"]
 [ext_resource type="Texture2D" uid="uid://d2sn5ijwbp2mr" path="res://assets/official/newsky.png" id="9_mkdj2"]
@@ -53,23 +55,42 @@ sdfgi_use_occlusion = true
 
 [node name="Main" type="Node3D"]
 
-[node name="Referee" type="Node" parent="."]
+[node name="Referee" type="Node" parent="." node_paths=PackedStringArray("kodee_orbit_point", "dog_orbit_point", "distance_bar", "kodee_script", "dog_script")]
+unique_name_in_owner = true
 script = ExtResource("1_xu7tv")
+kodee_orbit_point = NodePath("../World/KodeeOrbitPoint")
+dog_orbit_point = NodePath("../World/DogOrbitPoint")
+max_distance_dog_and_kodee = 1.7
+distance_bar = NodePath("../HUD/DistanceBar")
+bounciness = 2.0
+min_max_speed_dog = -2.0
+overtake_speed = -0.065
+kodee_script = NodePath("../World/KodeeOrbitPoint/Kodee")
+dog_script = NodePath("../World/DogOrbitPoint/Dog")
 
-[node name="ComboManager" type="Node" parent="."]
+[node name="ComboManager" type="Node" parent="." node_paths=PackedStringArray("kodee")]
 unique_name_in_owner = true
 script = ExtResource("2_l4xqi")
+kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
 
-[node name="LevelManager" type="Node" parent="."]
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("score_manager", "world", "kodee", "dog")]
 unique_name_in_owner = true
 script = ExtResource("3_kn65t")
+score_manager = NodePath("../ScoreManager")
+bottom_mailbox = ExtResource("4_la7fi")
+top_mailbox = ExtResource("5_0x125")
+world = NodePath("../World")
+kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
+dog = NodePath("../World/DogOrbitPoint/Dog")
 
 [node name="NextLevelSound" type="AudioStreamPlayer3D" parent="LevelManager"]
 stream = ExtResource("7_ay1vm")
 
-[node name="ScoreManager" type="Node" parent="."]
+[node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("level_manager", "combo_manager")]
 unique_name_in_owner = true
 script = ExtResource("4_r8rnm")
+level_manager = NodePath("../LevelManager")
+combo_manager = NodePath("../ComboManager")
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -99,7 +120,7 @@ position = Vector2(360, 640)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_mkdj2")
 
-[node name="HUD" type="VBoxContainer" parent="."]
+[node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("score_manager", "level_manager", "score_label", "level_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -108,6 +129,10 @@ offset_bottom = -817.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_s6m8c")
+score_manager = NodePath("../ScoreManager")
+level_manager = NodePath("../LevelManager")
+score_label = NodePath("MarginContainer/CenterContainer/ScoreLabel")
+level_label = NodePath("CenterContainer2/LevelLabel")
 
 [node name="DistanceBar" type="ProgressBar" parent="HUD"]
 layout_mode = 2
@@ -147,6 +172,9 @@ transform = Transform3D(-6.77365e-09, -0.44221, 0.896911, -1, 3.71539e-09, -5.72
 unique_name_in_owner = true
 transform = Transform3D(0.7, -1.17999e-08, -4.85304e-08, -4.85304e-08, -0.321402, -0.621852, -1.18e-08, 0.621852, -0.321402, 9.29596e-10, 0.169766, 0.856863)
 rotation_speed = Vector3(0, 90, 0)
+angular_speed = -1.0
+initial_angular_speed = -1.0
+maximum_angular_speed = -2.5
 
 [node name="KodeeOrbitPoint" type="Node3D" parent="World"]
 unique_name_in_owner = true
@@ -168,13 +196,17 @@ visible = false
 transform = Transform3D(0.025, -3.27889e-16, -6.82744e-18, -1.91803e-18, 0.025, -4.17281e-09, 1.84002e-16, 9.43308e-10, 0.025, 0.35, -0.069, 0.646)
 visible = false
 
-[node name="Kodee" parent="World/KodeeOrbitPoint" instance=ExtResource("4_vf74w")]
+[node name="Kodee" parent="World/KodeeOrbitPoint" node_paths=PackedStringArray("up_move_point", "down_move_point", "left_move_point", "center_move_point", "right_move_point") instance=ExtResource("4_vf74w")]
 unique_name_in_owner = true
 transform = Transform3D(1, 7.59201e-15, -4.01812e-14, -6.69116e-15, 1, 2.4751e-08, 7.70875e-15, -5.80578e-08, 1, 2.61271e-09, -0.0686511, 0.645952)
-angular_speed = 0.0
-initial_angular_speed = 5.0
-maximum_angular_speed = 10.0
-delta_speed = 1.0
+up_move_point = NodePath("../Up_mvp")
+down_move_point = NodePath("../Center_mvp")
+left_move_point = NodePath("../Left_mvp")
+center_move_point = NodePath("../Center_mvp")
+right_move_point = NodePath("../Right_mvp")
+angular_speed = -1.0
+initial_angular_speed = -1.0
+maximum_angular_speed = -2.5
 
 [node name="Light" type="OmniLight3D" parent="World/KodeeOrbitPoint"]
 transform = Transform3D(1, 1.56142e-08, 3.34848e-08, 1.56142e-08, 0.642788, -0.766044, -3.34849e-08, 0.766044, 0.642788, 1.24888e-07, -1.04776, 3.24111)
