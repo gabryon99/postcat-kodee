@@ -13,14 +13,15 @@ config_version=5
 config/name="kodee-delivery"
 config/description="A Kotlin-written game for the KotlinConf of 2024."
 config/version="0.0.1"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/start-scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://assets/jb_beam.png"
+boot_splash/bg_color=Color(0.478431, 0.737255, 0.976471, 1)
+boot_splash/image="res://assets/jetbrains-logo.png"
 config/icon="res://icon.svg"
 
 [autoload]
 
+UtilDispatcherSingleton="*res://gdj/dependencies/utilities/ch/hippmann/godot/utilities/coroutines/UTILDispatcherSingleton.gdj"
 SceneManagement="*res://gdj/me/gabryon/kodeedelivery/managers/SceneManager.gdj"
 
 [display]
