@@ -35,7 +35,7 @@ class HUD : Control() {
     }
 
     @RegisterFunction
-    fun onScoreChanged(oldScore: Int, newScore: Int) {
+    fun onScoreChanged(newScore: Int) {
         scoreLabel.text = String.format("%03d", newScore)
     }
 

@@ -6,6 +6,12 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation("ch.hippmann.godot:utilities:0.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1-Beta")
+}
+
+
 kotlin {
     jvmToolchain(17)
 }
@@ -22,7 +28,7 @@ godot {
     // defines whether your scripts should be registered with their fqName or their simple name (can help with resolving script name conflicts)
     //isFqNameRegistrationEnabled.set(false)
 
-    // library setup. See: https://godot-kotl.in/en/stable/develop-libraries/
+    // Library setup. See: https://godot-kotl.in/en/stable/develop-libraries/
     // only really needed for library authors. See: https://godot-kotl.in/en/stable/develop-libraries/setup/
     //classPrefix.set("MyCustomClassPrefix")
 
@@ -52,8 +58,8 @@ godot {
     // NOTE: this is an advanced feature! Read: https://godot-kotl.in/en/stable/user-guide/advanced/graal-vm-native-image/
     // IMPORTANT: Graal Native Image needs to be considered from the start of development!
     isGraalNativeImageExportEnabled.set(false)
-    graalVmDirectory.set(File("${System.getenv("GRAALVM_HOME")}"))
-    windowsDeveloperVCVarsPath.set(File("${System.getenv("VC_VARS_PATH")}"))
+    graalVmDirectory.set(File(System.getenv("GRAALVM_HOME") ?: ""))
+    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH") ?: ""))
     isIOSExportEnabled.set(false)
     // END: graal native image export options
 }

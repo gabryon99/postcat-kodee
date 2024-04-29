@@ -8,6 +8,7 @@ import godot.annotation.RegisterProperty
 import godot.core.Vector3
 import godot.core.asStringName
 import me.gabryon.kodeedelivery.managers.Scene
+import me.gabryon.kodeedelivery.managers.ScoreStorage
 import me.gabryon.kodeedelivery.managers.sceneManager
 import me.gabryon.kodeedelivery.utility.child
 
@@ -43,7 +44,9 @@ class Dog: Node3D(), Orbiting {
     @RegisterFunction
     fun onAreaEnter(area3D: Area3D) {
         // When the dog catches Kodee, the game is over.
+        // Save maximum user score and change to the next scene
         if (area3D.isInGroup("Player".asStringName())) {
+            ScoreStorage.saveUserScoreToDevice()
             sceneManager.changeTo(scene = Scene.EndGame)
         }
     }
