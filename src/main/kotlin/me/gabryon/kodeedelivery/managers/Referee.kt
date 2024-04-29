@@ -1,5 +1,6 @@
 package me.gabryon.kodeedelivery.managers
 
+import ch.hippmann.godot.utilities.logging.info
 import godot.Node
 import godot.Node3D
 import godot.ProgressBar
@@ -19,11 +20,11 @@ class Referee : Node() {
 
     @Export
     @RegisterProperty
-    lateinit var kodee: Node3D
+    lateinit var kodeeOrbitPoint: Node3D
 
     @Export
     @RegisterProperty
-    lateinit var dog: Node3D
+    lateinit var dogOrbitPoint: Node3D
 
     @Export
     @RegisterProperty
@@ -60,8 +61,8 @@ class Referee : Node() {
     @RegisterFunction
     override fun _process(delta: Double) {
 
-        val kodeeAngle = kodee.rotation.y
-        val dogAngle = dog.rotation.y
+        val kodeeAngle = kodeeOrbitPoint.rotation.y
+        val dogAngle = dogOrbitPoint.rotation.y
         val currentDistance = absoluteAngularDistance(dogAngle, kodeeAngle)
 
         val x = (currentDistance / maxDistanceDogAndKodee)
@@ -72,6 +73,7 @@ class Referee : Node() {
         val dogIsCloseToKodee = x < 2.0 / 3.0
         val kodeeIsFasterThanDog = deltaSpeedDiff > 0
         val kodeeMadeProgressWhileDogWasClose = dogIsCloseToKodee && kodeeIsFasterThanDog
+
         if (!kodeeMadeProgressWhileDogWasClose) {
             val y2 = dogMaxSpeedCurve(x)
             dogScript.accelerate(delta = deltaSpeedDiff * y, maxSpeed = y2)
@@ -79,23 +81,21 @@ class Referee : Node() {
 
         distanceBar.value = currentDistance * 100
 
-//        debugContext {
-//            info<Referee>(
-//                "current distance=$currentDistance, " +
-//                        "max distance=$maxDistanceDogAndKodee, " +
-//                        "kodee's angle=$kodeeAngle, " +
-//                        "dog's angle=$dogAngle"
-//            )
-//            info<Referee>(
-//                "dF=$deltaSpeedDiff, " +
-//                        "totalCond=${!(dogIsCloseToKodee && kodeeIsFasterThanDog)}, " +
-//                        "dogIsCloseToKodee=$dogIsCloseToKodee, " +
-//                        "kodeeIsFasterThanDog=$kodeeIsFasterThanDog, " +
-//                        "x=$x, y=$y, " +
-//                        "dog's speed=${dogScript.angularSpeed}, " +
-//                        "kodee's speed=${kodeeScript.angularSpeed}"
-//            )
-//        }
+//        info(
+//            "current distance=$currentDistance, " +
+//                    "max distance=$maxDistanceDogAndKodee, " +
+//                    "kodee's angle=$kodeeAngle, " +
+//                    "dog's angle=$dogAngle"
+//        )
+//        info(
+//            "dF=$deltaSpeedDiff, " +
+//                    "totalCond=${!(dogIsCloseToKodee && kodeeIsFasterThanDog)}, " +
+//                    "dogIsCloseToKodee=$dogIsCloseToKodee, " +
+//                    "kodeeIsFasterThanDog=$kodeeIsFasterThanDog, " +
+//                    "x=$x, y=$y, " +
+//                    "dog's speed=${dogScript.angularSpeed}, " +
+//                    "kodee's speed=${kodeeScript.angularSpeed}"
+//        )
     }
 
     private fun dogMaxSpeedCurve(x: Double): Double =

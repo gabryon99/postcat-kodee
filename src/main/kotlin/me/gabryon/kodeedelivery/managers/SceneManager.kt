@@ -22,7 +22,6 @@ class SceneManager : Node() {
     }
 }
 
-
 val Node.sceneManager: SceneManager
     get() {
         return getNode("/root/SceneManagement".asNodePath()) as SceneManager
