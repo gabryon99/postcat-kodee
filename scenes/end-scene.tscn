@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://budecmrwf0ixh"]
+[gd_scene load_steps=18 format=3 uid="uid://budecmrwf0ixh"]
 
 [ext_resource type="Texture2D" uid="uid://d2sn5ijwbp2mr" path="res://assets/official/newsky.png" id="1_jewbt"]
 [ext_resource type="FontFile" uid="uid://dbwknxjawgftk" path="res://assets/JetBrainsSans-Bold.ttf" id="2_e0yk1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b234y7adqutqp" path="res://assets/button/button-fill.png" id="4_5il15"]
 [ext_resource type="PackedScene" uid="uid://c5wovbmagubj6" path="res://scenes/cloud.tscn" id="5_dbix1"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartGameButton.gdj" id="5_i4lrb"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/BackToStartGameButton.gdj" id="9_ba0wq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dy3na"]
 font = ExtResource("2_e0yk1")
@@ -157,13 +158,13 @@ script = ExtResource("4_2nxx4")
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.869
+anchor_top = 0.781
 anchor_right = 1.0
-anchor_bottom = 0.956
+anchor_bottom = 0.868
 offset_left = 128.0
-offset_top = -0.320023
+offset_top = 0.319977
 offset_right = -128.0
-offset_bottom = -0.680038
+offset_bottom = -0.0401611
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_ssskc")
@@ -178,3 +179,19 @@ speed = -8.0
 position = Vector2(56, 512)
 scale = Vector2(0.25, 0.25)
 speed = 7.0
+
+[node name="BacktoMenuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.781
+anchor_right = 1.0
+anchor_bottom = 0.868
+offset_left = 128.0
+offset_top = 112.32
+offset_right = -128.0
+offset_bottom = 111.96
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ssskc")
+text = "Back to menu"
+script = ExtResource("9_ba0wq")
