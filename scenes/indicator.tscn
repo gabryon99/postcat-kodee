@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bstdacyhv45ns"]
+
+[ext_resource type="Texture2D" uid="uid://dee5evmcm3c4x" path="res://assets/2d/indicator/indicator0.png" id="1_tjdfg"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/Indicator.gdj" id="2_etx8v"]
+[ext_resource type="Texture2D" uid="uid://c33m1spuif8h3" path="res://assets/2d/indicator/indicator1.png" id="3_te6mc"]
+[ext_resource type="Texture2D" uid="uid://bjp7461j1p0mu" path="res://assets/2d/indicator/indicator2.png" id="4_gr1gx"]
+[ext_resource type="Texture2D" uid="uid://colbu671ce3dg" path="res://assets/2d/indicator/indicator3.png" id="5_yfwic"]
+
+[node name="indicator" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = -151.0
+offset_bottom = -1102.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 6.28319
+texture = ExtResource("1_tjdfg")
+script = ExtResource("2_etx8v")
+indicator0 = ExtResource("1_tjdfg")
+indicator1 = ExtResource("3_te6mc")
+indicator2 = ExtResource("4_gr1gx")
+indicator3 = ExtResource("5_yfwic")
