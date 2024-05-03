@@ -1,44 +1,47 @@
 package me.gabryon.kodeedelivery.actors
 
+import ch.hippmann.godot.utilities.logging.debug
 import godot.*
 import godot.annotation.Export
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.core.Color
 import godot.core.asStringName
-import godot.extensions.getNodeAs
 import godot.signals.signal
-import me.gabryon.kodeedelivery.managers.Scorable
 import me.gabryon.kodeedelivery.utility.child
 
-abstract class MailBox : Node3D(), Scorable {
+abstract class MailBox : Node3D() {
+
+    companion object {
+        const val SKIP_AREA_GROUP_NAME = "Box-skip-area"
+        const val GROUP_NAME = "Box"
+    }
+
+    @RegisterSignal
+    val scored by signal<Int>("points")
+
+    private var mailDelivered = false
 
     @Export
     @RegisterProperty
-    lateinit var deliveredColor: Color // This is a debug property!
+    abstract var score: Int
 
-    private lateinit var kodeeOrbit: Node3D
-
-    @RegisterSignal
-    override val scored by signal<Int>("points")
-
-    private val letterboxSound by child<AudioStreamPlayer3D>("LetterboxSound")
+    private val letterboxSound by child<AudioStreamPlayer3D>("Box-top/Box-sound")
+    private val collisionArea by child<Area3D>("Box-top/Box-collision")
+    private val animationPlayer by child<AnimationPlayer>("Box-top/Box-anim-player")
 
     @RegisterFunction
     override fun _ready() {
-        val currentScene = getTree()!!.currentScene!!
-        kodeeOrbit = currentScene.getNodeAs("%KodeeOrbitPoint".asStringName())!!
-        val area3D = findChild("MailboxArea", recursive = true) as Area3D
-        area3D.areaEntered.connect(this, MailBox::onBodyEntered)
+        collisionArea.areaEntered.connect(this, MailBox::onBodyEntered)
     }
 
     @RegisterFunction
     fun onBodyEntered(body: Node3D) {
-        if (body.isInGroup("Player".asStringName())) {
+        if (body.isInGroup(Kodee.GROUP_NAME.asStringName()) && !mailDelivered) {
+            animationPlayer.play("close_box".asStringName())
             letterboxSound.play()
-            // Signal new score!
             scored.emit(score)
+            mailDelivered = true
         }
     }
 }
