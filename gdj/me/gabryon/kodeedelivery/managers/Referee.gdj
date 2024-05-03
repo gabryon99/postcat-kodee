@@ -18,7 +18,7 @@ properties = [
 	kodee_orbit_point,
 	dog_orbit_point,
 	max_distance_dog_and_kodee,
-	distance_bar,
+	indicator,
 	bounciness,
 	dog_max_speed_curviness,
 	min_max_speed_dog,

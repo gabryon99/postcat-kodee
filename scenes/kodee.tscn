@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ntp6wvus8jab"]
+[gd_scene load_steps=10 format=3 uid="uid://b8qgbjsisntw"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Kodee.gdj" id="1_dr7ii"]
 [ext_resource type="Texture2D" uid="uid://bwqu6fk2xrgfy" path="res://assets/kodee-anim/19.png" id="2_n0y53"]
@@ -7,27 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bh86cfr6b48ns" path="res://assets/kodee-anim/22.png" id="5_m7ey3"]
 [ext_resource type="AudioStream" uid="uid://bdeimbuleirtg" path="res://assets/sounds/swoosh.mp3" id="6_250d6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30van"]
-transparency = 1
-albedo_texture = ExtResource("2_n0y53")
-billboard_mode = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lm2ha"]
-transparency = 1
-albedo_texture = ExtResource("3_eplx3")
-billboard_mode = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4s2u"]
-transparency = 1
-albedo_texture = ExtResource("4_lqtby")
-metallic = 1.0
-billboard_mode = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbvhg"]
-transparency = 1
-albedo_texture = ExtResource("5_m7ey3")
-billboard_mode = 1
-
 [sub_resource type="Animation" id="Animation_6s08y"]
 resource_name = "running"
 length = 3.0
@@ -35,14 +14,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:material")
+tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [SubResource("StandardMaterial3D_30van"), SubResource("StandardMaterial3D_lm2ha"), SubResource("StandardMaterial3D_j4s2u"), SubResource("StandardMaterial3D_jbvhg")]
+"values": [ExtResource("2_n0y53"), ExtResource("3_eplx3"), ExtResource("4_lqtby"), ExtResource("5_m7ey3")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m2r1f"]
@@ -50,14 +29,8 @@ _data = {
 "running": SubResource("Animation_6s08y")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgy85"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_ax8b1"]
-material = SubResource("StandardMaterial3D_kgy85")
-size = Vector2(0.5, 0.5)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_pmqch"]
-size = Vector3(0.2, 0.2, 0.2)
+size = Vector3(0.243433, 0.357739, 0.278638)
 
 [node name="Kodee" type="Area3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
@@ -72,12 +45,13 @@ deterministic = true
 libraries = {
 "": SubResource("AnimationLibrary_m2r1f")
 }
-speed_scale = 8.0
+speed_scale = 10.0
 
-[node name="Sprite" type="CSGMesh3D" parent="." groups=["Player"]]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = SubResource("QuadMesh_ax8b1")
-material = SubResource("StandardMaterial3D_30van")
+[node name="Sprite" type="Sprite3D" parent="." groups=["Player"]]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
+billboard = 1
+alpha_cut = 2
+texture = ExtResource("4_lqtby")
 
 [node name="ResetPositionTimer" type="Timer" parent="."]
 wait_time = 0.8
@@ -85,7 +59,7 @@ one_shot = true
 autostart = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164642, 0.00271261, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00525211, 0.0658595, -0.00179442)
 shape = SubResource("BoxShape3D_pmqch")
 
 [node name="Swoosh" type="AudioStreamPlayer3D" parent="."]

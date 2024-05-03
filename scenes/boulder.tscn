@@ -1,51 +1,23 @@
-[gd_scene load_steps=20 format=3 uid="uid://cooagrp6vnti7"]
+[gd_scene load_steps=14 format=3 uid="uid://cooagrp6vnti7"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Dog.gdj" id="1_3ite4"]
 [ext_resource type="Texture2D" uid="uid://c3dd8vb0rfnsv" path="res://assets/official/dog-body.png" id="2_q3g1b"]
+[ext_resource type="Texture2D" uid="uid://deoyqtny7xyku" path="res://assets/2d/dog/face.png" id="3_1h2ai"]
+[ext_resource type="Texture2D" uid="uid://b3nacw4dac42h" path="res://assets/2d/dog/left-ear.png" id="4_7oynl"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/SinusoidalAnimation.gdj" id="4_d2d3q"]
-[ext_resource type="Texture2D" uid="uid://bytnt17qgytur" path="res://assets/official/Ears.png" id="4_t16qn"]
-[ext_resource type="Texture2D" uid="uid://oxmwspmf454g" path="res://assets/official/hairs.png" id="4_v1by2"]
-[ext_resource type="Texture2D" uid="uid://dqyd5qq0u88p0" path="res://assets/official/eyes_mouth.png" id="6_551ti"]
-[ext_resource type="Texture2D" uid="uid://158wh2vadqcg" path="res://assets/official/nose.png" id="7_jp65u"]
+[ext_resource type="Texture2D" uid="uid://bk0fle21iqxhe" path="res://assets/2d/dog/right-ear.png" id="5_prqqx"]
 [ext_resource type="AudioStream" uid="uid://da4boj6qqf6tc" path="res://assets/sounds/dog_panting.mp3" id="8_gdhwy"]
+[ext_resource type="Texture2D" uid="uid://vboadtn0kx4b" path="res://assets/2d/dog/fg-details-2.png" id="9_bnjmq"]
 [ext_resource type="AudioStream" uid="uid://bld3eslq7b1rc" path="res://assets/sounds/slurp.mp3" id="9_uwqhk"]
+[ext_resource type="Texture2D" uid="uid://cj3di3s0yh7c2" path="res://assets/2d/dog/meatballs.png" id="9_y647r"]
+[ext_resource type="Texture2D" uid="uid://351np7mdaha3" path="res://assets/2d/dog/spaghetti0.png" id="11_4xvh6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_urjgv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlelf"]
 albedo_texture = ExtResource("2_q3g1b")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0hxx"]
-transparency = 1
-albedo_texture = ExtResource("4_t16qn")
-
-[sub_resource type="QuadMesh" id="QuadMesh_j7551"]
-material = SubResource("StandardMaterial3D_r0hxx")
-size = Vector2(1, 0.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3o7yf"]
-transparency = 1
-albedo_texture = ExtResource("4_v1by2")
-
-[sub_resource type="QuadMesh" id="QuadMesh_6icqe"]
-material = SubResource("StandardMaterial3D_3o7yf")
-size = Vector2(0.28, 0.12)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj1ie"]
-transparency = 1
-albedo_texture = ExtResource("6_551ti")
-
-[sub_resource type="QuadMesh" id="QuadMesh_cx084"]
-material = SubResource("StandardMaterial3D_kj1ie")
-size = Vector2(0.8, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2fk1"]
-transparency = 1
-albedo_texture = ExtResource("7_jp65u")
-
-[sub_resource type="QuadMesh" id="QuadMesh_p27vr"]
-material = SubResource("StandardMaterial3D_s2fk1")
-size = Vector2(0.2, 0.1)
+emission = Color(0.929412, 0.854902, 0.529412, 1)
+emission_energy_multiplier = 0.11
 
 [node name="Dog" type="Node3D"]
 script = ExtResource("1_3ite4")
@@ -55,44 +27,65 @@ rotation_speed = Vector3(90, 2.08165e-12, 2.08165e-12)
 
 [node name="Sphere" type="CollisionShape3D" parent="Body"]
 shape = SubResource("SphereShape3D_urjgv")
+disabled = true
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Body"]
+radius = 1.0
 radial_segments = 36
 rings = 24
 material = SubResource("StandardMaterial3D_mlelf")
 
-[node name="Face" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0115741, 2.08165e-12)
-
-[node name="ears" type="MeshInstance3D" parent="Face"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.190014, 0.450633)
-mesh = SubResource("QuadMesh_j7551")
-skeleton = NodePath("../..")
-script = ExtResource("4_d2d3q")
-speed = 0.003
-amplitude = 0.02
-
-[node name="hairs" type="MeshInstance3D" parent="Face"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267663, 0.523661)
-mesh = SubResource("QuadMesh_6icqe")
-
-[node name="eyes_mouth" type="MeshInstance3D" parent="Face"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.0555558, 0.553289)
-mesh = SubResource("QuadMesh_cx084")
-script = ExtResource("4_d2d3q")
-amplitude = 0.02
-
-[node name="nose" type="MeshInstance3D" parent="Face"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0185185, 0.0501893, 0.516755)
-mesh = SubResource("QuadMesh_p27vr")
-script = ExtResource("4_d2d3q")
-speed = 0.003
-amplitude = 0.008
-
 [node name="DogPantingSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_gdhwy")
-volume_db = -25.0
+volume_db = -80.0
 autoplay = true
 
 [node name="Slurp" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("9_uwqhk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.64905, 0.760746, 0, -0.760746, 0.64905, 0, 0.613948, 1.49597)
+light_color = Color(1, 1, 0.803922, 1)
+
+[node name="Face" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.873226)
+visible = false
+
+[node name="Decorations" type="Node3D" parent="Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142928, -0.178039, 0.193427)
+
+[node name="meatball" type="Sprite3D" parent="Face/Decorations"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.410591, -0.401989, 0.0767523)
+texture = ExtResource("9_y647r")
+
+[node name="decorations" type="Sprite3D" parent="Face/Decorations"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.0981944, -0.0530574, 0)
+texture = ExtResource("9_bnjmq")
+
+[node name="meatball2" type="Sprite3D" parent="Face/Decorations"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.610434, -0.340363, 0.0767523)
+texture = ExtResource("9_y647r")
+script = ExtResource("4_d2d3q")
+
+[node name="spaghetti" type="Sprite3D" parent="Face/Decorations"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.541733, 0.747014, -1.05756)
+texture = ExtResource("11_4xvh6")
+script = ExtResource("4_d2d3q")
+
+[node name="eyes-mouth" type="Sprite3D" parent="Face"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.0511101, 0.210619)
+texture = ExtResource("3_1h2ai")
+
+[node name="left-hear" type="Sprite3D" parent="Face"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.426129, 0.221258, 0.269555)
+texture = ExtResource("4_7oynl")
+script = ExtResource("4_d2d3q")
+speed = 0.003
+amplitude = 0.02
+
+[node name="right-hear" type="Sprite3D" parent="Face"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.439967, 0.221258, 0.269555)
+texture = ExtResource("5_prqqx")
+script = ExtResource("4_d2d3q")
+speed = 0.003
+amplitude = 0.02
