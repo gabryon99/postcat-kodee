@@ -1,16 +1,20 @@
 package me.gabryon.kodeedelivery.actors
 
+import ch.hippmann.godot.utilities.logging.debug
 import godot.*
 import godot.Input.isActionJustReleased
 import godot.annotation.*
 import godot.core.asNodePath
 import godot.core.asStringName
-import godot.global.GD
 import godot.signals.signal
 import me.gabryon.kodeedelivery.utility.child
 
 @RegisterClass
 class Kodee : Area3D(), Orbiting {
+
+    companion object {
+        const val GROUP_NAME = "Player"
+    }
 
     enum class HorizontalMovePoint { LEFT, CENTER, RIGHT }
     enum class VerticalMovePoint { UP, DOWN }
@@ -48,8 +52,11 @@ class Kodee : Area3D(), Orbiting {
     @RegisterProperty
     lateinit var rightMovePoint: Node3D
 
-    val rotationY: Double
-        get() = parent.rotation.y
+    val parentRotationX: Double
+        get() {
+            val parent = getParent() as Node3D
+            return parent.rotation.x
+        }
 
     private lateinit var horizontalMovePoints: List<Node3D>
     private lateinit var verticalMovePoints: List<Node3D>
@@ -117,7 +124,7 @@ class Kodee : Area3D(), Orbiting {
 
     private fun updateVerticalPosition(movePoint: VerticalMovePoint, reset: Boolean = false) {
         val movePointNode = verticalMovePoints[movePoint.ordinal]
-        position = positionMutate {
+        positionMutate {
             y = movePointNode.position.y
             z = movePointNode.position.z
         }
@@ -141,7 +148,7 @@ class Kodee : Area3D(), Orbiting {
 
         // Did Kodee actually move from its position?
         if (reset) {
-            GD.prints("[info] :: Reset timer position")
+            // debug("[info] :: Reset timer position")
             swooshPlayer.play()
             resetPositionTimer.start(resetHorizontalPositionTime)
         }
@@ -162,18 +169,18 @@ class Kodee : Area3D(), Orbiting {
     private val skipCollidingAreas = mutableSetOf<Area3D>()
 
     @RegisterFunction
-    fun onAreaExit(body: Area3D) {
+    fun onAreaExit(area3D: Area3D) {
         // We deregister only skip area from the `collidingSkipArea`s
-        if (!body.isInGroup("MailboxSkip".asStringName())) return
+        debug(area3D.toString())
+        if (!area3D.isInGroup(MailBox.SKIP_AREA_GROUP_NAME.asStringName())) return
 
         // Remove skip area from the set
-        skipCollidingAreas.remove(body)
+        skipCollidingAreas.remove(area3D)
 
         // Did Kodee touch at least one mailbox?
         if (skipCollidingAreas.isEmpty() && !mailboxTouched) {
             comboLost.emit()
             decelerate()
-            //GD.prints("[info][kodee] :: kodee didn't score anything")
         }
 
         if (skipCollidingAreas.isEmpty() && mailboxTouched) {
@@ -182,16 +189,14 @@ class Kodee : Area3D(), Orbiting {
     }
 
     @RegisterFunction
-    fun onAreaEnter(body: Area3D) {
+    fun onAreaEnter(area3D: Area3D) {
         when {
-            body.isInGroup("MailboxSkip".asStringName()) -> {
-                skipCollidingAreas.add(body)
+            area3D.isInGroup(MailBox.SKIP_AREA_GROUP_NAME.asStringName()) -> {
+                skipCollidingAreas.add(area3D)
             }
-
-            body.isInGroup("Mailbox".asStringName()) -> {
+            area3D.isInGroup(MailBox.GROUP_NAME.asStringName()) -> {
                 mailboxTouched = true
                 comboChanged.emit(1)
-                accelerate(maxSpeed = maximumAngularSpeed)
             }
         }
     }

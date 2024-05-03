@@ -19,6 +19,7 @@ signals = [
 ]
 properties = [
 	rotation_speed,
+	camera,
 	angular_speed,
 	initial_angular_speed,
 	maximum_angular_speed,

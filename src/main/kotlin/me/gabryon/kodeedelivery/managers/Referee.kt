@@ -3,7 +3,6 @@ package me.gabryon.kodeedelivery.managers
 import ch.hippmann.godot.utilities.logging.info
 import godot.Node
 import godot.Node3D
-import godot.ProgressBar
 import godot.annotation.Export
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
@@ -12,6 +11,7 @@ import godot.global.GD
 import me.gabryon.kodeedelivery.actors.Dog
 import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.actors.accelerate
+import me.gabryon.kodeedelivery.ui.Indicator
 import me.gabryon.kodeedelivery.utility.absoluteAngularDistance
 
 // Only Wout and Gabriele know what happen here on 5th of April 2024.
@@ -32,7 +32,7 @@ class Referee : Node() {
 
     @Export
     @RegisterProperty
-    lateinit var distanceBar: ProgressBar
+    lateinit var indicator: Indicator
 
     @Export
     @RegisterProperty
@@ -61,14 +61,14 @@ class Referee : Node() {
     @RegisterFunction
     override fun _process(delta: Double) {
 
-        val kodeeAngle = kodeeOrbitPoint.rotation.y
-        val dogAngle = dogOrbitPoint.rotation.y
+        val kodeeAngle = kodeeOrbitPoint.rotation.x
+        val dogAngle = dogOrbitPoint.rotation.x
         val currentDistance = absoluteAngularDistance(dogAngle, kodeeAngle)
 
-        val x = (currentDistance / maxDistanceDogAndKodee)
+        val x = currentDistance / maxDistanceDogAndKodee
         val y = dogSpeedFreedomCurve(x)
 
-        val deltaSpeedDiff = (dogScript.angularSpeed - kodeeScript.angularSpeed - overtakeSpeed)
+        val deltaSpeedDiff = (dogScript.angularSpeed - kodeeScript.angularSpeed + overtakeSpeed)
 
         val dogIsCloseToKodee = x < 2.0 / 3.0
         val kodeeIsFasterThanDog = deltaSpeedDiff > 0
@@ -79,8 +79,8 @@ class Referee : Node() {
             dogScript.accelerate(delta = deltaSpeedDiff * y, maxSpeed = y2)
         }
 
-        distanceBar.value = currentDistance * 100
-
+        indicator.updateBar(currentDistance * 100)
+//
 //        info(
 //            "current distance=$currentDistance, " +
 //                    "max distance=$maxDistanceDogAndKodee, " +

@@ -1,5 +1,6 @@
 package me.gabryon.kodeedelivery.actors
 
+import ch.hippmann.godot.utilities.logging.debug
 import godot.*
 import godot.annotation.Export
 import godot.annotation.RegisterClass
@@ -11,6 +12,7 @@ import me.gabryon.kodeedelivery.managers.Scene
 import me.gabryon.kodeedelivery.managers.ScoreStorage
 import me.gabryon.kodeedelivery.managers.sceneManager
 import me.gabryon.kodeedelivery.utility.child
+import me.gabryon.kodeedelivery.utility.deg
 
 @RegisterClass
 class Dog: Node3D(), Orbiting {
@@ -18,6 +20,10 @@ class Dog: Node3D(), Orbiting {
     @Export
     @RegisterProperty
     var rotationSpeed = Vector3(0, 90, 0)
+
+    @Export
+    @RegisterProperty
+    lateinit var camera: Camera3D
 
     private val body by child<Area3D>("Body")
 
@@ -45,7 +51,7 @@ class Dog: Node3D(), Orbiting {
     fun onAreaEnter(area3D: Area3D) {
         // When the dog catches Kodee, the game is over.
         // Save maximum user score and change to the next scene
-        if (area3D.isInGroup("Player".asStringName())) {
+        if (area3D.isInGroup(Kodee.GROUP_NAME.asStringName())) {
             ScoreStorage.saveUserScoreToDevice()
             sceneManager.changeTo(scene = Scene.EndGame)
         }
