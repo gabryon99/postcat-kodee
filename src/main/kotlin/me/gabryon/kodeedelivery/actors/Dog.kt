@@ -1,6 +1,5 @@
 package me.gabryon.kodeedelivery.actors
 
-import ch.hippmann.godot.utilities.logging.debug
 import godot.*
 import godot.annotation.Export
 import godot.annotation.RegisterClass
@@ -12,7 +11,6 @@ import me.gabryon.kodeedelivery.managers.Scene
 import me.gabryon.kodeedelivery.managers.ScoreStorage
 import me.gabryon.kodeedelivery.managers.sceneManager
 import me.gabryon.kodeedelivery.utility.child
-import me.gabryon.kodeedelivery.utility.deg
 
 @RegisterClass
 class Dog: Node3D(), Orbiting {
