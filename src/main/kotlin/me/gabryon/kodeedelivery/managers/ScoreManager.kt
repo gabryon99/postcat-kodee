@@ -32,12 +32,11 @@ class ScoreManager : Node() {
         val newScore = ScoreStorage.userScore safeAdd multipliedPoints
 
         storedScore = storedScore safeAdd points
-
         ScoreStorage.userScore = newScore
 
         scoreChanged.emit(newScore)
 
-        if (storedScore >= levelManager.pointsToNextLevel) {
+        if (levelManager.pointsToNextLevel != -1 && newScore >= levelManager.pointsToNextLevel) {
             storedScore = 0
             nextLevel.emit()
         }
