@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8lojovbow0xr"]
+
+[ext_resource type="ArrayMesh" uid="uid://bdr105jtebymm" path="res://assets/3d/mailbox/box-top.obj" id="1_3yc30"]
+[ext_resource type="ArrayMesh" uid="uid://bv7mwkp60jqq4" path="res://assets/3d/mailbox/box-flag.obj" id="2_x4ufo"]
+[ext_resource type="ArrayMesh" uid="uid://sedqiahcod2r" path="res://assets/3d/mailbox/box-door.obj" id="3_lv00i"]
+[ext_resource type="AudioStream" uid="uid://b8k7lc2daqb74" path="res://assets/sounds/letterbox_close.mp3" id="4_jqcc2"]
+
+[sub_resource type="Animation" id="Animation_21whi"]
+resource_name = "close_box"
+length = 0.3
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box-door")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.707107, 2.4663e-16, 2.4663e-16, 0.707107, 0.3, 1, 0, -1.5246e-23, 3.48787e-16, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Box-flag")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1.74393e-16, 1, -1.74393e-16, 7.54979e-08, 0.3, 1, 5.33851e-08, 0.707107, 0.707107, 5.33851e-08)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r7cie"]
+_data = {
+"close_box": SubResource("Animation_21whi")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t3tpu"]
+size = Vector3(0.550537, 0.334839, 0.831116)
+
+[node name="Box-top" type="Node3D" groups=["Box"]]
+
+[node name="Box-anim-player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r7cie")
+}
+
+[node name="Box-top-home" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.0922074, 2.08165e-12)
+mesh = ExtResource("1_3yc30")
+skeleton = NodePath("../..")
+
+[node name="Box-flag" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 3.48786e-16, 1.50996e-07, 3.48786e-16, 1, -3.48786e-16, -1.50996e-07, -3.48786e-16, -1, -0.127634, 0.963443, -0.145909)
+mesh = ExtResource("2_x4ufo")
+skeleton = NodePath("../..")
+
+[node name="Box-door" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -6.97575e-16, -3.0492e-23, 0, -4.37114e-08, 1, -6.97575e-16, -1, -4.37114e-08, 2.08165e-12, 0.817293, -0.189788)
+mesh = ExtResource("3_lv00i")
+skeleton = NodePath("../..")
+
+[node name="Box-sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_jqcc2")
+
+[node name="Box-collision" type="Area3D" parent="." groups=["Box"]]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box-collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032959, 0.843983, -0.0365906)
+shape = SubResource("BoxShape3D_t3tpu")

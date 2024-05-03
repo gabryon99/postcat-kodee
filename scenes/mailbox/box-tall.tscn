@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwobaawdc628q"]
+
+[ext_resource type="ArrayMesh" uid="uid://c0ty775qvtow8" path="res://assets/3d/mailbox/box-mid.obj" id="1_oochf"]
+[ext_resource type="ArrayMesh" uid="uid://dyt1jtr14y6l" path="res://assets/3d/mailbox/box-base.obj" id="2_1cq1k"]
+[ext_resource type="PackedScene" uid="uid://b8lojovbow0xr" path="res://scenes/mailbox/box-top.tscn" id="3_0pr1y"]
+
+[node name="TallBox" type="Node3D"]
+
+[node name="Box-mid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.54308, 0, 0, 0, 1, 2.08165e-12, -0.0645673, 2.08165e-12)
+mesh = ExtResource("1_oochf")
+
+[node name="Box-base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+mesh = ExtResource("2_1cq1k")
+
+[node name="Top" parent="." instance=ExtResource("3_0pr1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.4, 2.08165e-12)
