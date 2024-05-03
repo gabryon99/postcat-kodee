@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw6u5n3c4f3hj"
-path.s3tc="res://.godot/imported/toon-city.png-af2384010b10487a3098c66030edffab.s3tc.ctex"
+uid="uid://ce32ydebv112p"
+path.s3tc="res://.godot/imported/box-texture.png-0233297565236c23378fe3647ab61cca.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/toon-city.png"
-dest_files=["res://.godot/imported/toon-city.png-af2384010b10487a3098c66030edffab.s3tc.ctex"]
+source_file="res://assets/3d/mailbox/box-texture.png"
+dest_files=["res://.godot/imported/box-texture.png-0233297565236c23378fe3647ab61cca.s3tc.ctex"]
 
 [params]
 

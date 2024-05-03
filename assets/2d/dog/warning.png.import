@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0q1cspk8ir41"
-path.s3tc="res://.godot/imported/Spaghetti-43.jpg-1096ba8f0a4971c0d210d7b018c47efa.s3tc.ctex"
+uid="uid://dmncjmbg2egb5"
+path.s3tc="res://.godot/imported/warning.png-7344d6fe7c683aac4713a222b7402d38.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Spaghetti-43.jpg"
-dest_files=["res://.godot/imported/Spaghetti-43.jpg-1096ba8f0a4971c0d210d7b018c47efa.s3tc.ctex"]
+source_file="res://assets/2d/dog/warning.png"
+dest_files=["res://.godot/imported/warning.png-7344d6fe7c683aac4713a222b7402d38.s3tc.ctex"]
 
 [params]
 
