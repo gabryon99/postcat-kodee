@@ -3,9 +3,14 @@ package me.gabryon.kodeedelivery.levels
 import me.gabryon.kodeedelivery.utility.increasedByFactorOf
 import me.gabryon.kodeedelivery.utility.infiniteSequence
 
+/**
+ * Notes on Kodee's Speed
+ * * At the game's beginning, Kodee's speed must be set at minimum 0.3
+ */
+
 data object DebugLevel0 : LevelLogic {
 
-    override val maximumCharacterSpeed: Double = -1.0
+    override val maximumCharacterSpeed: Double = 0.3
     override val pointsToNextLevel: Int = 500
 
     /**
@@ -22,7 +27,7 @@ data object DebugLevel0 : LevelLogic {
 
 data object DebugLevel1 : LevelLogic {
 
-    override val maximumCharacterSpeed: Double = -2.0 increasedByFactorOf 10.0
+    override val maximumCharacterSpeed: Double = 2.0 increasedByFactorOf 10.0
     override val pointsToNextLevel: Int = -1
 
     /**
@@ -53,17 +58,16 @@ data object DebugLevel1 : LevelLogic {
  *  generated on the same side.
  */
 data object Level1 : LevelLogic {
-    override val maximumCharacterSpeed: Double
-        get() = -1.0
-    override val pointsToNextLevel: Int
-        get() = 2500
+
+    override val maximumCharacterSpeed: Double = 0.45
+    override val pointsToNextLevel: Int = 1500
 
     private var sameSideCounter = 0
     private var lastSide: MailboxPosition.HorizontalPosition? = null
 
     override fun mailboxes(): Sequence<MailboxPosition> = infiniteSequence {
 
-        val generateTower = rng.randf() <= 0.5 // 50% of chances
+        val generateTower = rng.randf() <= 0.8 // 80% of chances
 
         if (generateTower) {
 
@@ -105,8 +109,7 @@ data object Level1 : LevelLogic {
 data object Level2 : LevelLogic {
 
     override val maximumCharacterSpeed = Level1.maximumCharacterSpeed increasedByFactorOf 0.05
-
-    override val pointsToNextLevel = -1
+    override val pointsToNextLevel = Level1.pointsToNextLevel + 2500 // 4000
 
     private var sameSideCounter = 0
     private var lastSide: MailboxPosition.HorizontalPosition? = null

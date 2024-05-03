@@ -16,8 +16,8 @@ signals = [
 ]
 properties = [
     score_manager,
-	bottom_mailbox,
-	top_mailbox,
+	small_mail_box_scene,
+	tall_mail_box_scene,
 	side_offset,
 	world,
 	kodee,
