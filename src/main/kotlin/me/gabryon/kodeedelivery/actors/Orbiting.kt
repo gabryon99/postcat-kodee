@@ -5,7 +5,6 @@ import godot.Node3D
 import godot.annotation.Export
 import godot.annotation.RegisterProperty
 import godot.global.GD
-import godot.util.TAU
 
 interface HasParent {
     fun getParent(): Node?
@@ -32,11 +31,7 @@ interface Orbiting : HasParent {
 
 fun Orbiting.orbit(delta: Double) {
     val orbitPoint = getParent() as Node3D
-//    // orbitPoint.rotate(Vector3.RIGHT, (angularSpeed * delta).toFloat())
-
-    orbitPoint.rotationMutate {
-        x = (x + (angularSpeed * delta)).mod(TAU)
-    }
+    orbitPoint.rotateX((delta * angularSpeed).toFloat())
 }
 
 fun Orbiting.accelerate(delta: Double = deltaSpeed, maxSpeed: Double = maximumAngularSpeed) {
