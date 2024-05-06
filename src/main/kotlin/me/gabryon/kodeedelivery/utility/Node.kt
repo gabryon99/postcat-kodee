@@ -24,3 +24,5 @@ fun <T : Node> Node.child(path: String, initialize: (T) -> Unit = {}): Child<T> 
 
 inline fun <reified T : Node> Node.child(noinline initialize: (T) -> Unit = {}): Child<T> =
     child(T::class.simpleName!!, initialize)
+
+inline fun <reified T : Node> Node.getParentAs(): T = getParent() as T
