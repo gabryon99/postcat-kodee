@@ -1,9 +1,9 @@
 package me.gabryon.kodeedelivery.actors
 
-import ch.hippmann.godot.utilities.logging.debug
 import godot.*
 import godot.Input.isActionJustReleased
 import godot.annotation.*
+import godot.core.StringName
 import godot.core.asNodePath
 import godot.core.asStringName
 import godot.signals.signal
@@ -14,32 +14,28 @@ class Kodee : Area3D(), Orbiting {
 
     companion object {
         const val GROUP_NAME = "Player"
+        private const val HEIGHT_DELTA = 0.322
     }
 
     enum class HorizontalMovePoint { LEFT, CENTER, RIGHT }
-    enum class VerticalMovePoint { UP, DOWN }
 
-    //region Reset Timer Fields
+    private val animationTree by child<KodeeAnimation>("AnimationTree")
     private val resetPositionTimer by child<Timer>("ResetPositionTimer")
+    private val resetStretchTimer by child<Timer>("ResetStretchTimer")
 
     @Export
     @RegisterProperty
-    var resetHorizontalPositionTime: Double = 0.5
+    var resetHorizontalPositionTime = 0.5
 
+    /**
+     * Kodee cannot be stretched for an infinite amount of time.
+     * Therefore, after a [stretchTimeout] seconds, go back to normal.
+     */
     @Export
     @RegisterProperty
-    var resetVerticalPositionTime: Double = 1.0
-    //endregion
+    var stretchTimeout = 1.0
 
     //region Moving Point Fields
-    @Export
-    @RegisterProperty
-    lateinit var upMovePoint: Node3D
-
-    @Export
-    @RegisterProperty
-    lateinit var downMovePoint: Node3D
-
     @Export
     @RegisterProperty
     lateinit var leftMovePoint: Node3D
@@ -51,17 +47,8 @@ class Kodee : Area3D(), Orbiting {
     @Export
     @RegisterProperty
     lateinit var rightMovePoint: Node3D
-
-    val parentRotationX: Double
-        get() {
-            val parent = getParent() as Node3D
-            return parent.rotation.x
-        }
-
-    private lateinit var horizontalMovePoints: List<Node3D>
-    private lateinit var verticalMovePoints: List<Node3D>
+    private lateinit var horizontalMovePoints: Array<Node3D>
     private var currentHorizontalPoint = HorizontalMovePoint.CENTER
-    private var currentVerticalPoint = VerticalMovePoint.DOWN
     //endregion
 
     //region Orbiting Fields
@@ -69,75 +56,88 @@ class Kodee : Area3D(), Orbiting {
     override var initialAngularSpeed: Double = 5.0
     override var maximumAngularSpeed: Double = 10.0
     override var deltaSpeed: Double = 1.0
-    //endregion
 
-    @RegisterSignal
-    val comboChanged by signal<Int>("delta")
+    val parentRotationX: Double
+        get() {
+            val parent = getParent() as Node3D
+            return parent.rotation.x
+        }
+    //endregion
 
     @RegisterSignal
     val comboLost by signal()
 
-    private var mailboxTouched: Boolean = false
+    @RegisterSignal
+    val comboChanged by signal<Int>("delta")
+
+    private var mailboxTouched = false
+    private var isStretched = false
+
+    private val swooshSound by child<AudioStreamPlayer3D>("SwooshSound")
+    private val stretchSound by child<AudioStreamPlayer3D>("StretchSound")
+    private val skipCollidingAreas = mutableSetOf<Area3D>()
+
     private lateinit var parent: Node3D
-
-    private val animationPlayer by child<AnimationPlayer>("AnimationPlayer")
-
-    //region Audio
-    private val swooshPlayer by child<AudioStreamPlayer3D>("Swoosh")
-    //endregion
 
     @RegisterFunction
     override fun _ready() {
         parent = getParent() as Node3D
-        // Initialize vertical points
-        verticalMovePoints = listOf(upMovePoint, downMovePoint)
-        // Initialize horizontal move points
-        horizontalMovePoints = listOf(leftMovePoint, centerMovePoint, rightMovePoint)
-
+        horizontalMovePoints = arrayOf(leftMovePoint, centerMovePoint, rightMovePoint)
         // Collisions with mailboxes
         areaEntered.connect(this, Kodee::onAreaEnter)
         areaExited.connect(this, Kodee::onAreaExit)
-
-        // Timers and other funny stuff
-        resetPositionTimer.timeout.connect(this, Kodee::onResetPositionTimeout, 0)
-
-        animationPlayer.play("running".asStringName())
     }
 
     @RegisterFunction
     override fun _physicsProcess(delta: Double) {
         orbit(delta)
+        when {
+            isActionJustReleased("left".asStringName()) -> {
+                updateHorizontalPosition(HorizontalMovePoint.LEFT, reset = true)
+            }
 
-        if (isActionJustReleased("left".asStringName())) {
-            updateHorizontalPosition(HorizontalMovePoint.LEFT, reset = true)
-        }
-        if (isActionJustReleased("right".asStringName())) {
-            updateHorizontalPosition(HorizontalMovePoint.RIGHT, reset = true)
-        }
-        if (isActionJustReleased("up".asStringName())) {
-            updateVerticalPosition(VerticalMovePoint.UP, reset = true)
-        }
-        if (isActionJustReleased("down".asStringName())) {
-            updateVerticalPosition(VerticalMovePoint.DOWN, reset = true)
+            isActionJustReleased("right".asStringName()) -> {
+                updateHorizontalPosition(HorizontalMovePoint.RIGHT, reset = true)
+            }
+
+            isActionJustReleased("up".asStringName()) -> {
+                stretchUp()
+            }
+
+            isActionJustReleased("down".asStringName()) -> {
+                stretchDown()
+            }
         }
     }
 
-    private fun updateVerticalPosition(movePoint: VerticalMovePoint, reset: Boolean = false) {
-        val movePointNode = verticalMovePoints[movePoint.ordinal]
-        positionMutate {
-            y = movePointNode.position.y
-            z = movePointNode.position.z
-        }
+    @RegisterFunction
+    fun stretchUp() {
+        // We already stretched up, so we do nothing...
+        if (isStretched) return
 
-        if (reset && currentVerticalPoint != movePoint) {
-            resetPositionTimer.start(resetVerticalPositionTime)
-        }
-        if (reset && resetPositionTimer.timeLeft > 0) {
-            resetPositionTimer.stop()
-            resetPositionTimer.start(resetVerticalPositionTime)
-        }
+        isStretched = true
+        resetStretchTimer.start(stretchTimeout)
+        stretchSound.play()
 
-        currentVerticalPoint = movePoint
+        // Run animations
+        animationTree.changeAnimation("stretching".asStringName())
+        animationTree.set("parameters/conditions/isStretchingUp".asStringName(), true)
+        animationTree.set("parameters/conditions/isStretchingDown".asStringName(), false)
+
+        // 1.512 - 1.190 = 0.322
+        positionMutate { z += HEIGHT_DELTA }
+    }
+
+    @RegisterFunction
+    fun stretchDown() {
+
+        if (!isStretched) return
+        if (!resetStretchTimer.isStopped()) resetStretchTimer.stop()
+
+        animationTree.set("parameters/conditions/isStretchingUp".asStringName(), false)
+        animationTree.set("parameters/conditions/isStretchingDown".asStringName(), true)
+        isStretched = false
+        positionMutate { z -= HEIGHT_DELTA }
     }
 
     private fun updateHorizontalPosition(movePoint: HorizontalMovePoint, reset: Boolean = false) {
@@ -149,11 +149,11 @@ class Kodee : Area3D(), Orbiting {
         // Did Kodee actually move from its position?
         if (reset) {
             // debug("[info] :: Reset timer position")
-            swooshPlayer.play()
+            swooshSound.play()
             resetPositionTimer.start(resetHorizontalPositionTime)
         }
         if (reset && resetPositionTimer.timeLeft > 0) {
-            swooshPlayer.play()
+            swooshSound.play()
             resetPositionTimer.stop()
             resetPositionTimer.start(resetHorizontalPositionTime)
         }
@@ -166,12 +166,10 @@ class Kodee : Area3D(), Orbiting {
         }
     }
 
-    private val skipCollidingAreas = mutableSetOf<Area3D>()
-
     @RegisterFunction
     fun onAreaExit(area3D: Area3D) {
         // We deregister only skip area from the `collidingSkipArea`s
-        debug(area3D.toString())
+//        debug(area3D.toString())
         if (!area3D.isInGroup(MailBox.SKIP_AREA_GROUP_NAME.asStringName())) return
 
         // Remove skip area from the set
@@ -194,6 +192,7 @@ class Kodee : Area3D(), Orbiting {
             area3D.isInGroup(MailBox.SKIP_AREA_GROUP_NAME.asStringName()) -> {
                 skipCollidingAreas.add(area3D)
             }
+
             area3D.isInGroup(MailBox.GROUP_NAME.asStringName()) -> {
                 mailboxTouched = true
                 comboChanged.emit(1)
@@ -203,8 +202,11 @@ class Kodee : Area3D(), Orbiting {
 
     @RegisterFunction
     fun onResetPositionTimeout() {
-        // Reset Kodee's position to original
-        updateVerticalPosition(VerticalMovePoint.DOWN, reset = false)
         updateHorizontalPosition(HorizontalMovePoint.CENTER, reset = false)
+    }
+
+    @RegisterFunction
+    fun onDistanceWithDogChanged(distance: StringName) {
+        animationTree.onDistanceWithDogChanged(distance)
     }
 }
