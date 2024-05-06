@@ -1,13 +1,13 @@
 package me.gabryon.kodeedelivery.utility
 
+import ch.hippmann.godot.utilities.logging.debug
 import godot.FileAccess
-import godot.global.GD
 import godot.global.GD.abs
 import godot.global.GD.fmod
 import godot.util.PI
+import godot.util.TAU
 import kotlin.experimental.ExperimentalTypeInference
-
-const val DPI = PI * 2
+import kotlin.reflect.KProperty
 
 /**
  * Adds two integers safely, ensuring no arithmetic overflow occurs.
@@ -54,18 +54,33 @@ inline fun loop(block: () -> Unit) {
 }
 
 /**
- * Calculates the absolute angular distance between two angles.
+ * Calculates the absolute angular distance between two angles in radians.
  *
  * @param from The starting angle.
  * @param to The ending angle.
  * @return The absolute angular distance between the two angles.
  */
 fun absoluteAngularDistance(from: Double, to: Double): Double {
-    val angle1 = fmod(from, DPI)
-    val angle2 = fmod(to, DPI)
+    val angle1 = fmod(from, TAU)
+    val angle2 = fmod(to, TAU)
     val diff = abs(angle1 - angle2)
     return when {
-        diff > PI -> DPI - diff
+        diff > PI -> TAU - diff
+        else -> diff
+    }
+}
+
+/**
+ * Calculates the absolute angular distance between two angles in radians.
+ *
+ * @param from The starting angle.
+ * @param to The ending angle.
+ * @return The absolute angular distance between the two angles.
+ */
+fun absoluteAngularDegreesDistance(from: Double, to: Double): Double {
+    val diff = abs(from - to)
+    return when {
+        diff > 360.0 -> 360.0 - diff
         else -> diff
     }
 }
@@ -78,12 +93,12 @@ fun absoluteAngularDistance(from: Double, to: Double): Double {
  * @return The angular distance between the two angles.
  */
 fun angularDistance(from: Double, to: Double): Double {
-    val angle1 = fmod(from, DPI)
-    val angle2 = fmod(to, DPI)
+    val angle1 = fmod(from, TAU)
+    val angle2 = fmod(to, TAU)
     val diff = angle2 - angle1
     return when {
-        diff > PI -> diff - DPI
-        diff < -PI -> diff + DPI
+        diff > PI -> diff - TAU
+        diff < -PI -> diff + TAU
         else -> diff
     }
 }
@@ -104,4 +119,33 @@ inline fun <T> fileAccess(path: String, modes: FileAccess.ModeFlags, body: FileA
     } finally {
         file?.close()
     }
+}
+
+inline fun <T> debugLine(silence: Boolean = false, writer: DebugLineSession.() -> T): T {
+    val session = DebugLineSession()
+    return try {
+        session.writer()
+    } finally {
+        if (!silence) session.debugLines()
+    }
+}
+
+class DebugLineSession {
+    
+    private val vars = mutableMapOf<String, Any?>()
+    operator fun <T> T.getValue(nothing: Nothing?, property: KProperty<*>): T = this.dbg(property.name)
+    private fun <T> T.dbg(name: String): T = this.also { vars[name] = this }
+
+    @PublishedApi
+    internal fun debugLines() {
+        vars
+            .entries
+            .joinToString { (name, value) -> "$name = $value" }
+            .also(::debug)
+    }
+
+    /**
+     * Utility function to trigger the delegation getter.
+     */
+    fun hole(vararg a: Any?): Nothing? = null
 }
