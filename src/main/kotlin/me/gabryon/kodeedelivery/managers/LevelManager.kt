@@ -11,10 +11,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import me.gabryon.kodeedelivery.actors.Dog
 import me.gabryon.kodeedelivery.actors.Kodee
-import me.gabryon.kodeedelivery.levels.Level1
-import me.gabryon.kodeedelivery.levels.Level2
-import me.gabryon.kodeedelivery.levels.Level3
-import me.gabryon.kodeedelivery.levels.LevelLogic
+import me.gabryon.kodeedelivery.levels.*
 import me.gabryon.kodeedelivery.utility.child
 
 @RegisterClass
@@ -24,6 +21,7 @@ class LevelManager : Node() {
 
     //region Level Management
     private val levels: Array<LevelLogic> = arrayOf(
+        DebugLevel0,
         Level1,
         Level2,
         Level3
@@ -85,7 +83,10 @@ class LevelManager : Node() {
             kodee.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.angularSpeed = currentLevelLogic.maximumCharacterSpeed
+
             dog.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
+            dog.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed
+            dog.angularSpeed = currentLevelLogic.maximumCharacterSpeed
         }
 
         mailboxGenerator = MailBoxGenerator(
