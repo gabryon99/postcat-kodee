@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bstdacyhv45ns"]
 
-[ext_resource type="Texture2D" uid="uid://dee5evmcm3c4x" path="res://assets/2d/indicator/indicator0.png" id="1_tjdfg"]
+[ext_resource type="Texture2D" uid="uid://nokovu5dvujw" path="res://assets/2d/indicator/indicator0.png" id="1_tjdfg"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/Indicator.gdj" id="2_etx8v"]
 [ext_resource type="Texture2D" uid="uid://c33m1spuif8h3" path="res://assets/2d/indicator/indicator1.png" id="3_te6mc"]
 [ext_resource type="Texture2D" uid="uid://bjp7461j1p0mu" path="res://assets/2d/indicator/indicator2.png" id="4_gr1gx"]

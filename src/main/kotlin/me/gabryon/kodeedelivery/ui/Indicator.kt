@@ -1,13 +1,15 @@
 package me.gabryon.kodeedelivery.ui
 
+import ch.hippmann.godot.utilities.logging.debug
 import godot.Texture2D
 import godot.TextureRect
-import godot.Tween
 import godot.annotation.Export
 import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
-import godot.core.asNodePath
+import godot.core.StringName
 import godot.core.asStringName
+import me.gabryon.kodeedelivery.managers.Referee
 
 @RegisterClass
 class Indicator : TextureRect() {
@@ -27,12 +29,13 @@ class Indicator : TextureRect() {
     @RegisterProperty
     lateinit var indicator3: Texture2D
 
-    fun updateBar(value: Double) {
-        texture = when (value) {
-            in 0.0..<25.0 -> indicator3
-            in 25.0..<50.0 -> indicator2
-            in 50.0..<75.0 -> indicator1
-            else -> indicator0
+    @RegisterFunction
+    fun onDistanceWithDogChanged(distance: StringName) {
+        texture = when (distance.toString()) {
+            Referee.FAR_AWAY ->indicator0
+            Referee.FAR -> indicator1
+            Referee.CLOSE -> indicator2
+            else -> indicator3
         }
     }
 }
