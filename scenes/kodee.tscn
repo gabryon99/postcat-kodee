@@ -271,7 +271,7 @@ states/stretch-down/position = Vector2(674.552, 22.65)
 states/stretching/node = SubResource("AnimationNodeBlendTree_t4gaw")
 states/stretching/position = Vector2(447.052, 23.4)
 transitions = ["stretching", "running-stretched", SubResource("AnimationNodeStateMachineTransition_ecabv"), "running-stretched", "stretch-down", SubResource("AnimationNodeStateMachineTransition_503w1"), "running-scared", "running-normal", SubResource("AnimationNodeStateMachineTransition_8xufi"), "running-scared", "running", SubResource("AnimationNodeStateMachineTransition_017p8"), "stretch-down", "running-scared", SubResource("AnimationNodeStateMachineTransition_ps6dj"), "Start", "running", SubResource("AnimationNodeStateMachineTransition_yvu02"), "running-normal", "running", SubResource("AnimationNodeStateMachineTransition_tlroy"), "running", "running-normal", SubResource("AnimationNodeStateMachineTransition_nm8k0"), "running-normal", "running-scared", SubResource("AnimationNodeStateMachineTransition_bklbs")]
-graph_offset = Vector2(38.4924, -378.83)
+graph_offset = Vector2(248.492, 45.1695)
 
 [node name="Kodee" type="Area3D" groups=["Player"]]
 script = ExtResource("1_dr7ii")
@@ -284,7 +284,7 @@ delta_speed = 0.25
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
 billboard = 1
 alpha_cut = 2
-texture = ExtResource("10_d11fd")
+texture = ExtResource("13_wd4sp")
 
 [node name="ResetPositionTimer" type="Timer" parent="."]
 wait_time = 0.8
