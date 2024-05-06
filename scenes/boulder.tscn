@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://351np7mdaha3" path="res://assets/2d/dog/spaghetti0.png" id="11_4xvh6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_urjgv"]
+radius = 1.05015
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlelf"]
 albedo_texture = ExtResource("2_q3g1b")
@@ -27,7 +28,6 @@ rotation_speed = Vector3(90, 2.08165e-12, 2.08165e-12)
 
 [node name="Sphere" type="CollisionShape3D" parent="Body"]
 shape = SubResource("SphereShape3D_urjgv")
-disabled = true
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Body"]
 radius = 1.0
@@ -46,10 +46,10 @@ stream = ExtResource("9_uwqhk")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.64905, 0.760746, 0, -0.760746, 0.64905, 0, 0.613948, 1.49597)
 light_color = Color(1, 1, 0.803922, 1)
+light_energy = 0.8
 
 [node name="Face" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.873226)
-visible = false
 
 [node name="Decorations" type="Node3D" parent="Face"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142928, -0.178039, 0.193427)

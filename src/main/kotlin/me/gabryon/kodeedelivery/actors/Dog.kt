@@ -37,7 +37,9 @@ class Dog: Node3D(), Orbiting {
 
     @RegisterFunction
     override fun _process(delta: Double) {
-        body.rotationDegrees += rotationSpeed * delta
+        // body.rotationDegrees += rotationSpeed * delta
+        val up = (globalPosition - (getParent()!! as Node3D).globalPosition)
+        lookAt(camera.globalPosition, up.normalized(), useModelFront = true)
     }
 
     @RegisterFunction
