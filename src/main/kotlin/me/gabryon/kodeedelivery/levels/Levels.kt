@@ -1,51 +1,6 @@
 package me.gabryon.kodeedelivery.levels
 
-import me.gabryon.kodeedelivery.utility.increasedByFactorOf
 import me.gabryon.kodeedelivery.utility.infiniteSequence
-
-/**
- * Notes on Kodee's Speed
- * * At the game's beginning, Kodee's speed must be set at minimum 0.3
- */
-
-data object DebugLevel0 : LevelLogic {
-
-    override val maximumCharacterSpeed: Double = 0.3
-    override val pointsToNextLevel: Int = 500
-
-    /**
-     * Generate mailboxes always on the left, distant 1.0 rad between each other.
-     */
-    override fun mailboxes(): Sequence<MailboxPosition> = infiniteSequence {
-        yieldBox(
-            hoz = MailboxPosition.HorizontalPosition.LEFT,
-            ver = MailboxPosition.VerticalPosition.BOTTOM,
-            distanceFromPrevious = 1.0,
-        )
-    }
-}
-
-data object DebugLevel1 : LevelLogic {
-
-    override val maximumCharacterSpeed: Double = 2.0 increasedByFactorOf 10.0
-    override val pointsToNextLevel: Int = -1
-
-    /**
-     * Generate a pair of mailboxes, distant 1.0 rad between each other.
-     */
-    override fun mailboxes(): Sequence<MailboxPosition> = infiniteSequence {
-        yieldBox(
-            hoz = MailboxPosition.HorizontalPosition.LEFT,
-            ver = MailboxPosition.VerticalPosition.BOTTOM,
-            distanceFromPrevious = 1.0,
-        )
-        yieldBox(
-            hoz = MailboxPosition.HorizontalPosition.RIGHT,
-            ver = MailboxPosition.VerticalPosition.BOTTOM,
-            distanceFromPrevious = 0.0,
-        )
-    }
-}
 
 /**
  * Level 1:
@@ -59,8 +14,8 @@ data object DebugLevel1 : LevelLogic {
  */
 data object Level1 : LevelLogic {
 
-    override val maximumCharacterSpeed: Double = 0.45
-    override val pointsToNextLevel: Int = 1500
+    override val maximumCharacterSpeed: Double = 0.8
+    override val pointsToNextLevel: Int = 400
 
     private var sameSideCounter = 0
     private var lastSide: MailboxPosition.HorizontalPosition? = null
@@ -108,7 +63,7 @@ data object Level1 : LevelLogic {
  */
 data object Level2 : LevelLogic {
 
-    override val maximumCharacterSpeed = Level1.maximumCharacterSpeed increasedByFactorOf 0.05
+    override val maximumCharacterSpeed = 1.4
     override val pointsToNextLevel = Level1.pointsToNextLevel + 2500 // 4000
 
     private var sameSideCounter = 0
@@ -168,7 +123,7 @@ data object Level2 : LevelLogic {
  */
 data object Level3 : LevelLogic {
 
-    override val maximumCharacterSpeed = Level2.maximumCharacterSpeed increasedByFactorOf 0.05
+    override val maximumCharacterSpeed = 1.8
 
     override val pointsToNextLevel = -1 // Never reachable :)
 
