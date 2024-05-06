@@ -17,14 +17,12 @@ supertypes = [
 	me.gabryon.kodeedelivery.actors.HasParent
 ]
 signals = [
-	combo_changed,
-	combo_lost
+	combo_lost,
+	combo_changed
 ]
 properties = [
 	reset_horizontal_position_time,
-	reset_vertical_position_time,
-	up_move_point,
-	down_move_point,
+	stretch_timeout,
 	left_move_point,
 	center_move_point,
 	right_move_point,
@@ -36,7 +34,10 @@ properties = [
 functions = [
 	_ready,
 	_physics_process,
+	stretch_up,
+	stretch_down,
 	on_area_exit,
 	on_area_enter,
-	on_reset_position_timeout
+	on_reset_position_timeout,
+	on_distance_with_dog_changed
 ]

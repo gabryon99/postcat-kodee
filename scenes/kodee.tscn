@@ -1,15 +1,36 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8qgbjsisntw"]
+[gd_scene load_steps=61 format=3 uid="uid://b8qgbjsisntw"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Kodee.gdj" id="1_dr7ii"]
-[ext_resource type="Texture2D" uid="uid://bwqu6fk2xrgfy" path="res://assets/kodee-anim/19.png" id="2_n0y53"]
-[ext_resource type="Texture2D" uid="uid://iyxd5yusd8pb" path="res://assets/kodee-anim/20.png" id="3_eplx3"]
-[ext_resource type="Texture2D" uid="uid://dkbuod8xw38mo" path="res://assets/kodee-anim/21.png" id="4_lqtby"]
-[ext_resource type="Texture2D" uid="uid://bh86cfr6b48ns" path="res://assets/kodee-anim/22.png" id="5_m7ey3"]
+[ext_resource type="Texture2D" uid="uid://cf6vnt6aovd6l" path="res://assets/2d/kodee/run/run-1-1.png" id="2_0mwef"]
+[ext_resource type="Texture2D" uid="uid://cw6m2hxhjndh" path="res://assets/2d/kodee/run/run-2-1.png" id="3_h0sru"]
+[ext_resource type="Texture2D" uid="uid://py7rvivrca6u" path="res://assets/2d/kodee/run/run-3-1.png" id="4_6ynwi"]
+[ext_resource type="AudioStream" uid="uid://dl5okx03wjwsg" path="res://assets/sounds/boing.mp3" id="4_hm7et"]
+[ext_resource type="Texture2D" uid="uid://dqyn3efl4uq0k" path="res://assets/2d/kodee/run/run-4-1.png" id="5_l2sb7"]
 [ext_resource type="AudioStream" uid="uid://bdeimbuleirtg" path="res://assets/sounds/swoosh.mp3" id="6_250d6"]
+[ext_resource type="Texture2D" uid="uid://b4sc0p5cu7axb" path="res://assets/2d/kodee/run-normal/run-1-2.png" id="6_o5auy"]
+[ext_resource type="Texture2D" uid="uid://ci6hsocikhrtg" path="res://assets/2d/kodee/run-normal/run-2-2.png" id="7_s7ku4"]
+[ext_resource type="Texture2D" uid="uid://bcsigrnl67oqe" path="res://assets/2d/kodee/run-normal/run-3-2.png" id="8_s64ud"]
+[ext_resource type="Texture2D" uid="uid://ydq1rv2dkerl" path="res://assets/2d/kodee/run-normal/run-4-2.png" id="9_hhlex"]
+[ext_resource type="Texture2D" uid="uid://bg2r6v7sxsoou" path="res://assets/2d/kodee/run-scared/run-1-3.png" id="10_d11fd"]
+[ext_resource type="Texture2D" uid="uid://5xrjniuqcs0b" path="res://assets/2d/kodee/run-scared/run-2-3.png" id="11_gextx"]
+[ext_resource type="Texture2D" uid="uid://tnsb7rs4sfdl" path="res://assets/2d/kodee/run-scared/run-3-3.png" id="12_avq6b"]
+[ext_resource type="Texture2D" uid="uid://co78h3vhssfxn" path="res://assets/2d/kodee/run-scared/run-4-3.png" id="13_wd4sp"]
+[ext_resource type="Texture2D" uid="uid://cdhchen7nub1" path="res://assets/2d/kodee/stretching/27.png" id="14_6kpgc"]
+[ext_resource type="Texture2D" uid="uid://lpyv5arpve32" path="res://assets/2d/kodee/stretching/28.png" id="15_i04co"]
+[ext_resource type="Texture2D" uid="uid://cqlupprt36hpj" path="res://assets/2d/kodee/stretching/29.png" id="16_vo7f3"]
+[ext_resource type="Texture2D" uid="uid://clena5mkfiq0e" path="res://assets/2d/kodee/stretching/30.png" id="17_8dvvd"]
+[ext_resource type="Texture2D" uid="uid://cdods3cxlj0sq" path="res://assets/2d/kodee/stretching-running/31.png" id="18_apkpu"]
+[ext_resource type="Texture2D" uid="uid://oaa5hd4s1gi5" path="res://assets/2d/kodee/stretching-running/32.png" id="19_jxdxs"]
+[ext_resource type="Texture2D" uid="uid://3nj3w04r1aa8" path="res://assets/2d/kodee/stretching-running/33.png" id="20_dmghd"]
+[ext_resource type="Texture2D" uid="uid://cmui138sak1em" path="res://assets/2d/kodee/stretching-running/34.png" id="21_m2c07"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/KodeeAnimation.gdj" id="23_33ae6"]
 
-[sub_resource type="Animation" id="Animation_6s08y"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmqch"]
+size = Vector3(0.243433, 0.357739, 0.278638)
+
+[sub_resource type="Animation" id="Animation_6vfw2"]
 resource_name = "running"
-length = 3.0
+length = 4.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -21,47 +42,287 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("2_n0y53"), ExtResource("3_eplx3"), ExtResource("4_lqtby"), ExtResource("5_m7ey3")]
+"values": [ExtResource("2_0mwef"), ExtResource("3_h0sru"), ExtResource("4_6ynwi"), ExtResource("5_l2sb7")]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_m2r1f"]
+[sub_resource type="Animation" id="Animation_76wqq"]
+resource_name = "running-normal"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_o5auy"), ExtResource("7_s7ku4"), ExtResource("8_s64ud"), ExtResource("9_hhlex")]
+}
+
+[sub_resource type="Animation" id="Animation_x2504"]
+resource_name = "running-scared"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("10_d11fd"), ExtResource("11_gextx"), ExtResource("12_avq6b"), ExtResource("13_wd4sp")]
+}
+
+[sub_resource type="Animation" id="Animation_4vdj0"]
+resource_name = "running-stretched"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("18_apkpu"), ExtResource("19_jxdxs"), ExtResource("20_dmghd"), ExtResource("21_m2c07")]
+}
+
+[sub_resource type="Animation" id="Animation_l1fns"]
+resource_name = "stretching"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("14_6kpgc"), ExtResource("15_i04co"), ExtResource("16_vo7f3"), ExtResource("17_8dvvd")]
+}
+
+[sub_resource type="Animation" id="Animation_swv0s"]
+resource_name = "stretching-down"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("17_8dvvd"), ExtResource("16_vo7f3"), ExtResource("15_i04co"), ExtResource("14_6kpgc"), ExtResource("13_wd4sp")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eno3b"]
 _data = {
-"running": SubResource("Animation_6s08y")
+"running": SubResource("Animation_6vfw2"),
+"running-normal": SubResource("Animation_76wqq"),
+"running-scared": SubResource("Animation_x2504"),
+"running-stretched": SubResource("Animation_4vdj0"),
+"stretching": SubResource("Animation_l1fns"),
+"stretching-down": SubResource("Animation_swv0s")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pmqch"]
-size = Vector3(0.243433, 0.357739, 0.278638)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t1b8j"]
+animation = &"running-normal"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_mecgx"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lh3ox"]
+graph_offset = Vector2(-159, 37)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_t1b8j")
+nodes/Animation/position = Vector2(40, 80)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_mecgx")
+nodes/TimeScale/position = Vector2(250, 70)
+nodes/output/position = Vector2(430, 110)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_veyxx"]
+animation = &"running-scared"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_luf47"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6fcmy"]
+graph_offset = Vector2(-197.501, -104.53)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_veyxx")
+nodes/Animation/position = Vector2(-160, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_luf47")
+nodes/TimeScale/position = Vector2(104.583, 124.583)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_71x0w"]
+animation = &"running-stretched"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ernem"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jy1yi"]
+graph_offset = Vector2(-269, -28)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_71x0w")
+nodes/Animation/position = Vector2(-220, 170)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ernem")
+nodes/TimeScale/position = Vector2(90, 120)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0oyca"]
+animation = &"running"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_jxhim"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_nrqv8"]
+graph_offset = Vector2(-152.85, 49.7)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_0oyca")
+nodes/Animation/position = Vector2(-60, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_jxhim")
+nodes/TimeScale/position = Vector2(130, 110)
+nodes/output/position = Vector2(310, 160)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gwwl0"]
+animation = &"stretching-down"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_bvdjg"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_nsnxx"]
+graph_offset = Vector2(-16.902, 108.087)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_gwwl0")
+nodes/Animation/position = Vector2(30, 210)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_bvdjg")
+nodes/TimeScale/position = Vector2(229.723, 237.48)
+nodes/output/position = Vector2(380, 230)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w56qa"]
+animation = &"stretching"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_emuc6"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_t4gaw"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_w56qa")
+nodes/Animation/position = Vector2(160, 260)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_emuc6")
+nodes/TimeScale/position = Vector2(469.589, 206.452)
+nodes/output/position = Vector2(720, 160)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ecabv"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isStretchingUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_503w1"]
+advance_mode = 2
+advance_condition = &"isStretchingDown"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8xufi"]
+advance_mode = 2
+advance_expression = "next_animation == \"FAR\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_017p8"]
+advance_mode = 2
+advance_expression = "next_animation == \"FAR_AWAY\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ps6dj"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yvu02"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tlroy"]
+advance_mode = 2
+advance_expression = "next_animation == \"FAR_AWAY\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nm8k0"]
+advance_mode = 2
+advance_expression = "next_animation == \"FAR\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bklbs"]
+advance_mode = 2
+advance_expression = "next_animation == \"CLOSE\" || next_animation == \"VERY_CLOSE\""
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lvcbn"]
+states/End/position = Vector2(946, 347.5)
+states/Start/position = Vector2(225.5, -157.334)
+states/running/node = SubResource("AnimationNodeBlendTree_nrqv8")
+states/running/position = Vector2(445.802, -156.113)
+states/running-normal/node = SubResource("AnimationNodeBlendTree_lh3ox")
+states/running-normal/position = Vector2(517.052, -289.85)
+states/running-scared/node = SubResource("AnimationNodeBlendTree_6fcmy")
+states/running-scared/position = Vector2(823.552, -161.538)
+states/running-stretched/node = SubResource("AnimationNodeBlendTree_jy1yi")
+states/running-stretched/position = Vector2(572.552, 159.4)
+states/stretch-down/node = SubResource("AnimationNodeBlendTree_nsnxx")
+states/stretch-down/position = Vector2(674.552, 22.65)
+states/stretching/node = SubResource("AnimationNodeBlendTree_t4gaw")
+states/stretching/position = Vector2(447.052, 23.4)
+transitions = ["stretching", "running-stretched", SubResource("AnimationNodeStateMachineTransition_ecabv"), "running-stretched", "stretch-down", SubResource("AnimationNodeStateMachineTransition_503w1"), "running-scared", "running-normal", SubResource("AnimationNodeStateMachineTransition_8xufi"), "running-scared", "running", SubResource("AnimationNodeStateMachineTransition_017p8"), "stretch-down", "running-scared", SubResource("AnimationNodeStateMachineTransition_ps6dj"), "Start", "running", SubResource("AnimationNodeStateMachineTransition_yvu02"), "running-normal", "running", SubResource("AnimationNodeStateMachineTransition_tlroy"), "running", "running-normal", SubResource("AnimationNodeStateMachineTransition_nm8k0"), "running-normal", "running-scared", SubResource("AnimationNodeStateMachineTransition_bklbs")]
+graph_offset = Vector2(38.4924, -378.83)
 
 [node name="Kodee" type="Area3D" groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 script = ExtResource("1_dr7ii")
 angular_speed = 1.0
 initial_angular_speed = 1.0
 maximum_angular_speed = 3.0
 delta_speed = 0.25
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-deterministic = true
-libraries = {
-"": SubResource("AnimationLibrary_m2r1f")
-}
-speed_scale = 10.0
-
 [node name="Sprite" type="Sprite3D" parent="." groups=["Player"]]
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
 billboard = 1
 alpha_cut = 2
-texture = ExtResource("4_lqtby")
+texture = ExtResource("10_d11fd")
 
 [node name="ResetPositionTimer" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
 autostart = true
 
+[node name="ResetStretchTimer" type="Timer" parent="."]
+
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00525211, 0.0658595, -0.00179442)
 shape = SubResource("BoxShape3D_pmqch")
 
-[node name="Swoosh" type="AudioStreamPlayer3D" parent="."]
+[node name="SwooshSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_250d6")
-volume_db = -0.46
+volume_db = -0.6
+
+[node name="StretchSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_hm7et")
+volume_db = -0.6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eno3b")
+}
+speed_scale = 10.0
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_lvcbn")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/isStretchingDown = false
+parameters/conditions/isStretchingUp = false
+parameters/running/TimeScale/scale = 8.0
+parameters/running-normal/TimeScale/scale = 8.0
+parameters/running-scared/TimeScale/scale = 8.0
+parameters/running-stretched/TimeScale/scale = 8.0
+parameters/stretch-down/TimeScale/scale = 8.0
+parameters/stretching/TimeScale/scale = 8.0
+script = ExtResource("23_33ae6")
+
+[connection signal="timeout" from="ResetPositionTimer" to="." method="on_reset_position_timeout"]
+[connection signal="timeout" from="ResetStretchTimer" to="." method="stretch_down"]
