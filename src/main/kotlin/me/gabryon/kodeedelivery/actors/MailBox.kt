@@ -1,16 +1,13 @@
 package me.gabryon.kodeedelivery.actors
 
-import ch.hippmann.godot.utilities.logging.debug
 import godot.*
-import godot.annotation.Export
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.*
 import godot.core.asStringName
 import godot.signals.signal
 import me.gabryon.kodeedelivery.utility.child
 
-abstract class MailBox : Node3D() {
+@RegisterClass
+class MailBox : Node3D() {
 
     companion object {
         const val SKIP_AREA_GROUP_NAME = "Box-skip-area"
@@ -24,7 +21,7 @@ abstract class MailBox : Node3D() {
 
     @Export
     @RegisterProperty
-    abstract var score: Int
+    var score: Int = 200
 
     private val letterboxSound by child<AudioStreamPlayer3D>("Box-top/Box-sound")
     private val collisionArea by child<Area3D>("Box-top/Box-collision")
