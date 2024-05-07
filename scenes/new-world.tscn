@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8y4uh0lsadd0"]
+[gd_scene load_steps=3 format=3 uid="uid://dc4krx2rs4fa0"]
 
-[ext_resource type="ArrayMesh" uid="uid://b58f46unia7ua" path="res://assets/3d/ground/ground-2.obj" id="2_bv0px"]
+[ext_resource type="ArrayMesh" uid="uid://bohpjoupyn6qi" path="res://assets/3d/ground/ground-2.obj" id="2_bv0px"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mqgsm"]
 height = 2.52324

@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dy16off7rana0"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/MailBox.gdj" id="1_jdh5f"]
-[ext_resource type="ArrayMesh" uid="uid://c0ty775qvtow8" path="res://assets/3d/mailbox/box-mid.obj" id="1_oochf"]
-[ext_resource type="ArrayMesh" uid="uid://dyt1jtr14y6l" path="res://assets/3d/mailbox/box-base.obj" id="2_1cq1k"]
+[ext_resource type="ArrayMesh" uid="uid://53lxi8cxg0ta" path="res://assets/3d/mailbox/box-mid.obj" id="1_oochf"]
+[ext_resource type="ArrayMesh" uid="uid://c20bejvjw1yd5" path="res://assets/3d/mailbox/box-base.obj" id="2_1cq1k"]
 [ext_resource type="PackedScene" uid="uid://b8lojovbow0xr" path="res://scenes/mailbox/box-top.tscn" id="3_0pr1y"]
-[ext_resource type="Texture2D" uid="uid://ce32ydebv112p" path="res://assets/3d/mailbox/box-texture.png" id="3_ilg2n"]
+[ext_resource type="Texture2D" uid="uid://b7uvxeeefqyt" path="res://assets/3d/mailbox/box-texture.png" id="3_ilg2n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1lv5k"]
 resource_name = "mailbox-texture"

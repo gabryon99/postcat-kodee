@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwobaawdc628q"]
+[gd_scene load_steps=4 format=3 uid="uid://ce487phee6md5"]
 
-[ext_resource type="ArrayMesh" uid="uid://c0ty775qvtow8" path="res://assets/3d/mailbox/box-mid.obj" id="1_oochf"]
-[ext_resource type="ArrayMesh" uid="uid://dyt1jtr14y6l" path="res://assets/3d/mailbox/box-base.obj" id="2_1cq1k"]
+[ext_resource type="ArrayMesh" uid="uid://53lxi8cxg0ta" path="res://assets/3d/mailbox/box-mid.obj" id="1_oochf"]
+[ext_resource type="ArrayMesh" uid="uid://c20bejvjw1yd5" path="res://assets/3d/mailbox/box-base.obj" id="2_1cq1k"]
 [ext_resource type="PackedScene" uid="uid://b8lojovbow0xr" path="res://scenes/mailbox/box-top.tscn" id="3_0pr1y"]
 
 [node name="TallBox" type="Node3D"]

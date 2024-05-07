@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="kodee-delivery"
+config/name="Postcat Kodee"
 config/description="A Kotlin-written game for the KotlinConf of 2024."
 config/version="0.0.1"
 run/main_scene="res://scenes/start-scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.478431, 0.737255, 0.976471, 1)
 boot_splash/image="res://assets/jetbrains-logo.png"
-config/icon="res://icon.svg"
+config/icon="res://assets/icons/ios/1024.png"
 run/bg_color=Color(0.478431, 0.737255, 0.976471, 1)
 run/fullsize=true
 run/image="res://assets/jetbrains-logo.png"
@@ -58,9 +58,18 @@ down={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"echo":false,"script":null)
 ]
 }
+pressed={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+
+[memory]
+
+limits/message_queue/max_size_mb=820
 
 [rendering]
 
 renderer/rendering_method="mobile"
-renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.478431, 0.737255, 0.976471, 1)

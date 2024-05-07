@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vboadtn0kx4b"
+uid="uid://del1bk887tpfk"
 path.s3tc="res://.godot/imported/fg-details-2.png-037f7333986714d2bb1e56bea1f8f1a1.s3tc.ctex"
+path.etc2="res://.godot/imported/fg-details-2.png-037f7333986714d2bb1e56bea1f8f1a1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2d/dog/fg-details-2.png"
-dest_files=["res://.godot/imported/fg-details-2.png-037f7333986714d2bb1e56bea1f8f1a1.s3tc.ctex"]
+dest_files=["res://.godot/imported/fg-details-2.png-037f7333986714d2bb1e56bea1f8f1a1.s3tc.ctex", "res://.godot/imported/fg-details-2.png-037f7333986714d2bb1e56bea1f8f1a1.etc2.ctex"]
 
 [params]
 

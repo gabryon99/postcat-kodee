@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxok6cj0mjyvf"
+uid="uid://cy000rs621x3n"
 path.s3tc="res://.godot/imported/outline.png-1eaa9ea01e3b433c0d0c2980b9affd81.s3tc.ctex"
+path.etc2="res://.godot/imported/outline.png-1eaa9ea01e3b433c0d0c2980b9affd81.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2d/dog/outline.png"
-dest_files=["res://.godot/imported/outline.png-1eaa9ea01e3b433c0d0c2980b9affd81.s3tc.ctex"]
+dest_files=["res://.godot/imported/outline.png-1eaa9ea01e3b433c0d0c2980b9affd81.s3tc.ctex", "res://.godot/imported/outline.png-1eaa9ea01e3b433c0d0c2980b9affd81.etc2.ctex"]
 
 [params]
 

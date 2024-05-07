@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://b8lojovbow0xr"]
 
-[ext_resource type="ArrayMesh" uid="uid://bdr105jtebymm" path="res://assets/3d/mailbox/box-top.obj" id="1_3yc30"]
-[ext_resource type="Texture2D" uid="uid://ce32ydebv112p" path="res://assets/3d/mailbox/box-texture.png" id="2_k1fyu"]
-[ext_resource type="ArrayMesh" uid="uid://bv7mwkp60jqq4" path="res://assets/3d/mailbox/box-flag.obj" id="2_x4ufo"]
-[ext_resource type="ArrayMesh" uid="uid://sedqiahcod2r" path="res://assets/3d/mailbox/box-door.obj" id="3_lv00i"]
-[ext_resource type="AudioStream" uid="uid://b8k7lc2daqb74" path="res://assets/sounds/letterbox_close.mp3" id="4_jqcc2"]
+[ext_resource type="ArrayMesh" uid="uid://bqqrnmbgj4gg7" path="res://assets/3d/mailbox/box-top.obj" id="1_3yc30"]
+[ext_resource type="Texture2D" uid="uid://b7uvxeeefqyt" path="res://assets/3d/mailbox/box-texture.png" id="2_k1fyu"]
+[ext_resource type="ArrayMesh" uid="uid://cjkq31vd65odc" path="res://assets/3d/mailbox/box-flag.obj" id="2_x4ufo"]
+[ext_resource type="ArrayMesh" uid="uid://cv3y4o1hcqoy1" path="res://assets/3d/mailbox/box-door.obj" id="3_lv00i"]
+[ext_resource type="AudioStream" uid="uid://d2g3qcreuga6n" path="res://assets/sounds/letterbox_close.mp3" id="4_jqcc2"]
 
 [sub_resource type="Animation" id="Animation_21whi"]
 resource_name = "close_box"

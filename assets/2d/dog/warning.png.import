@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmncjmbg2egb5"
+uid="uid://2sg6ukwy5fhc"
 path.s3tc="res://.godot/imported/warning.png-7344d6fe7c683aac4713a222b7402d38.s3tc.ctex"
+path.etc2="res://.godot/imported/warning.png-7344d6fe7c683aac4713a222b7402d38.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2d/dog/warning.png"
-dest_files=["res://.godot/imported/warning.png-7344d6fe7c683aac4713a222b7402d38.s3tc.ctex"]
+dest_files=["res://.godot/imported/warning.png-7344d6fe7c683aac4713a222b7402d38.s3tc.ctex", "res://.godot/imported/warning.png-7344d6fe7c683aac4713a222b7402d38.etc2.ctex"]
 
 [params]
 
