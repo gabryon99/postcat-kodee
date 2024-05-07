@@ -1,23 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy16off7rana0"]
+[gd_scene load_steps=9 format=3 uid="uid://dy16off7rana0"]
 
-[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/SmallMailBox.gdj" id="1_m543c"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/MailBox.gdj" id="1_jdh5f"]
 [ext_resource type="ArrayMesh" uid="uid://c0ty775qvtow8" path="res://assets/3d/mailbox/box-mid.obj" id="1_oochf"]
 [ext_resource type="ArrayMesh" uid="uid://dyt1jtr14y6l" path="res://assets/3d/mailbox/box-base.obj" id="2_1cq1k"]
 [ext_resource type="PackedScene" uid="uid://b8lojovbow0xr" path="res://scenes/mailbox/box-top.tscn" id="3_0pr1y"]
+[ext_resource type="Texture2D" uid="uid://ce32ydebv112p" path="res://assets/3d/mailbox/box-texture.png" id="3_ilg2n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1lv5k"]
+resource_name = "mailbox-texture"
+shading_mode = 0
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("3_ilg2n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_snhn8"]
+resource_name = "mailbox-texture"
+shading_mode = 0
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("3_ilg2n")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qhbnh"]
 size = Vector3(1, 1, 3.48428)
 
 [node name="Box-small" type="Node3D"]
-script = ExtResource("1_m543c")
+script = ExtResource("1_jdh5f")
 
 [node name="Box-mid" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.0354853, 2.08165e-12)
 mesh = ExtResource("1_oochf")
+surface_material_override/0 = SubResource("StandardMaterial3D_1lv5k")
 
 [node name="Box-base" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 mesh = ExtResource("2_1cq1k")
+surface_material_override/0 = SubResource("StandardMaterial3D_snhn8")
 
 [node name="Box-top" parent="." instance=ExtResource("3_0pr1y")]
 

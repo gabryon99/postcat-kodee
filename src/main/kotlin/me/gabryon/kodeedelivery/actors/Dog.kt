@@ -23,7 +23,7 @@ class Dog: Node3D(), Orbiting {
     @RegisterProperty
     lateinit var camera: Camera3D
 
-    private val body by child<Area3D>("Body")
+//    private val body by child<Area3D>("Body")
 
     override var angularSpeed: Double = 0.0
     override var initialAngularSpeed: Double = 1.0
@@ -32,14 +32,14 @@ class Dog: Node3D(), Orbiting {
 
     @RegisterFunction
     override fun _ready() {
-        body.areaEntered.connect(this, Dog::onAreaEnter)
+//        body.areaEntered.connect(this, Dog::onAreaEnter)
     }
 
     @RegisterFunction
     override fun _process(delta: Double) {
         // body.rotationDegrees += rotationSpeed * delta
-        val up = (globalPosition - (getParent()!! as Node3D).globalPosition)
-        lookAt(camera.globalPosition, up.normalized(), useModelFront = true)
+        //val up = (globalPosition - (getParent()!! as Node3D).globalPosition)
+        //lookAt(camera.globalPosition, up.normalized(), useModelFront = true)
     }
 
     @RegisterFunction
@@ -48,7 +48,7 @@ class Dog: Node3D(), Orbiting {
     }
 
     @RegisterFunction
-    fun onAreaEnter(area3D: Area3D) {
+    fun onAreaEntered(area3D: Area3D) {
         // When the dog catches Kodee, the game is over.
         // Save maximum user score and change to the next scene
         if (area3D.isInGroup(Kodee.GROUP_NAME.asStringName())) {

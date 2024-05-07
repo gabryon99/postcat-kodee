@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dop85vkr3mb2g"]
+[gd_scene load_steps=30 format=3 uid="uid://dop85vkr3mb2g"]
 
 [ext_resource type="PackedScene" uid="uid://cooagrp6vnti7" path="res://scenes/boulder.tscn" id="1_8lew4"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/Referee.gdj" id="1_xu7tv"]
@@ -8,62 +8,129 @@
 [ext_resource type="PackedScene" uid="uid://b8qgbjsisntw" path="res://scenes/kodee.tscn" id="4_vf74w"]
 [ext_resource type="PackedScene" uid="uid://dy16off7rana0" path="res://scenes/mailbox/box-small.tscn" id="5_0x125"]
 [ext_resource type="AudioStream" uid="uid://cjelikokby2u8" path="res://assets/sounds/levelup.mp3" id="7_ay1vm"]
-[ext_resource type="Texture2D" uid="uid://d2sn5ijwbp2mr" path="res://assets/official/newsky.png" id="9_mkdj2"]
-[ext_resource type="FontFile" uid="uid://7slmtb1nnrru" path="res://assets/JetBrainsMono[wght].ttf" id="11_ssjco"]
+[ext_resource type="PackedScene" uid="uid://c2ueaxhurrm6w" path="res://scenes/dynamic-indicator.tscn" id="9_5fin4"]
 [ext_resource type="PackedScene" uid="uid://c5wovbmagubj6" path="res://scenes/cloud.tscn" id="12_8rbqv"]
-[ext_resource type="PackedScene" uid="uid://bstdacyhv45ns" path="res://scenes/indicator.tscn" id="12_iqvss"]
-[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/HUD.gdj" id="12_s6m8c"]
-[ext_resource type="FontFile" uid="uid://dktik3u7nkjc" path="res://assets/JetBrains Sans.ttf" id="13_68qtp"]
-[ext_resource type="Texture2D" uid="uid://dg4nfbfqhx8in" path="res://assets/official/houses.png" id="13_veux7"]
+[ext_resource type="Texture2D" uid="uid://d1x5hpm0gd6e4" path="res://assets/3d/houses/house-texture.png" id="14_q4uot"]
 [ext_resource type="ArrayMesh" uid="uid://crpbsngwk1gt4" path="res://assets/3d/grass/grass-3.obj" id="15_j5rpt"]
 [ext_resource type="PackedScene" uid="uid://b8y4uh0lsadd0" path="res://scenes/new-world.tscn" id="15_q5y16"]
+[ext_resource type="FontFile" uid="uid://dktik3u7nkjc" path="res://assets/JetBrains Sans.ttf" id="15_xx8d1"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/TiltedEffect.gdj" id="16_0f7a5"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/ScoreLabel.gdj" id="16_6oxkd"]
 [ext_resource type="ArrayMesh" uid="uid://4p2an7wp3n6k" path="res://assets/3d/grass/grass-4.obj" id="16_bjvwa"]
+[ext_resource type="Texture2D" uid="uid://rjajh76sow8t" path="res://assets/2d/new_indicator/bars.png" id="16_bl4sv"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/PathFollower.gdj" id="19_t1hnw"]
 [ext_resource type="ArrayMesh" uid="uid://bhqgghsufbml1" path="res://assets/3d/houses/house.obj" id="20_wtfam"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vxqcr"]
+[sub_resource type="Theme" id="Theme_xjbmh"]
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 12
+RichTextLabel/constants/shadow_offset_y = 8
+RichTextLabel/font_sizes/normal_font_size = 100
+RichTextLabel/fonts/normal_font = ExtResource("15_xx8d1")
 
-[sub_resource type="Sky" id="Sky_fe2xv"]
-sky_material = SubResource("ProceduralSkyMaterial_vxqcr")
+[sub_resource type="RichTextEffect" id="RichTextEffect_fw8rg"]
+script = ExtResource("16_0f7a5")
+bbcode = "tilt"
 
-[sub_resource type="Environment" id="Environment_bu1oj"]
-background_mode = 3
-background_energy_multiplier = 2.0
-sky = SubResource("Sky_fe2xv")
-ambient_light_source = 3
-tonemap_mode = 2
-ssr_fade_in = 0.023084
-
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_xm2uy"]
-
-[sub_resource type="Theme" id="Theme_usj2q"]
-default_base_scale = 0.19
-default_font = ExtResource("11_ssjco")
-
-[sub_resource type="LabelSettings" id="LabelSettings_2f3ec"]
-font = ExtResource("13_68qtp")
-font_size = 116
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_uotrs"]
-font = ExtResource("11_ssjco")
-font_size = 64
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Curve3D" id="Curve3D_1ijfc"]
+[sub_resource type="Curve3D" id="Curve3D_ufoip"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.0238607, -1.66893e-05, -0.00823367, 0, 0, 0, 0, 0, 0, -1.95014, -1.81177, -5.29508),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.479, -0.52, -1.459, 0, 0, 0, 0, 0, 0, 1.931, -1.812, -5.668),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5l2ij"]
+resource_name = "house-texture"
+shading_mode = 0
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("14_q4uot")
+
+[sub_resource type="Curve3D" id="Curve3D_1ijfc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.478805, -0.52012, -1.45885, 0, 0, 0, 0, 0, 0, -1.93121, -1.81174, -5.66791),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqr2o"]
+resource_name = "house-texture"
+shading_mode = 0
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("14_q4uot")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jfn23"]
+
+[sub_resource type="Sky" id="Sky_xtd6j"]
+sky_material = SubResource("ProceduralSkyMaterial_jfn23")
+
+[sub_resource type="Environment" id="Environment_wnjxp"]
+background_mode = 2
+sky = SubResource("Sky_xtd6j")
+tonemap_mode = 2
+tonemap_white = 1.2
+
 [node name="Main" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_bu1oj")
-camera_attributes = SubResource("CameraAttributesPhysical_xm2uy")
+[node name="Clouds" type="Node2D" parent="."]
+
+[node name="Cloud(1)" parent="Clouds" instance=ExtResource("12_8rbqv")]
+position = Vector2(587, 93)
+speed = 10.0
+
+[node name="Cloud" parent="Clouds" instance=ExtResource("12_8rbqv")]
+position = Vector2(168, 198)
+scale = Vector2(0.25, 0.25)
+speed = -10.0
+
+[node name="Cloud(1)2" parent="Clouds" instance=ExtResource("12_8rbqv")]
+position = Vector2(112, 404)
+speed = 10.0
+
+[node name="Cloud2" parent="Clouds" instance=ExtResource("12_8rbqv")]
+position = Vector2(607, 504)
+scale = Vector2(0.25, 0.25)
+speed = -8.0
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Indicator" parent="HUD" instance=ExtResource("9_5fin4")]
+layout_mode = 1
+offset_left = 256.0
+offset_top = 360.0
+offset_right = 256.0
+offset_bottom = 360.0
+rotation = 0.0698132
+scale = Vector2(0.5, 0.5)
+
+[node name="ScoreLabel" type="RichTextLabel" parent="HUD"]
+layout_mode = 2
+offset_top = 192.0
+offset_right = 720.0
+offset_bottom = 432.0
+grow_horizontal = 2
+theme = SubResource("Theme_xjbmh")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.321569)
+bbcode_enabled = true
+text = "[center][tilt offset_x=-6.0 offset_y=8.0]000[/tilt][/center]"
+fit_content = true
+scroll_active = false
+custom_effects = [SubResource("RichTextEffect_fw8rg")]
+script = ExtResource("16_6oxkd")
+
+[node name="Bars" type="TextureRect" parent="HUD"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 176.0
+offset_right = 544.0
+offset_bottom = 323.0
+texture = ExtResource("16_bl4sv")
+expand_mode = 2
 
 [node name="Referee" type="Node" parent="." node_paths=PackedStringArray("kodee_orbit_point", "dog_orbit_point", "kodee", "dog")]
 unique_name_in_owner = true
@@ -87,6 +154,7 @@ script = ExtResource("3_kn65t")
 score_manager = NodePath("../ScoreManager")
 small_mail_box_scene = ExtResource("5_0x125")
 tall_mail_box_scene = ExtResource("5_0x125")
+side_offset = 0.4
 world = NodePath("../World")
 kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
 dog = NodePath("../World/DogOrbitPoint/Dog")
@@ -99,93 +167,6 @@ unique_name_in_owner = true
 script = ExtResource("4_r8rnm")
 level_manager = NodePath("../LevelManager")
 combo_manager = NodePath("../ComboManager")
-
-[node name="Background" type="Node2D" parent="."]
-
-[node name="Cloud(1)" parent="Background" instance=ExtResource("12_8rbqv")]
-position = Vector2(587, 93)
-speed = 10.0
-
-[node name="Cloud" parent="Background" instance=ExtResource("12_8rbqv")]
-position = Vector2(168, 198)
-scale = Vector2(0.25, 0.25)
-speed = -10.0
-
-[node name="Cloud(1)2" parent="Background" instance=ExtResource("12_8rbqv")]
-position = Vector2(112, 404)
-speed = 10.0
-
-[node name="Cloud2" parent="Background" instance=ExtResource("12_8rbqv")]
-position = Vector2(607, 504)
-scale = Vector2(0.25, 0.25)
-speed = -8.0
-
-[node name="Houses" type="Sprite2D" parent="Background"]
-visible = false
-position = Vector2(361, 784)
-scale = Vector2(0.496783, 0.449985)
-texture = ExtResource("13_veux7")
-
-[node name="Sky" type="Sprite2D" parent="Background"]
-z_index = -10
-z_as_relative = false
-position = Vector2(360, 640)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_mkdj2")
-
-[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("score_manager", "level_manager", "score_label", "level_label")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 206.0
-offset_bottom = -817.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("12_s6m8c")
-score_manager = NodePath("../ScoreManager")
-level_manager = NodePath("../LevelManager")
-score_label = NodePath("MarginContainer/CenterContainer/ScoreLabel")
-level_label = NodePath("CenterContainer2/LevelLabel")
-
-[node name="indicator" parent="HUD" instance=ExtResource("12_iqvss")]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.788
-anchor_bottom = -0.128
-offset_left = 243.0
-offset_top = 284.516
-offset_right = 279.18
-offset_bottom = 195.896
-scale = Vector2(0.319999, 1)
-expand_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="HUD"]
-layout_mode = 2
-offset_top = -46.0
-offset_right = 720.0
-offset_bottom = 91.0
-theme = SubResource("Theme_usj2q")
-
-[node name="CenterContainer" type="CenterContainer" parent="HUD/MarginContainer"]
-layout_mode = 2
-
-[node name="ScoreLabel" type="Label" parent="HUD/MarginContainer/CenterContainer"]
-layout_mode = 2
-text = "000"
-label_settings = SubResource("LabelSettings_2f3ec")
-
-[node name="CenterContainer2" type="CenterContainer" parent="HUD"]
-layout_mode = 2
-offset_top = 141.0
-offset_right = 720.0
-offset_bottom = 227.0
-
-[node name="LevelLabel" type="Label" parent="HUD/CenterContainer2"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-text = "Next Level!"
-label_settings = SubResource("LabelSettings_uotrs")
 
 [node name="World" parent="." instance=ExtResource("15_q5y16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
@@ -262,7 +243,7 @@ transform = Transform3D(1, -4.09353e-16, -3.43488e-16, -5.72297e-17, -0.721132, 
 
 [node name="Dog" parent="World/DogOrbitPoint" node_paths=PackedStringArray("camera") instance=ExtResource("1_8lew4")]
 unique_name_in_owner = true
-transform = Transform3D(0.8, -1.33194e-18, 2.72287e-17, 2.72287e-17, 0.0780659, -0.796182, -1.33159e-18, 0.796182, 0.0780659, 2.08165e-12, 2.08165e-12, 1.582)
+transform = Transform3D(2.18557e-08, -3.78552e-08, -1, -0.866025, -0.5, 1.27236e-15, -0.5, 0.866025, -4.37114e-08, 2.08165e-12, 1.24069e-07, 1.582)
 rotation_speed = Vector3(0, 90, 0)
 camera = NodePath("../../KodeeOrbitPoint/Camera")
 angular_speed = 0.45
@@ -274,26 +255,37 @@ delta_speed = 0.1
 unique_name_in_owner = true
 transform = Transform3D(1, -6.76539e-16, 1.19292e-16, 1.19292e-16, 0.34202, 0.939692, -6.76539e-16, -0.939692, 0.34202, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 
-[node name="Path3D" type="Path3D" parent="World/KodeeOrbitPoint"]
-transform = Transform3D(1, 1.19292e-16, -6.76539e-16, -6.76539e-16, 0.34202, -0.939693, 1.19292e-16, 0.939693, 0.34202, 1.93756, 1.39957, 0.107357)
-visible = false
-curve = SubResource("Curve3D_1ijfc")
+[node name="LeftHouses" type="Path3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(1, 1.19292e-16, -6.76539e-16, -6.76539e-16, 0.34202, -0.939693, 1.19292e-16, 0.939693, 0.34202, -2.58463, 0.0805016, 1.0009)
+curve = SubResource("Curve3D_ufoip")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/KodeeOrbitPoint/Path3D"]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/KodeeOrbitPoint/LeftHouses"]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999995, 0, 0, 0, 0.999997, 0, 0, 0)
 rotation_mode = 0
 script = ExtResource("19_t1hnw")
 speed = 0.1
 
-[node name="House" type="MeshInstance3D" parent="World/KodeeOrbitPoint/Path3D/PathFollow3D"]
-transform = Transform3D(0.326197, -3.71296e-11, -0.945302, -0.000625023, 1, -0.000215678, 0.945302, 0.000661189, 0.326197, -0.0133572, -0.0402426, -0.00791907)
+[node name="House" type="MeshInstance3D" parent="World/KodeeOrbitPoint/LeftHouses/PathFollow3D"]
+transform = Transform3D(0.34202, 2.0846e-16, 0.939693, 3.48787e-16, 1, -3.48787e-16, -0.939693, 4.47045e-16, 0.34202, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 mesh = ExtResource("20_wtfam")
 skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_5l2ij")
 
-[node name="House2" type="MeshInstance3D" parent="World/KodeeOrbitPoint/Path3D/PathFollow3D"]
-transform = Transform3D(0.325569, -4.4334e-16, -0.945521, 6.03438e-16, 1, -3.67664e-16, 0.94552, -2.74714e-16, 0.325569, -0.880425, -0.579567, -2.37973)
+[node name="RightHouses" type="Path3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(1, 1.19292e-16, -6.76539e-16, -6.76539e-16, 0.34202, -0.939693, 1.19292e-16, 0.939693, 0.34202, 2.65446, 0.0805016, 1.0009)
+curve = SubResource("Curve3D_1ijfc")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="World/KodeeOrbitPoint/RightHouses"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999995, 0, 0, 0, 0.999997, 0, 0, 0)
+rotation_mode = 0
+script = ExtResource("19_t1hnw")
+speed = 0.1
+
+[node name="House" type="MeshInstance3D" parent="World/KodeeOrbitPoint/RightHouses/PathFollow3D"]
+transform = Transform3D(0.34202, -4.47045e-16, -0.939693, 3.48787e-16, 1, -3.48787e-16, 0.939693, -2.0846e-16, 0.34202, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 mesh = ExtResource("20_wtfam")
 skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_vqr2o")
 
 [node name="Camera" type="Camera3D" parent="World/KodeeOrbitPoint"]
 transform = Transform3D(1, -5.29887e-18, 6.05662e-17, 6.05662e-17, 0.173648, -0.984808, -5.29884e-18, 0.984808, 0.173648, 2.08051e-12, -1.30689, 2.30574)
@@ -301,20 +293,20 @@ current = true
 fov = 95.0
 
 [node name="Left_mvp" type="CSGSphere3D" parent="World/KodeeOrbitPoint"]
-transform = Transform3D(0.025, -4.38911e-16, -3.88546e-16, -4.27158e-16, 0.025, -3.59671e-09, 5.40822e-16, -3.94464e-10, 0.025, -0.35, 0.0134629, 1.19143)
+transform = Transform3D(0.025, -4.38911e-16, -3.88546e-16, -4.27158e-16, 0.025, -3.59671e-09, 5.40822e-16, -3.94464e-10, 0.025, -0.3, -0.2, 1.165)
 visible = false
 
 [node name="Center_mvp" type="CSGSphere3D" parent="World/KodeeOrbitPoint"]
-transform = Transform3D(0.025, -3.27889e-16, -1.04131e-16, -2.57062e-16, 0.025, -5.74269e-09, 3.98094e-16, -3.94464e-10, 0.025, 2.39088e-08, 0.0134629, 1.19143)
+transform = Transform3D(0.025, -3.27889e-16, -1.04131e-16, -2.57062e-16, 0.025, -5.74269e-09, 3.98094e-16, -3.94464e-10, 0.025, 2.39088e-08, -0.2, 1.165)
 visible = false
 
 [node name="Right_mvp" type="CSGSphere3D" parent="World/KodeeOrbitPoint"]
-transform = Transform3D(0.025, -3.27889e-16, -2.77524e-16, -2.14538e-16, 0.025, -3.59671e-09, 3.62412e-16, -3.94464e-10, 0.025, 0.35, 0.0134629, 1.19143)
+transform = Transform3D(0.025, -3.27889e-16, -2.77524e-16, -2.14538e-16, 0.025, -3.58251e-09, 3.62412e-16, 7.85251e-11, 0.025, 0.3, -0.2, 1.165)
 visible = false
 
 [node name="Kodee" parent="World/KodeeOrbitPoint" node_paths=PackedStringArray("left_move_point", "center_move_point", "right_move_point") instance=ExtResource("4_vf74w")]
 unique_name_in_owner = true
-transform = Transform3D(1, 9.87206e-15, -4.79505e-14, -8.92209e-15, 1, -3.75241e-07, 1.11287e-14, -1.59117e-09, 1, 2.08165e-12, 2.08165e-12, 1.19)
+transform = Transform3D(1, 9.87206e-15, -4.79505e-14, -8.92209e-15, 1, -3.75241e-07, 1.11287e-14, -1.41142e-08, 1, 2.08165e-12, -0.2, 1.165)
 left_move_point = NodePath("../Left_mvp")
 center_move_point = NodePath("../Center_mvp")
 right_move_point = NodePath("../Right_mvp")
@@ -323,5 +315,15 @@ initial_angular_speed = 0.4
 maximum_angular_speed = 1.0
 delta_speed = 0.05
 
-[connection signal="distance_changed" from="Referee" to="HUD/indicator" method="on_distance_with_dog_changed"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/KodeeOrbitPoint"]
+transform = Transform3D(1, -3.20113e-16, -4.67987e-16, -1.40747e-16, 0.659399, -0.751794, 5.49249e-16, 0.751794, 0.659399, -8.45678e-16, -0.80073, 2.5478)
+shadow_enabled = true
+shadow_bias = 0.11
+shadow_opacity = 0.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wnjxp")
+
 [connection signal="distance_changed" from="Referee" to="World/KodeeOrbitPoint/Kodee" method="on_distance_with_dog_changed"]
+[connection signal="distance_changed" from="Referee" to="HUD/Indicator" method="on_distance_changed"]
+[connection signal="score_changed" from="ScoreManager" to="HUD/ScoreLabel" method="on_score_changed"]

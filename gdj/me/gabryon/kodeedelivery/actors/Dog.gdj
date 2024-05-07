@@ -29,5 +29,5 @@ functions = [
 	_ready,
 	_process,
 	_physics_process,
-	on_area_enter
+	on_area_entered
 ]
