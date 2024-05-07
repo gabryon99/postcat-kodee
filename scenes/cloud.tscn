@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5wovbmagubj6"]
+[gd_scene load_steps=3 format=3 uid="uid://bgfgbn3rn0r6y"]
 
-[ext_resource type="Texture2D" uid="uid://uk6l7wi6wpa7" path="res://assets/official/cloud(1).png" id="1_5fgh6"]
+[ext_resource type="Texture2D" uid="uid://buuprhjg4bavr" path="res://assets/2d/env/cloud.png" id="1_5fgh6"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Cloud.gdj" id="2_ha65x"]
 
 [node name="Cloud" type="Sprite2D"]

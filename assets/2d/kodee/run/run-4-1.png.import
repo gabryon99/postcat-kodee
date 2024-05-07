@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqyn3efl4uq0k"
+uid="uid://0a78orc6rg7t"
 path.s3tc="res://.godot/imported/run-4-1.png-f01e97e57246c117fc9a6d485019e533.s3tc.ctex"
+path.etc2="res://.godot/imported/run-4-1.png-f01e97e57246c117fc9a6d485019e533.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2d/kodee/run/run-4-1.png"
-dest_files=["res://.godot/imported/run-4-1.png-f01e97e57246c117fc9a6d485019e533.s3tc.ctex"]
+dest_files=["res://.godot/imported/run-4-1.png-f01e97e57246c117fc9a6d485019e533.s3tc.ctex", "res://.godot/imported/run-4-1.png-f01e97e57246c117fc9a6d485019e533.etc2.ctex"]
 
 [params]
 

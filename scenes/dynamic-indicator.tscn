@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2ueaxhurrm6w"]
+[gd_scene load_steps=19 format=3 uid="uid://dtqcwb6jya3ur"]
 
-[ext_resource type="Texture2D" uid="uid://dchhlqvk7o3kb" path="res://assets/2d/new_indicator/bar.png" id="1_1ceb2"]
+[ext_resource type="Texture2D" uid="uid://do2qo8o6ousgw" path="res://assets/2d/new_indicator/bar.png" id="1_1ceb2"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/DynamicIndicator.gdj" id="1_6e4nc"]
-[ext_resource type="Texture2D" uid="uid://c5mj5bcrx81t3" path="res://assets/2d/new_indicator/dog.png" id="2_kx2px"]
+[ext_resource type="Texture2D" uid="uid://6ufhke3vbgg8" path="res://assets/2d/new_indicator/dog.png" id="2_kx2px"]
 
 [sub_resource type="Gradient" id="Gradient_jrmds"]
 colors = PackedColorArray(0.262745, 0.745098, 0.486275, 1, 0.121569, 0.345098, 0.223529, 1)

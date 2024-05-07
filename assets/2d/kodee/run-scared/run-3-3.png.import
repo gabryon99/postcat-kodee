@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tnsb7rs4sfdl"
+uid="uid://c06ixvq85gmob"
 path.s3tc="res://.godot/imported/run-3-3.png-dc7010a0dc12a5fac959f97a66b57115.s3tc.ctex"
+path.etc2="res://.godot/imported/run-3-3.png-dc7010a0dc12a5fac959f97a66b57115.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2d/kodee/run-scared/run-3-3.png"
-dest_files=["res://.godot/imported/run-3-3.png-dc7010a0dc12a5fac959f97a66b57115.s3tc.ctex"]
+dest_files=["res://.godot/imported/run-3-3.png-dc7010a0dc12a5fac959f97a66b57115.s3tc.ctex", "res://.godot/imported/run-3-3.png-dc7010a0dc12a5fac959f97a66b57115.etc2.ctex"]
 
 [params]
 

@@ -34,6 +34,8 @@ properties = [
 functions = [
 	_ready,
 	_physics_process,
+	on_swipe_to_left,
+	on_swipe_to_right,
 	stretch_up,
 	stretch_down,
 	on_area_exit,

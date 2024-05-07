@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3nacw4dac42h"
+uid="uid://cl2juuvsiql4g"
 path.s3tc="res://.godot/imported/left-ear.png-ad59d6ed93fd366bf4ad3a6c2e1ec5bd.s3tc.ctex"
+path.etc2="res://.godot/imported/left-ear.png-ad59d6ed93fd366bf4ad3a6c2e1ec5bd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2d/dog/left-ear.png"
-dest_files=["res://.godot/imported/left-ear.png-ad59d6ed93fd366bf4ad3a6c2e1ec5bd.s3tc.ctex"]
+dest_files=["res://.godot/imported/left-ear.png-ad59d6ed93fd366bf4ad3a6c2e1ec5bd.s3tc.ctex", "res://.godot/imported/left-ear.png-ad59d6ed93fd366bf4ad3a6c2e1ec5bd.etc2.ctex"]
 
 [params]
 

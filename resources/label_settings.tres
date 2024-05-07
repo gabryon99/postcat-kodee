@@ -1,6 +1,6 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://di8myqjcatumq"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cjag5e8dgpd5d"]
 
-[ext_resource type="FontFile" uid="uid://dktik3u7nkjc" path="res://assets/JetBrains Sans.ttf" id="1_0x7ag"]
+[ext_resource type="FontFile" uid="uid://cibhe6hbmfo1n" path="res://assets/JetBrains Sans.ttf" id="1_0x7ag"]
 
 [resource]
 font = ExtResource("1_0x7ag")

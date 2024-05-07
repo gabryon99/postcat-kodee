@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://351np7mdaha3"
+uid="uid://ssl0kuwv36lk"
 path.s3tc="res://.godot/imported/spaghetti0.png-26cc4136ba3ee9273ffd14896725ec45.s3tc.ctex"
+path.etc2="res://.godot/imported/spaghetti0.png-26cc4136ba3ee9273ffd14896725ec45.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2d/dog/spaghetti0.png"
-dest_files=["res://.godot/imported/spaghetti0.png-26cc4136ba3ee9273ffd14896725ec45.s3tc.ctex"]
+dest_files=["res://.godot/imported/spaghetti0.png-26cc4136ba3ee9273ffd14896725ec45.s3tc.ctex", "res://.godot/imported/spaghetti0.png-26cc4136ba3ee9273ffd14896725ec45.etc2.ctex"]
 
 [params]
 

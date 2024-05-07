@@ -1,28 +1,27 @@
-[gd_scene load_steps=61 format=3 uid="uid://b8qgbjsisntw"]
+[gd_scene load_steps=60 format=3 uid="uid://cievqhh3ge716"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Kodee.gdj" id="1_dr7ii"]
-[ext_resource type="Texture2D" uid="uid://cf6vnt6aovd6l" path="res://assets/2d/kodee/run/run-1-1.png" id="2_0mwef"]
-[ext_resource type="Texture2D" uid="uid://cw6m2hxhjndh" path="res://assets/2d/kodee/run/run-2-1.png" id="3_h0sru"]
-[ext_resource type="Texture2D" uid="uid://py7rvivrca6u" path="res://assets/2d/kodee/run/run-3-1.png" id="4_6ynwi"]
-[ext_resource type="AudioStream" uid="uid://dl5okx03wjwsg" path="res://assets/sounds/boing.mp3" id="4_hm7et"]
-[ext_resource type="Texture2D" uid="uid://dqyn3efl4uq0k" path="res://assets/2d/kodee/run/run-4-1.png" id="5_l2sb7"]
-[ext_resource type="AudioStream" uid="uid://bdeimbuleirtg" path="res://assets/sounds/swoosh.mp3" id="6_250d6"]
-[ext_resource type="Texture2D" uid="uid://b4sc0p5cu7axb" path="res://assets/2d/kodee/run-normal/run-1-2.png" id="6_o5auy"]
-[ext_resource type="Texture2D" uid="uid://ci6hsocikhrtg" path="res://assets/2d/kodee/run-normal/run-2-2.png" id="7_s7ku4"]
-[ext_resource type="Texture2D" uid="uid://bcsigrnl67oqe" path="res://assets/2d/kodee/run-normal/run-3-2.png" id="8_s64ud"]
-[ext_resource type="Texture2D" uid="uid://ydq1rv2dkerl" path="res://assets/2d/kodee/run-normal/run-4-2.png" id="9_hhlex"]
-[ext_resource type="Texture2D" uid="uid://bg2r6v7sxsoou" path="res://assets/2d/kodee/run-scared/run-1-3.png" id="10_d11fd"]
-[ext_resource type="Texture2D" uid="uid://5xrjniuqcs0b" path="res://assets/2d/kodee/run-scared/run-2-3.png" id="11_gextx"]
-[ext_resource type="Texture2D" uid="uid://tnsb7rs4sfdl" path="res://assets/2d/kodee/run-scared/run-3-3.png" id="12_avq6b"]
-[ext_resource type="Texture2D" uid="uid://co78h3vhssfxn" path="res://assets/2d/kodee/run-scared/run-4-3.png" id="13_wd4sp"]
-[ext_resource type="Texture2D" uid="uid://cdhchen7nub1" path="res://assets/2d/kodee/stretching/27.png" id="14_6kpgc"]
-[ext_resource type="Texture2D" uid="uid://lpyv5arpve32" path="res://assets/2d/kodee/stretching/28.png" id="15_i04co"]
-[ext_resource type="Texture2D" uid="uid://cqlupprt36hpj" path="res://assets/2d/kodee/stretching/29.png" id="16_vo7f3"]
-[ext_resource type="Texture2D" uid="uid://clena5mkfiq0e" path="res://assets/2d/kodee/stretching/30.png" id="17_8dvvd"]
-[ext_resource type="Texture2D" uid="uid://cdods3cxlj0sq" path="res://assets/2d/kodee/stretching-running/31.png" id="18_apkpu"]
-[ext_resource type="Texture2D" uid="uid://oaa5hd4s1gi5" path="res://assets/2d/kodee/stretching-running/32.png" id="19_jxdxs"]
-[ext_resource type="Texture2D" uid="uid://3nj3w04r1aa8" path="res://assets/2d/kodee/stretching-running/33.png" id="20_dmghd"]
-[ext_resource type="Texture2D" uid="uid://cmui138sak1em" path="res://assets/2d/kodee/stretching-running/34.png" id="21_m2c07"]
+[ext_resource type="Texture2D" uid="uid://1qjqut1h5pxy" path="res://assets/2d/kodee/run/run-1-1.png" id="2_0mwef"]
+[ext_resource type="Texture2D" uid="uid://b8ppcheytchco" path="res://assets/2d/kodee/run/run-2-1.png" id="3_h0sru"]
+[ext_resource type="Texture2D" uid="uid://dxc00vyd6355p" path="res://assets/2d/kodee/run/run-3-1.png" id="4_6ynwi"]
+[ext_resource type="Texture2D" uid="uid://0a78orc6rg7t" path="res://assets/2d/kodee/run/run-4-1.png" id="5_l2sb7"]
+[ext_resource type="AudioStream" uid="uid://vlunyybr0lea" path="res://assets/sounds/swoosh.mp3" id="6_250d6"]
+[ext_resource type="Texture2D" uid="uid://01a7ph8g1yju" path="res://assets/2d/kodee/run-normal/run-1-2.png" id="6_o5auy"]
+[ext_resource type="Texture2D" uid="uid://bixp7nhglug48" path="res://assets/2d/kodee/run-normal/run-2-2.png" id="7_s7ku4"]
+[ext_resource type="Texture2D" uid="uid://di616wxssbmfb" path="res://assets/2d/kodee/run-normal/run-3-2.png" id="8_s64ud"]
+[ext_resource type="Texture2D" uid="uid://qxjdp4kiqbch" path="res://assets/2d/kodee/run-normal/run-4-2.png" id="9_hhlex"]
+[ext_resource type="Texture2D" uid="uid://dnp717i8hya16" path="res://assets/2d/kodee/run-scared/run-1-3.png" id="10_d11fd"]
+[ext_resource type="Texture2D" uid="uid://dov85hj7voi7v" path="res://assets/2d/kodee/run-scared/run-2-3.png" id="11_gextx"]
+[ext_resource type="Texture2D" uid="uid://c06ixvq85gmob" path="res://assets/2d/kodee/run-scared/run-3-3.png" id="12_avq6b"]
+[ext_resource type="Texture2D" uid="uid://cof70adf2hy42" path="res://assets/2d/kodee/run-scared/run-4-3.png" id="13_wd4sp"]
+[ext_resource type="Texture2D" uid="uid://cvyy5h88mn7b1" path="res://assets/2d/kodee/stretching/27.png" id="14_6kpgc"]
+[ext_resource type="Texture2D" uid="uid://cbgppqs0yv73l" path="res://assets/2d/kodee/stretching/28.png" id="15_i04co"]
+[ext_resource type="Texture2D" uid="uid://vq7a1snxhrfr" path="res://assets/2d/kodee/stretching/29.png" id="16_vo7f3"]
+[ext_resource type="Texture2D" uid="uid://c3dhgxrcbpp0n" path="res://assets/2d/kodee/stretching/30.png" id="17_8dvvd"]
+[ext_resource type="Texture2D" uid="uid://dhvd6gx857b2e" path="res://assets/2d/kodee/stretching-running/31.png" id="18_apkpu"]
+[ext_resource type="Texture2D" uid="uid://dcsd80nw604p4" path="res://assets/2d/kodee/stretching-running/32.png" id="19_jxdxs"]
+[ext_resource type="Texture2D" uid="uid://f08exgo15y6o" path="res://assets/2d/kodee/stretching-running/33.png" id="20_dmghd"]
+[ext_resource type="Texture2D" uid="uid://c3k5flvg2peao" path="res://assets/2d/kodee/stretching-running/34.png" id="21_m2c07"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/KodeeAnimation.gdj" id="23_33ae6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pmqch"]
@@ -284,7 +283,7 @@ delta_speed = 0.25
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
 billboard = 1
 alpha_cut = 2
-texture = ExtResource("3_h0sru")
+texture = ExtResource("4_6ynwi")
 
 [node name="ResetPositionTimer" type="Timer" parent="."]
 wait_time = 0.8
@@ -302,7 +301,7 @@ stream = ExtResource("6_250d6")
 volume_db = -0.6
 
 [node name="StretchSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_hm7et")
+stream = ExtResource("6_250d6")
 volume_db = -0.6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

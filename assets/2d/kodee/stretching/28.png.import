@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lpyv5arpve32"
+uid="uid://cbgppqs0yv73l"
 path.s3tc="res://.godot/imported/28.png-ff1590604892c930a0962197a7c41d3f.s3tc.ctex"
+path.etc2="res://.godot/imported/28.png-ff1590604892c930a0962197a7c41d3f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/2d/kodee/stretching/28.png"
-dest_files=["res://.godot/imported/28.png-ff1590604892c930a0962197a7c41d3f.s3tc.ctex"]
+dest_files=["res://.godot/imported/28.png-ff1590604892c930a0962197a7c41d3f.s3tc.ctex", "res://.godot/imported/28.png-ff1590604892c930a0962197a7c41d3f.etc2.ctex"]
 
 [params]
 
