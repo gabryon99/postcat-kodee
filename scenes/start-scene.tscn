@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccloja1xf3wpi"]
+[gd_scene load_steps=19 format=3 uid="uid://ccloja1xf3wpi"]
 
 [ext_resource type="Texture2D" uid="uid://d2sn5ijwbp2mr" path="res://assets/official/newsky.png" id="1_oqhvk"]
 [ext_resource type="FontFile" uid="uid://dbwknxjawgftk" path="res://assets/JetBrainsSans-Bold.ttf" id="2_8ph3o"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartGameButton.gdj" id="6_d48si"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PersonalRecordLabel.gdj" id="7_7wqdl"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/OpenAboutButton.gdj" id="7_auahq"]
+[ext_resource type="Texture2D" uid="uid://2dnyx8j21p7u" path="res://assets/ui/personal-record-bg.png" id="9_x276a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsmg6"]
 content_margin_left = 4.0
@@ -97,9 +98,11 @@ Button/styles/hover = SubResource("StyleBoxFlat_anqut")
 Button/styles/normal = SubResource("StyleBoxTexture_1l2c3")
 Button/styles/pressed = SubResource("StyleBoxFlat_ruo0c")
 
+[sub_resource type="Theme" id="Theme_jsobr"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_g6jmf"]
 font = ExtResource("4_avjnp")
-font_size = 42
+font_size = 24
 font_color = Color(0, 0, 0, 1)
 
 [node name="StartScene" type="Control"]
@@ -129,14 +132,14 @@ layout_mode = 2
 anchor_top = 0.619
 anchor_right = 0.989
 anchor_bottom = 0.712
-offset_left = 128.0
-offset_top = 7.67998
-offset_right = -120.08
-offset_bottom = -0.360016
+offset_left = 124.0
+offset_top = 76.68
+offset_right = -124.08
+offset_bottom = 68.64
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_htc1j")
-text = "Start"
+text = "Play!"
 script = ExtResource("6_d48si")
 
 [node name="About" type="Button" parent="."]
@@ -145,28 +148,14 @@ anchors_preset = -1
 anchor_top = 0.719
 anchor_right = 1.0
 anchor_bottom = 0.805
-offset_left = 128.0
-offset_top = -0.320053
-offset_right = -128.0
-offset_bottom = 0.599915
+offset_left = 124.0
+offset_top = 68.68
+offset_right = -132.0
+offset_bottom = 69.5999
 theme = SubResource("Theme_htc1j")
 text = "About
 "
 script = ExtResource("7_auahq")
-
-[node name="PersonalRecordLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.925
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -9.15527e-05
-grow_horizontal = 2
-grow_vertical = 0
-text = "Personal record: None"
-label_settings = SubResource("LabelSettings_g6jmf")
-horizontal_alignment = 1
-script = ExtResource("7_7wqdl")
 
 [node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1
@@ -185,3 +174,30 @@ texture = ExtResource("5_rtvin")
 position = Vector2(56, 512)
 scale = Vector2(0.25, 0.25)
 speed = 10.0
+
+[node name="PersonalRecordRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 607.0
+offset_right = 569.0
+offset_bottom = 689.0
+theme = SubResource("Theme_jsobr")
+texture = ExtResource("9_x276a")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="PersonalRecordLabel" type="Label" parent="PersonalRecordRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = -10.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Your Record: 600/1000"
+label_settings = SubResource("LabelSettings_g6jmf")
+horizontal_alignment = 1
+script = ExtResource("7_7wqdl")

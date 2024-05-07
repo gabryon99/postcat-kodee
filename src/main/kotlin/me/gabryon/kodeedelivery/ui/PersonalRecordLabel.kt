@@ -13,6 +13,6 @@ import me.gabryon.kodeedelivery.managers.ScoreStorage
 class PersonalRecordLabel : Label() {
     @RegisterFunction
     override fun _ready() {
-        text = "Personal record: ${ScoreStorage.maximumUserScore}"
+        text = "Your Score: ${ScoreStorage.maximumUserScore}/${ScoreStorage.MINIMUM_SCORE_FOR_PRIZE}"
     }
 }
