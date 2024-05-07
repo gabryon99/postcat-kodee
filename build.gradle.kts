@@ -1,5 +1,5 @@
 plugins {
-    id("com.utopia-rise.godot-kotlin-jvm") version "0.8.2-4.2.1"
+    id("com.utopia-rise.godot-kotlin-jvm") version "0.9.1-4.2.2"
 }
 
 repositories {
@@ -28,18 +28,6 @@ godot {
     // defines whether your scripts should be registered with their fqName or their simple name (can help with resolving script name conflicts)
     //isFqNameRegistrationEnabled.set(false)
 
-    // Library setup. See: https://godot-kotl.in/en/stable/develop-libraries/
-    // only really needed for library authors. See: https://godot-kotl.in/en/stable/develop-libraries/setup/
-    //classPrefix.set("MyCustomClassPrefix")
-
-    // only needed for library authors. See: https://godot-kotl.in/en/stable/develop-libraries/setup/
-    //projectName.set("LibraryProjectName")
-
-    // only needed for library authors. See: https://godot-kotl.in/en/stable/develop-libraries/setup/
-    //projectName.set("LibraryProjectName")
-
-    // only needed for library authors. See: https://godot-kotl.in/en/stable/develop-libraries/setup/
-    //isRegistrationFileGenerationEnabled.set(true)
     // END: registration options
 
     // -------------------------
@@ -57,9 +45,10 @@ godot {
     // START: graal native image export options
     // NOTE: this is an advanced feature! Read: https://godot-kotl.in/en/stable/user-guide/advanced/graal-vm-native-image/
     // IMPORTANT: Graal Native Image needs to be considered from the start of development!
-    isGraalNativeImageExportEnabled.set(false)
+    isGraalNativeImageExportEnabled.set(true)
     graalVmDirectory.set(File(System.getenv("GRAALVM_HOME") ?: ""))
+    isIOSExportEnabled.set(true)
+
     windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH") ?: ""))
-    isIOSExportEnabled.set(false)
     // END: graal native image export options
 }
