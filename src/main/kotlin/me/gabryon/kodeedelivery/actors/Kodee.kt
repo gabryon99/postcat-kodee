@@ -206,7 +206,7 @@ class Kodee : Area3D(), Orbiting {
     }
 
     @RegisterFunction
-    fun onDistanceWithDogChanged(distance: StringName) {
+    fun onDistanceWithDogChanged(distance: Int) {
         animationTree.onDistanceWithDogChanged(distance)
     }
 }
