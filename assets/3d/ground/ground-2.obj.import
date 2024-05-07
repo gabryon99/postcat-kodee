@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/ground-2.obj-e54c0e495525d8f160eaa62545340cf7
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3(1, 1, 1)
+scale_mesh=Vector3(1, 1, 0.7)
 offset_mesh=Vector3(0, 0, 0)
 optimize_mesh=true
 force_disable_mesh_compression=false
