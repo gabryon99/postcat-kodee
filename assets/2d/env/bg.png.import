@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://4rfla4q8263d"
+path="res://.godot/imported/bg.png-d9ffa617d1a6ba26f1a0edf1c700b3cd.image"
+
+[deps]
+
+source_file="res://assets/2d/env/bg.png"
+dest_files=["res://.godot/imported/bg.png-d9ffa617d1a6ba26f1a0edf1c700b3cd.image"]
+
+[params]
+
