@@ -111,6 +111,15 @@ class Kodee : Area3D(), Orbiting {
     }
 
     @RegisterFunction
+    fun onSwipeToLeft() {
+        updateHorizontalPosition(HorizontalMovePoint.LEFT, reset = true)
+    }
+        @RegisterFunction
+    fun onSwipeToRight() {
+        updateHorizontalPosition(HorizontalMovePoint.RIGHT, reset = true)
+    }
+
+    @RegisterFunction
     fun stretchUp() {
         // We already stretched up, so we do nothing...
         if (isStretched) return
