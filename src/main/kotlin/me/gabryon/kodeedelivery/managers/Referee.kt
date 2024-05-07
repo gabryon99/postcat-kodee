@@ -1,22 +1,31 @@
 package me.gabryon.kodeedelivery.managers
 
-import ch.hippmann.godot.utilities.logging.info
+import ch.hippmann.godot.utilities.logging.debug
 import godot.Node
 import godot.Node3D
-import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.*
+import godot.core.StringName
+import godot.core.asStringName
 import godot.global.GD
+import godot.signals.signal
 import me.gabryon.kodeedelivery.actors.Dog
 import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.actors.accelerate
-import me.gabryon.kodeedelivery.ui.Indicator
-import me.gabryon.kodeedelivery.utility.absoluteAngularDistance
+import me.gabryon.kodeedelivery.utility.debugLine
 
 // Only Wout and Gabriele know what happen here on 5th of April 2024.
 @RegisterClass
 class Referee : Node() {
+
+    companion object {
+        const val FAR_AWAY = 0
+        const val FAR = 1
+        const val CLOSE = 2
+        const val VERY_CLOSE = 3
+    }
+
+    @RegisterSignal
+    val distanceChanged by signal<Int>("distance")
 
     @Export
     @RegisterProperty
@@ -29,10 +38,6 @@ class Referee : Node() {
     @Export
     @RegisterProperty
     var maxDistanceDogAndKodee: Double = 1.0
-
-    @Export
-    @RegisterProperty
-    lateinit var indicator: Indicator
 
     @Export
     @RegisterProperty
@@ -52,54 +57,48 @@ class Referee : Node() {
 
     @Export
     @RegisterProperty
-    lateinit var kodeeScript: Kodee
+    lateinit var kodee: Kodee
 
     @Export
     @RegisterProperty
-    lateinit var dogScript: Dog
+    lateinit var dog: Dog
+
+    private var currentDistance = FAR_AWAY
 
     @RegisterFunction
     override fun _process(delta: Double) {
+        debugLine(silence = true) {
 
-        val kodeeAngle = kodeeOrbitPoint.rotation.x
-        val dogAngle = dogOrbitPoint.rotation.x
-        val currentDistance = absoluteAngularDistance(dogAngle, kodeeAngle)
+            val currentDistance by dogOrbitPoint.quaternion.angleTo(kodeeOrbitPoint.quaternion).also {
+                val newDistance = it.toDistance()
+                if (newDistance != currentDistance) {
+                    distanceChanged.emit(newDistance).also {
+                        currentDistance = newDistance
+                    }
+                }
+            }
 
-        val x = currentDistance / maxDistanceDogAndKodee
-        val y = dogSpeedFreedomCurve(x)
+            val x by currentDistance / maxDistanceDogAndKodee
+            val y by dogSpeedFreedomCurve(x)
 
-        val deltaSpeedDiff = (dogScript.angularSpeed - kodeeScript.angularSpeed + overtakeSpeed)
+            val speedDiff by (dog.angularSpeed - kodee.angularSpeed + overtakeSpeed)
 
-        val dogIsCloseToKodee = x < 2.0 / 3.0
-        val kodeeIsFasterThanDog = deltaSpeedDiff > 0
-        val kodeeMadeProgressWhileDogWasClose = dogIsCloseToKodee && kodeeIsFasterThanDog
+            val dogIsCloseToKodee = x < 2.0 / 3.0
+            val kodeeIsFasterThanDog = speedDiff > 0
+            val kodeeMadeProgressWhileDogWasClose = dogIsCloseToKodee && kodeeIsFasterThanDog
 
-        if (!kodeeMadeProgressWhileDogWasClose) {
-            val y2 = dogMaxSpeedCurve(x)
-            dogScript.accelerate(delta = deltaSpeedDiff * y, maxSpeed = y2)
+            if (!kodeeMadeProgressWhileDogWasClose) {
+                val y2 by dogMaxSpeedCurve(x)
+                dog.accelerate(delta = speedDiff * y, maxSpeed = y2)
+            }
         }
-
-        indicator.updateBar(currentDistance * 100)
-//
-//        info(
-//            "current distance=$currentDistance, " +
-//                    "max distance=$maxDistanceDogAndKodee, " +
-//                    "kodee's angle=$kodeeAngle, " +
-//                    "dog's angle=$dogAngle"
-//        )
-//        info(
-//            "dF=$deltaSpeedDiff, " +
-//                    "totalCond=${!(dogIsCloseToKodee && kodeeIsFasterThanDog)}, " +
-//                    "dogIsCloseToKodee=$dogIsCloseToKodee, " +
-//                    "kodeeIsFasterThanDog=$kodeeIsFasterThanDog, " +
-//                    "x=$x, y=$y, " +
-//                    "dog's speed=${dogScript.angularSpeed}, " +
-//                    "kodee's speed=${kodeeScript.angularSpeed}"
-//        )
     }
 
+    /**
+     * x \in [0, 1]
+     */
     private fun dogMaxSpeedCurve(x: Double): Double =
-        GD.pow(x, dogMaxSpeedCurviness) * (kodeeScript.maximumAngularSpeed - minMaxSpeedDog) + minMaxSpeedDog
+        GD.pow(x, dogMaxSpeedCurviness) * (kodee.maximumAngularSpeed - minMaxSpeedDog) + minMaxSpeedDog
 
     /**
      * This function of x, gives a point on a curve that looks like:
@@ -130,4 +129,11 @@ class Referee : Node() {
      */
     private fun dogSpeedFreedomCurve(x: Double): Double =
         GD.pow(GD.clamp(3 * x - 2, -1.0, 1.0), bounciness)
+
+    private fun Double.toDistance(): Int = when {
+        this > 1.6 -> FAR_AWAY
+        this in 1.0 .. 1.6 -> FAR
+        this in 0.5 .. 1.0 -> CLOSE
+        else -> VERY_CLOSE
+    }
 }
