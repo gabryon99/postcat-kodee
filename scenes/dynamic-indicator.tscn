@@ -1,0 +1,334 @@
+[gd_scene load_steps=19 format=3 uid="uid://c2ueaxhurrm6w"]
+
+[ext_resource type="Texture2D" uid="uid://dchhlqvk7o3kb" path="res://assets/2d/new_indicator/bar.png" id="1_1ceb2"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/DynamicIndicator.gdj" id="1_6e4nc"]
+[ext_resource type="Texture2D" uid="uid://c5mj5bcrx81t3" path="res://assets/2d/new_indicator/dog.png" id="2_kx2px"]
+
+[sub_resource type="Gradient" id="Gradient_jrmds"]
+colors = PackedColorArray(0.262745, 0.745098, 0.486275, 1, 0.121569, 0.345098, 0.223529, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6h2xj"]
+gradient = SubResource("Gradient_jrmds")
+
+[sub_resource type="Gradient" id="Gradient_a0pag"]
+colors = PackedColorArray(1, 0.721569, 0, 1, 1, 0.478431, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e34se"]
+gradient = SubResource("Gradient_a0pag")
+
+[sub_resource type="Animation" id="Animation_sg81g"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(56, -49), Vector2(172, -49)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gradient:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("GradientTexture1D_6h2xj"), SubResource("GradientTexture1D_e34se")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gradient:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(338, 18), Vector2(222, 18)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Gradient:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(118, 108), Vector2(234, 94)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Gradient:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.0349066, 0.0698132]
+}
+
+[sub_resource type="Gradient" id="Gradient_1y41h"]
+colors = PackedColorArray(0.623529, 0.796078, 1, 1, 0, 0.458824, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p0mev"]
+gradient = SubResource("Gradient_1y41h")
+
+[sub_resource type="Gradient" id="Gradient_5fgbd"]
+colors = PackedColorArray(0.262745, 0.745098, 0.486275, 1, 0.121569, 0.345098, 0.223529, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_js3qa"]
+gradient = SubResource("Gradient_5fgbd")
+
+[sub_resource type="Animation" id="Animation_pqypp"]
+resource_name = "far"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-55, -49), Vector2(56, -49)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gradient:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("GradientTexture1D_p0mev"), SubResource("GradientTexture1D_js3qa")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gradient:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(448, 18), Vector2(338, 18)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Gradient:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, 108), Vector2(118, 108)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Gradient:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.0349066]
+}
+
+[sub_resource type="Animation" id="Animation_uj3jt"]
+resource_name = "far_away"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-55, -49)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gradient:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("GradientTexture1D_p0mev")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gradient:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(448, 18)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Gradient:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 108)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Gradient:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Gradient" id="Gradient_6rhfc"]
+colors = PackedColorArray(1, 0, 0.419608, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hlha5"]
+gradient = SubResource("Gradient_6rhfc")
+
+[sub_resource type="Animation" id="Animation_w3q3g"]
+resource_name = "very_close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(172, -49), Vector2(288, -49)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gradient:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("GradientTexture1D_e34se"), SubResource("GradientTexture1D_hlha5")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gradient:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(222, 18), Vector2(106, 32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Gradient:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(234, 94), Vector2(352, 108)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Gradient:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0698132, -0.0698132]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nesvp"]
+_data = {
+"close": SubResource("Animation_sg81g"),
+"far": SubResource("Animation_pqypp"),
+"far_away": SubResource("Animation_uj3jt"),
+"very_close": SubResource("Animation_w3q3g")
+}
+
+[node name="Indicator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6e4nc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nesvp")
+}
+speed_scale = 4.0
+
+[node name="Gradient" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 108.0
+offset_right = 456.0
+offset_bottom = 126.0
+texture = SubResource("GradientTexture1D_p0mev")
+expand_mode = 1
+
+[node name="Bar" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 120.0
+texture = ExtResource("1_1ceb2")
+
+[node name="Dog" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -55.0
+offset_top = -49.0
+offset_right = 73.0003
+offset_bottom = 87.0
+texture = ExtResource("2_kx2px")

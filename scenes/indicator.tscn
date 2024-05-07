@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bstdacyhv45ns"]
+[gd_scene load_steps=8 format=3 uid="uid://bstdacyhv45ns"]
 
 [ext_resource type="Texture2D" uid="uid://nokovu5dvujw" path="res://assets/2d/indicator/indicator0.png" id="1_tjdfg"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/Indicator.gdj" id="2_etx8v"]
@@ -6,20 +6,61 @@
 [ext_resource type="Texture2D" uid="uid://bjp7461j1p0mu" path="res://assets/2d/indicator/indicator2.png" id="4_gr1gx"]
 [ext_resource type="Texture2D" uid="uid://colbu671ce3dg" path="res://assets/2d/indicator/indicator3.png" id="5_yfwic"]
 
-[node name="indicator" type="TextureRect"]
-anchors_preset = 15
+[sub_resource type="Animation" id="Animation_u6xmv"]
+resource_name = "change"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0698132, -0.174533, 0.0698132]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_syb7a"]
+_data = {
+"change": SubResource("Animation_u6xmv")
+}
+
+[node name="Indicator" type="TextureRect"]
+anchors_preset = -1
+anchor_left = 0.001
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = -151.0
-offset_bottom = -1102.0
+offset_left = -0.72
+offset_right = -355.0
+offset_bottom = -1167.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 6.28319
+rotation = -0.174533
+scale = Vector2(1.1, 1.1)
 texture = ExtResource("1_tjdfg")
+expand_mode = 2
 script = ExtResource("2_etx8v")
 indicator0 = ExtResource("1_tjdfg")
 indicator1 = ExtResource("3_te6mc")
 indicator2 = ExtResource("4_gr1gx")
 indicator3 = ExtResource("5_yfwic")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_syb7a")
+}
+speed_scale = 10.0
