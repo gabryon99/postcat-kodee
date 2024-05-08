@@ -25,7 +25,7 @@
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/KodeeAnimation.gdj" id="23_33ae6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pmqch"]
-size = Vector3(0.243433, 0.357739, 0.278638)
+size = Vector3(2.08165e-12, 0.5, 0.5)
 
 [sub_resource type="Animation" id="Animation_6vfw2"]
 resource_name = "running"
@@ -270,7 +270,7 @@ states/stretch-down/position = Vector2(674.552, 22.65)
 states/stretching/node = SubResource("AnimationNodeBlendTree_t4gaw")
 states/stretching/position = Vector2(447.052, 23.4)
 transitions = ["stretching", "running-stretched", SubResource("AnimationNodeStateMachineTransition_ecabv"), "running-stretched", "stretch-down", SubResource("AnimationNodeStateMachineTransition_503w1"), "running-scared", "running-normal", SubResource("AnimationNodeStateMachineTransition_8xufi"), "running-scared", "running", SubResource("AnimationNodeStateMachineTransition_017p8"), "stretch-down", "running-scared", SubResource("AnimationNodeStateMachineTransition_ps6dj"), "Start", "running", SubResource("AnimationNodeStateMachineTransition_yvu02"), "running-normal", "running", SubResource("AnimationNodeStateMachineTransition_tlroy"), "running", "running-normal", SubResource("AnimationNodeStateMachineTransition_nm8k0"), "running-normal", "running-scared", SubResource("AnimationNodeStateMachineTransition_bklbs")]
-graph_offset = Vector2(372.94, 218.727)
+graph_offset = Vector2(-45.0757, -267.14)
 
 [node name="Kodee" type="Area3D" groups=["Player"]]
 script = ExtResource("1_dr7ii")
@@ -283,7 +283,7 @@ delta_speed = 0.25
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
 billboard = 1
 alpha_cut = 2
-texture = ExtResource("19_jxdxs")
+texture = ExtResource("5_l2sb7")
 
 [node name="ResetPositionTimer" type="Timer" parent="."]
 wait_time = 0.8
@@ -293,7 +293,7 @@ autostart = true
 [node name="ResetStretchTimer" type="Timer" parent="."]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00525211, -0.298081, -0.00179442)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.167635, 2.08165e-12)
 shape = SubResource("BoxShape3D_pmqch")
 
 [node name="SwooshSound" type="AudioStreamPlayer3D" parent="."]

@@ -1,111 +1,24 @@
-[gd_scene load_steps=18 format=3 uid="uid://cobvrmmq3hpvs"]
+[gd_scene load_steps=12 format=3 uid="uid://cobvrmmq3hpvs"]
 
 [ext_resource type="Texture2D" uid="uid://cd8mytusnu8mp" path="res://assets/ui/bg-alt.png" id="1_j3uku"]
 [ext_resource type="FontFile" uid="uid://c5e13gemnpfpo" path="res://assets/JetBrainsSans-Bold.ttf" id="2_e0yk1"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PointsLabel.gdj" id="3_4bjox"]
 [ext_resource type="FontFile" uid="uid://cibhe6hbmfo1n" path="res://assets/JetBrains Sans.ttf" id="3_uyvke"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PrizeLabel.gdj" id="4_2nxx4"]
-[ext_resource type="Texture2D" uid="uid://boxd13je8s047" path="res://assets/button/button-fill.png" id="4_5il15"]
 [ext_resource type="PackedScene" uid="uid://bgfgbn3rn0r6y" path="res://scenes/cloud.tscn" id="5_dbix1"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartGameButton.gdj" id="5_i4lrb"]
+[ext_resource type="Theme" uid="uid://cf4fohto4wav8" path="res://resources/theme.tres" id="7_ymn4x"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/BackToStartGameButton.gdj" id="9_ba0wq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dy3na"]
 font = ExtResource("2_e0yk1")
-font_size = 80
+font_size = 140
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_c3dl2"]
 font = ExtResource("3_uyvke")
 font_size = 37
 font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pi36v"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gtmh"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5moi0"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuk06"]
-texture = ExtResource("4_5il15")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smw2k"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="Theme" id="Theme_ssskc"]
-default_font = ExtResource("3_uyvke")
-default_font_size = 16
-Button/colors/font_color = Color(0, 0, 0, 1)
-Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_outline_color = Color(1, 1, 1, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
-Button/colors/icon_focus_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_normal_color = Color(1, 1, 1, 1)
-Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
-Button/constants/h_separation = 0
-Button/constants/icon_max_width = 0
-Button/constants/outline_size = 0
-Button/font_sizes/font_size = 48
-Button/fonts/font = ExtResource("2_e0yk1")
-Button/styles/disabled = SubResource("StyleBoxFlat_pi36v")
-Button/styles/focus = SubResource("StyleBoxFlat_1gtmh")
-Button/styles/hover = SubResource("StyleBoxFlat_5moi0")
-Button/styles/normal = SubResource("StyleBoxTexture_kuk06")
-Button/styles/pressed = SubResource("StyleBoxFlat_smw2k")
 
 [node name="EndScene" type="Control"]
 layout_mode = 3
@@ -128,13 +41,12 @@ expand_mode = 5
 [node name="PointsLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.225
+anchor_top = 0.281
 anchor_right = 1.0
-anchor_bottom = 0.374
-offset_top = -1.14441e-05
-offset_bottom = -35.72
-text = "9999
-Well done!"
+anchor_bottom = 0.394
+offset_top = -7.68002
+offset_bottom = 2.68
+text = "600"
 label_settings = SubResource("LabelSettings_dy3na")
 horizontal_alignment = 1
 script = ExtResource("3_4bjox")
@@ -142,14 +54,15 @@ script = ExtResource("3_4bjox")
 [node name="PrizeLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.462
-anchor_right = 1.022
-anchor_bottom = 0.55
-offset_left = 144.0
-offset_top = 0.639984
-offset_right = -127.84
-offset_bottom = -1.52588e-05
-text = "Get 1000 points to win a special limited gadget."
+anchor_top = 0.431
+anchor_right = 1.0
+anchor_bottom = 0.49
+offset_top = -15.68
+offset_bottom = -0.200012
+grow_horizontal = 2
+grow_vertical = 2
+text = "Get to 10000 for a
+chance to win a prize!"
 label_settings = SubResource("LabelSettings_c3dl2")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -164,31 +77,35 @@ position = Vector2(56, 512)
 scale = Vector2(0.25, 0.25)
 speed = 7.0
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Buttons" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -224.0
+offset_top = -384.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_right = 40
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+custom_minimum_size = Vector2(2.08165e-12, -20)
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="BacktoMenuButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="TryAgainButton" type="Button" parent="Buttons/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
-theme = SubResource("Theme_ssskc")
-text = "Back to menu"
-script = ExtResource("9_ba0wq")
-
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = SubResource("Theme_ssskc")
+theme = ExtResource("7_ymn4x")
 text = "Try again"
 script = ExtResource("5_i4lrb")
+
+[node name="BacktoMenuButton" type="Button" parent="Buttons/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+theme = ExtResource("7_ymn4x")
+text = "Back to menu"
+script = ExtResource("9_ba0wq")

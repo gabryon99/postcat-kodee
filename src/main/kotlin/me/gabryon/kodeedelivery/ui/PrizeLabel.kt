@@ -14,7 +14,7 @@ class PrizeLabel : Label() {
                 "Come to the JetBrains booth to reclaim your special limited gadget!"
             }
             else -> {
-                "Gets ${ScoreStorage.MINIMUM_SCORE_FOR_PRIZE - ScoreStorage.userScore} points more to win a special limited gadget."
+                "Get to ${ScoreStorage.MINIMUM_SCORE_FOR_PRIZE} for a\nchance to win a prize!"
             }
         }
     }
