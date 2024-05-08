@@ -25,7 +25,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(5.5, 418.5), Vector2(6, 60)]
+"values": [Vector2(5.5, 418.5), Vector2(2.08165e-12, 112)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -188,15 +188,14 @@ texture = ExtResource("1_ex0py")
 expand_mode = 5
 
 [node name="StartButton" type="Button" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-anchor_top = 0.619
+anchor_top = 0.637
 anchor_right = 0.989
-anchor_bottom = 0.712
-offset_left = 135.0
-offset_top = 76.68
-offset_right = -113.08
-offset_bottom = 68.64
+anchor_bottom = 0.724
+offset_left = 96.0
+offset_top = 0.639969
+offset_right = -88.08
+offset_bottom = 0.279953
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_htc1j")
@@ -204,28 +203,26 @@ text = "Play!"
 script = ExtResource("6_d48si")
 
 [node name="About" type="Button" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.719
+anchor_top = 0.744
 anchor_right = 1.0
-anchor_bottom = 0.805
-offset_left = 135.0
-offset_top = 68.68
-offset_right = -121.0
-offset_bottom = 69.5999
+anchor_bottom = 0.825
+offset_left = 96.0
+offset_top = -0.320023
+offset_right = -96.0
+offset_bottom = 6.99994
 theme = SubResource("Theme_htc1j")
 text = "About
 "
 script = ExtResource("7_auahq")
 
 [node name="PersonalRecordRect" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 147.0
-offset_top = 607.0
-offset_right = 569.0
-offset_bottom = 689.0
+offset_left = 152.0
+offset_top = 624.0
+offset_right = 574.0
+offset_bottom = 706.0
 theme = SubResource("Theme_jsobr")
 texture = ExtResource("9_x276a")
 expand_mode = 2
@@ -259,10 +256,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -354.5
-offset_top = -221.5
-offset_right = 354.5
-offset_bottom = 221.502
+offset_left = -360.0
+offset_top = -528.0
+offset_right = 349.0
+offset_bottom = -84.9977
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_rtvin")
@@ -278,10 +275,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -172.0
-offset_top = -121.0
-offset_right = 173.0
-offset_bottom = -47.0
+offset_left = -152.0
+offset_top = -160.0
+offset_right = 152.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("10_f2qp5")
