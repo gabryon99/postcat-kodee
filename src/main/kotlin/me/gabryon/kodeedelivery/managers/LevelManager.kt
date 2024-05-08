@@ -86,9 +86,7 @@ class LevelManager : Node() {
         levels.nextLevel(currentLevel).run {
             currentLevel = newLevel
             currentLevelLogic = newLevelLogic
-            debug("[setting first level] :: level logic = $newLevelLogic, pointsToNextLevel=$pointsToNextLevel")
 
-            debug("[setting first level] :: maximum actor speeds set")
             kodee.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.angularSpeed = currentLevelLogic.maximumCharacterSpeed
@@ -125,9 +123,7 @@ class LevelManager : Node() {
             }
 
             currentLevelLogic = newLevelLogic
-            debug("[changing level] :: level logic = $newLevelLogic, pointsToNextLevel=$pointsToNextLevel")
 
-            debug("[changing level] :: maximum actor speeds set")
             kodee.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.angularSpeed = currentLevelLogic.maximumCharacterSpeed
