@@ -3,20 +3,24 @@ package me.gabryon.kodeedelivery.managers
 import ch.hippmann.godot.utilities.logging.debug
 import godot.Node3D
 import godot.PackedScene
+import godot.TextureRect
+import godot.core.Quaternion
 import godot.core.Vector3
 import godot.core.asStringName
+import godot.extensions.callDeferred
 import godot.extensions.instanceAs
+import godot.global.GD
 import godot.util.PI
-import godot.util.TAU
-import me.gabryon.kodeedelivery.actors.Dog
 import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.actors.MailBox
 import me.gabryon.kodeedelivery.levels.LevelLogic
 import me.gabryon.kodeedelivery.levels.MailboxPosition
-import me.gabryon.kodeedelivery.utility.angularDistance
+import me.gabryon.kodeedelivery.utility.getParentAs
 import kotlin.math.absoluteValue
+import kotlin.math.max
+import kotlin.math.min
 
-class MailBoxGenerator(
+class MailBoxManager(
     private var currentLevelLogic: LevelLogic,
     private val world: Node3D,
     private val kodee: Kodee,
@@ -24,16 +28,16 @@ class MailBoxGenerator(
     private val bottomMailbox: PackedScene,
     private val topMailbox: PackedScene,
     private val scoreManager: ScoreManager,
-    private val dog: Dog,
+    private val warningSigns: Array<TextureRect>
 ) {
 
-    data class MailboxWrapper(val mailboxOrbitPoint: Node3D, val angularPosition: Double)
+    data class MailBoxWrapper(val mailboxParent: Node3D, val pos: MailboxPosition)
 
     private var currentMailboxIterator: Iterator<MailboxPosition>? = null
     private var currentMailbox: MailboxPosition? = null
     private var currentMailboxDistanceLeft: Double = 0.0
 
-    private val generatedBoxes = ArrayDeque<MailboxWrapper>()
+    private val generatedBoxes = ArrayDeque<MailBoxWrapper>()
 
     private var mailboxId: Int = 0
 
@@ -43,13 +47,11 @@ class MailBoxGenerator(
      */
     private fun createMailBox(
         mailboxScene: PackedScene,
-        angle: Double,
         positionOffset: Double,
         localYRotation: Double
     ): Node3D {
 
         val mailboxOrbitPoint = Node3D().apply {
-            rotation = Vector3(angle, 0, 0)
             position = Vector3.ZERO
             name = "Box-orbit-${mailboxId}".asStringName().also { mailboxId++ }
         }
@@ -79,12 +81,15 @@ class MailBoxGenerator(
      * Remove mailboxes that are not visible anymore in the scene.
      */
     private fun despawnBoxes() {
-        val kodeeRotation = kodee.parentRotationX
         var topBox = generatedBoxes.firstOrNull()
-        while (topBox != null && angularDistance(topBox.angularPosition, kodeeRotation) >= PI / 2.0) {
+        val kodeeRotation = kodee.getParentAs<Node3D>().quaternion
+
+        // A mailbox is not visible anymore after 45 degrees (PI/4)
+
+        while (topBox != null && (kodeeRotation.angleTo(topBox.mailboxParent.quaternion)) <= PI / 4.0) {
             generatedBoxes.removeFirst() // Since we are peeking we remove the current box
-            debug("removing: ${topBox.angularPosition}, distance = ${angularDistance(topBox.angularPosition, kodeeRotation)}")
-            topBox.mailboxOrbitPoint.callDeferred("queue_free".asStringName()) // TODO: it would be a good idea creating a pool!
+            // TODO: it would be a good idea creating a pool!
+            topBox.mailboxParent.callDeferred(topBox.mailboxParent::queueFree)
             topBox = generatedBoxes.firstOrNull()
         }
     }
@@ -113,19 +118,20 @@ class MailBoxGenerator(
             val offset = mailbox.hoz.selectBoxOffset()
             val localYRotation = mailbox.hoz.selectBoxLocalYRotation()
 
-            val angularPosition =
-                (kodee.parentRotationX + PI + (distanceTraveledThisFrame - currentMailboxDistanceLeft)).mod(TAU)
+            val kodeeOrbitPointQuat = kodee.getParentAs<Node3D>().quaternion
+            val projectedMailBoxQuat = Quaternion(
+                Vector3(1, 0, 0),
+                PI + (distanceTraveledThisFrame - currentMailboxDistanceLeft)
+            )
+            val actualMailBoxQuat = kodeeOrbitPointQuat * projectedMailBoxQuat
 
-            // debug("kodee = ${kodee.parentRotationX}, angularPosition = ${angularPosition.deg}")
-
-            val mailboxOrbitPoint = createMailBox(scene, angularPosition, offset, localYRotation)
+            val mailboxOrbitPoint = createMailBox(scene, offset, localYRotation)
+            mailboxOrbitPoint.quaternion = actualMailBoxQuat
 
             // Add the mailbox to the world
-            world.callDeferred("add_child".asStringName(), mailboxOrbitPoint)
-
+            world.callDeferred(world::addChild, mailboxOrbitPoint)
             // Add the new mailbox to the queue of generated boxes, to be removed later
-            generatedBoxes.add(MailboxWrapper(mailboxOrbitPoint, angularPosition))
-
+            generatedBoxes.add(MailBoxWrapper(mailboxOrbitPoint, mailbox))
             mailbox = getNextMailbox()
             distanceTraveledThisFrame -= currentMailboxDistanceLeft
         }
@@ -142,22 +148,58 @@ class MailBoxGenerator(
         despawnBoxes()
         // Generate new boxes for the current frame
         spawnBoxes(deltaTime)
+        // Generate alerts for incoming mailboxes.
+        // alertIncomingMailBoxes() // Currently unused.
     }
 
-    private fun MailboxPosition.VerticalPosition.selectScene(): PackedScene = when (this) {
-        MailboxPosition.VerticalPosition.TOP -> topMailbox
-        MailboxPosition.VerticalPosition.BOTTOM -> bottomMailbox
+    private fun alertIncomingMailBoxes() {
+
+        warningSigns.forEach { it.visible = false }
+
+        // 0: top-left, 1: top-right, 2: bottom-left, 3: bottom-right
+        var maximumBoxes = min(max(generatedBoxes.size, 0),2)
+        var prevBox: MailBoxWrapper? = null
+        var index = 0
+
+        while (maximumBoxes > 0) {
+
+            val topBox = generatedBoxes[index]
+            val dist = kodee.getParentAs<Node3D>().quaternion.angleTo(topBox.mailboxParent.quaternion)
+            debug("dist=$dist, deg=${GD.radToDeg(dist)}")
+
+            if (dist <= PI / 2.0) break
+
+            // We need to understand if the prevBox is on the same line of the current
+            if (prevBox != null) {
+                // The mailboxes are far between each other
+                if (topBox.pos.distanceFromPrevious > 0.0) break
+            }
+
+            // The `warningSign` texture is inside a 1D array. To find the correct sign
+            // to show, we need to find the interesting sign accessing the array as a 2x2 matrix.
+            val idx = topBox.pos.hoz.ordinal * 2 + topBox.pos.ver.ordinal
+            debug("index: $idx, sign=${warningSigns[idx]}")
+            warningSigns[idx].visible = true
+
+            prevBox = topBox
+            maximumBoxes--
+            index++
+        }
     }
 
-    private fun MailboxPosition.HorizontalPosition.selectBoxOffset(): Double = when (this) {
-        MailboxPosition.HorizontalPosition.LEFT -> -sideOffset
-        MailboxPosition.HorizontalPosition.RIGHT -> sideOffset
+    private fun MailboxPosition.Vertical.selectScene(): PackedScene = when (this) {
+        MailboxPosition.Vertical.TOP -> topMailbox
+        MailboxPosition.Vertical.BOTTOM -> bottomMailbox
     }
 
-    private fun MailboxPosition.HorizontalPosition.selectBoxLocalYRotation(): Double = when (this) {
-        MailboxPosition.HorizontalPosition.LEFT -> -PI / 2
-        MailboxPosition.HorizontalPosition.RIGHT -> PI / 2
+    private fun MailboxPosition.Horizontal.selectBoxOffset(): Double = when (this) {
+        MailboxPosition.Horizontal.LEFT -> -sideOffset
+        MailboxPosition.Horizontal.RIGHT -> sideOffset
     }
 
+    private fun MailboxPosition.Horizontal.selectBoxLocalYRotation(): Double = when (this) {
+        MailboxPosition.Horizontal.LEFT -> -PI / 2
+        MailboxPosition.Horizontal.RIGHT -> PI / 2
+    }
 
 }

@@ -21,7 +21,11 @@ properties = [
 	side_offset,
 	world,
 	kodee,
-	dog
+	dog,
+	top_left_warning,
+	bottom_left_warning,
+	top_right_warning,
+	bottom_right_warning
 ]
 functions = [
     _ready,
