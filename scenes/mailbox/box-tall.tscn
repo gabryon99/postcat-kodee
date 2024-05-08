@@ -1,18 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce487phee6md5"]
+[gd_scene load_steps=9 format=3 uid="uid://ce487phee6md5"]
 
 [ext_resource type="ArrayMesh" uid="uid://53lxi8cxg0ta" path="res://assets/3d/mailbox/box-mid.obj" id="1_oochf"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/MailBox.gdj" id="1_ys8of"]
 [ext_resource type="ArrayMesh" uid="uid://c20bejvjw1yd5" path="res://assets/3d/mailbox/box-base.obj" id="2_1cq1k"]
+[ext_resource type="Texture2D" uid="uid://b7uvxeeefqyt" path="res://assets/3d/mailbox/box-texture.png" id="2_lfr3v"]
 [ext_resource type="PackedScene" uid="uid://b8lojovbow0xr" path="res://scenes/mailbox/box-top.tscn" id="3_0pr1y"]
 
-[node name="TallBox" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cv4ji"]
+resource_name = "mailbox-texture"
+shading_mode = 0
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("2_lfr3v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgt71"]
+resource_name = "mailbox-texture"
+shading_mode = 0
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("2_lfr3v")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tqts0"]
+size = Vector3(1, 1, 3.48428)
+
+[node name="Box-tall" type="Node3D"]
+script = ExtResource("1_ys8of")
+score = 300
 
 [node name="Box-mid" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.54308, 0, 0, 0, 1, 2.08165e-12, -0.0645673, 2.08165e-12)
+transform = Transform3D(1, 0, 0, 0, 2.45126, 0, 0, 0, 1, 2.08165e-12, -0.10354, 2.08165e-12)
 mesh = ExtResource("1_oochf")
+surface_material_override/0 = SubResource("StandardMaterial3D_cv4ji")
 
 [node name="Box-base" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 mesh = ExtResource("2_1cq1k")
+surface_material_override/0 = SubResource("StandardMaterial3D_dgt71")
 
-[node name="Top" parent="." instance=ExtResource("3_0pr1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.4, 2.08165e-12)
+[node name="Box-top" parent="." instance=ExtResource("3_0pr1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10401, 0)
+
+[node name="Box-skip-area" type="Area3D" parent="." groups=["Box-skip-area"]]
+collision_layer = 3
+
+[node name="Box-skip-area-shape" type="CollisionShape3D" parent="Box-skip-area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65036, 0.0364838)
+shape = SubResource("BoxShape3D_tqts0")
