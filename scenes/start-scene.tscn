@@ -1,15 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccloja1xf3wpi"]
+[gd_scene load_steps=18 format=3 uid="uid://ccloja1xf3wpi"]
 
-[ext_resource type="Script" path="res://src/main/kotlin/me/gabryon/kodeedelivery/ui/StartScreen.kt" id="1_2uf4e"]
 [ext_resource type="Texture2D" uid="uid://cd8mytusnu8mp" path="res://assets/ui/bg-alt.png" id="1_ex0py"]
-[ext_resource type="FontFile" uid="uid://c5e13gemnpfpo" path="res://assets/JetBrainsSans-Bold.ttf" id="2_8ph3o"]
+[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartScreen.gdj" id="1_pmpft"]
 [ext_resource type="PackedScene" uid="uid://bgfgbn3rn0r6y" path="res://scenes/cloud.tscn" id="2_kpx6n"]
-[ext_resource type="Texture2D" uid="uid://boxd13je8s047" path="res://assets/button/button-fill.png" id="3_5wksy"]
 [ext_resource type="FontFile" uid="uid://cibhe6hbmfo1n" path="res://assets/JetBrains Sans.ttf" id="4_avjnp"]
 [ext_resource type="Texture2D" uid="uid://c25i6h57hpjmy" path="res://assets/logo-better.png" id="5_rtvin"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartGameButton.gdj" id="6_d48si"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PersonalRecordLabel.gdj" id="7_7wqdl"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/OpenAboutButton.gdj" id="7_auahq"]
+[ext_resource type="Theme" uid="uid://cf4fohto4wav8" path="res://resources/theme.tres" id="9_7qd30"]
 [ext_resource type="Texture2D" uid="uid://dtxm2qqngw8nv" path="res://assets/ui/personal-record-bg.png" id="9_x276a"]
 [ext_resource type="Texture2D" uid="uid://ohm1yvqp8lw3" path="res://assets/ui/jb-wide-logo.png" id="10_f2qp5"]
 
@@ -30,7 +29,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("StartButton:modulate")
+tracks/1/path = NodePath("LowerPart:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -42,143 +41,20 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AboutButton:modulate")
+tracks/2/path = NodePath("LowerPart:position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PersonalRecordRect:modulate")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StartButton:position")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(96, 832), Vector2(96, 816)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AboutButton:position")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(96, 968), Vector2(96, 952)]
+"values": [Vector2(2.08165e-12, 840), Vector2(0, 808)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xfsvx"]
 _data = {
 "start_game": SubResource("Animation_oxan6")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsmg6"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq62t"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anqut"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1l2c3"]
-texture = ExtResource("3_5wksy")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruo0c"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="Theme" id="Theme_htc1j"]
-default_font = ExtResource("4_avjnp")
-default_font_size = 16
-Button/colors/font_color = Color(0, 0, 0, 1)
-Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_outline_color = Color(1, 1, 1, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
-Button/colors/icon_focus_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_normal_color = Color(1, 1, 1, 1)
-Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
-Button/constants/h_separation = 0
-Button/constants/icon_max_width = 0
-Button/constants/outline_size = 0
-Button/font_sizes/font_size = 48
-Button/fonts/font = ExtResource("2_8ph3o")
-Button/styles/disabled = SubResource("StyleBoxFlat_xsmg6")
-Button/styles/focus = SubResource("StyleBoxFlat_kq62t")
-Button/styles/hover = SubResource("StyleBoxFlat_anqut")
-Button/styles/normal = SubResource("StyleBoxTexture_1l2c3")
-Button/styles/pressed = SubResource("StyleBoxFlat_ruo0c")
 
 [sub_resource type="Theme" id="Theme_jsobr"]
 
@@ -187,6 +63,10 @@ font = ExtResource("4_avjnp")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbr3e"]
+
+[sub_resource type="Theme" id="Theme_a7lm1"]
+
 [node name="StartScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -194,7 +74,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2uf4e")
+script = ExtResource("1_pmpft")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -210,36 +90,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_ex0py")
 expand_mode = 5
-
-[node name="StartButton" type="Button" parent="."]
-layout_mode = 2
-anchor_top = 0.637
-anchor_right = 0.989
-anchor_bottom = 0.724
-offset_left = 96.0
-offset_top = 0.639969
-offset_right = -88.08
-offset_bottom = 0.279953
-grow_horizontal = 2
-grow_vertical = 0
-theme = SubResource("Theme_htc1j")
-text = "Play!"
-script = ExtResource("6_d48si")
-
-[node name="AboutButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.744
-anchor_right = 1.0
-anchor_bottom = 0.825
-offset_left = 96.0
-offset_top = -0.320023
-offset_right = -96.0
-offset_bottom = 7.0119
-theme = SubResource("Theme_htc1j")
-text = "About
-"
-script = ExtResource("7_auahq")
 
 [node name="PersonalRecordRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -283,7 +133,7 @@ anchor_bottom = 0.5
 offset_left = -360.0
 offset_top = -528.0
 offset_right = 349.0
-offset_bottom = -84.9974
+offset_bottom = -84.9969
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_rtvin")
@@ -292,18 +142,47 @@ texture = ExtResource("5_rtvin")
 position = Vector2(678, 506)
 speed = -8.0
 
-[node name="JetBrainsLogo" type="TextureRect" parent="."]
+[node name="LowerPart" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -152.0
-offset_top = -160.0
-offset_right = 152.0
-offset_bottom = -96.0
+offset_top = -455.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("9_7qd30")
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 95
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LowerPart"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="StartButton" type="Button" parent="LowerPart/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("9_7qd30")
+text = "Play!"
+script = ExtResource("6_d48si")
+
+[node name="AboutButton" type="Button" parent="LowerPart/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("9_7qd30")
+disabled = true
+text = "About
+"
+script = ExtResource("7_auahq")
+
+[node name="sep" type="Panel" parent="LowerPart/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 14)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kbr3e")
+
+[node name="JetBrainsLogo" type="TextureRect" parent="LowerPart/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 64)
+layout_mode = 2
+theme = SubResource("Theme_a7lm1")
 texture = ExtResource("10_f2qp5")
-expand_mode = 2
+expand_mode = 1
+stretch_mode = 5
