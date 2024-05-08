@@ -9,6 +9,6 @@ import me.gabryon.kodeedelivery.managers.ScoreStorage
 class PointsLabel : Label() {
     @RegisterFunction
     override fun _ready() {
-        text = "${ScoreStorage.userScore} points!\nWell done!"
+        text = "${ScoreStorage.userScore}"
     }
 }
