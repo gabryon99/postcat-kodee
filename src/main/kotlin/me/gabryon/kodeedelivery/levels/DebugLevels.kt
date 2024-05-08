@@ -18,13 +18,13 @@ data object DebugLevel0 : LevelLogic {
      */
     override fun mailboxes(): Sequence<MailboxPosition> = infiniteSequence {
         yieldBox(
-            hoz = MailboxPosition.HorizontalPosition.LEFT,
-            ver = MailboxPosition.VerticalPosition.BOTTOM,
+            hoz = MailboxPosition.Horizontal.LEFT,
+            ver = MailboxPosition.Vertical.BOTTOM,
             distanceFromPrevious = 1.0,
         )
         yieldBox(
-            hoz = MailboxPosition.HorizontalPosition.RIGHT,
-            ver = MailboxPosition.VerticalPosition.BOTTOM,
+            hoz = MailboxPosition.Horizontal.RIGHT,
+            ver = MailboxPosition.Vertical.BOTTOM,
             distanceFromPrevious = 0.0,
         )
     }
@@ -40,13 +40,13 @@ data object DebugLevel1 : LevelLogic {
      */
     override fun mailboxes(): Sequence<MailboxPosition> = infiniteSequence {
         yieldBox(
-            hoz = MailboxPosition.HorizontalPosition.LEFT,
-            ver = MailboxPosition.VerticalPosition.BOTTOM,
+            hoz = MailboxPosition.Horizontal.LEFT,
+            ver = MailboxPosition.Vertical.BOTTOM,
             distanceFromPrevious = 1.0,
         )
         yieldBox(
-            hoz = MailboxPosition.HorizontalPosition.RIGHT,
-            ver = MailboxPosition.VerticalPosition.BOTTOM,
+            hoz = MailboxPosition.Horizontal.RIGHT,
+            ver = MailboxPosition.Vertical.BOTTOM,
             distanceFromPrevious = 0.0,
         )
     }

@@ -15,10 +15,10 @@ import me.gabryon.kodeedelivery.utility.infiniteSequence
 data object Level1 : LevelLogic {
 
     override val maximumCharacterSpeed: Double = 0.8
-    override val pointsToNextLevel: Int = 400
+    override val pointsToNextLevel: Int = 1500
 
     private var sameSideCounter = 0
-    private var lastSide: MailboxPosition.HorizontalPosition? = null
+    private var lastSide: MailboxPosition.Horizontal? = null
 
     override fun mailboxes(): Sequence<MailboxPosition> = infiniteSequence {
 
@@ -32,10 +32,10 @@ data object Level1 : LevelLogic {
                 lastSide == null -> randomHorizontalPosition(0.5)
                 sameSideCounter >= 3 -> randomHorizontalPosition(0.75)
                 else -> if (rng.randf() <= 0.25)
-                    if (lastSide == MailboxPosition.HorizontalPosition.LEFT)
-                        MailboxPosition.HorizontalPosition.RIGHT
+                    if (lastSide == MailboxPosition.Horizontal.LEFT)
+                        MailboxPosition.Horizontal.RIGHT
                     else
-                        MailboxPosition.HorizontalPosition.LEFT
+                        MailboxPosition.Horizontal.LEFT
                 else lastSide
             }
 
@@ -67,7 +67,7 @@ data object Level2 : LevelLogic {
     override val pointsToNextLevel = Level1.pointsToNextLevel + 2500 // 4000
 
     private var sameSideCounter = 0
-    private var lastSide: MailboxPosition.HorizontalPosition? = null
+    private var lastSide: MailboxPosition.Horizontal? = null
 
     override fun mailboxes(): Sequence<MailboxPosition> = infiniteSequence {
 
@@ -83,8 +83,8 @@ data object Level2 : LevelLogic {
 
     private suspend fun SequenceScope<MailboxPosition>.generateTwoTowers() {
         val ver = randomVerticalPosition(0.4)
-        yieldBox(hoz = MailboxPosition.HorizontalPosition.LEFT, ver = ver, distanceFromPrevious = 1.0)
-        yieldBox(hoz = MailboxPosition.HorizontalPosition.RIGHT, ver = ver, distanceFromPrevious = 0.0)
+        yieldBox(hoz = MailboxPosition.Horizontal.LEFT, ver = ver, distanceFromPrevious = 1.0)
+        yieldBox(hoz = MailboxPosition.Horizontal.RIGHT, ver = ver, distanceFromPrevious = 0.0)
     }
 
     private suspend fun SequenceScope<MailboxPosition>.generateOneTower() {
@@ -94,10 +94,10 @@ data object Level2 : LevelLogic {
             lastSide == null -> randomHorizontalPosition(0.5)
             sameSideCounter >= 5 -> randomHorizontalPosition(0.05)
             else -> if (rng.randf() <= 0.50)
-                if (lastSide == MailboxPosition.HorizontalPosition.LEFT)
-                    MailboxPosition.HorizontalPosition.RIGHT
+                if (lastSide == MailboxPosition.Horizontal.LEFT)
+                    MailboxPosition.Horizontal.RIGHT
                 else
-                    MailboxPosition.HorizontalPosition.LEFT
+                    MailboxPosition.Horizontal.LEFT
             else lastSide
         }
 
@@ -128,7 +128,7 @@ data object Level3 : LevelLogic {
     override val pointsToNextLevel = -1 // Never reachable :)
 
     private var sameHeightCounter = 0
-    private var lastSide: MailboxPosition.HorizontalPosition? = null
+    private var lastSide: MailboxPosition.Horizontal? = null
 
     override fun mailboxes(): Sequence<MailboxPosition> = infiniteSequence {
 
@@ -152,16 +152,16 @@ data object Level3 : LevelLogic {
 
         sameHeightCounter = if (sameHeight) sameHeightCounter + 1 else 0
 
-        yieldBox(hoz = MailboxPosition.HorizontalPosition.LEFT, ver = ver1, distanceFromPrevious = 1.0)
-        yieldBox(hoz = MailboxPosition.HorizontalPosition.RIGHT, ver = ver2, distanceFromPrevious = 0.0)
+        yieldBox(hoz = MailboxPosition.Horizontal.LEFT, ver = ver1, distanceFromPrevious = 1.0)
+        yieldBox(hoz = MailboxPosition.Horizontal.RIGHT, ver = ver2, distanceFromPrevious = 0.0)
     }
 
     private suspend fun SequenceScope<MailboxPosition>.generateOneTower() {
         val ver = randomVerticalPosition(0.6)
-        val hoz = if (lastSide == MailboxPosition.HorizontalPosition.LEFT)
-            MailboxPosition.HorizontalPosition.RIGHT
+        val hoz = if (lastSide == MailboxPosition.Horizontal.LEFT)
+            MailboxPosition.Horizontal.RIGHT
         else
-            MailboxPosition.HorizontalPosition.LEFT
+            MailboxPosition.Horizontal.LEFT
 
         lastSide = hoz
 

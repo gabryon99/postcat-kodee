@@ -2,7 +2,6 @@ package me.gabryon.kodeedelivery.levels
 
 import godot.RandomNumberGenerator
 import godot.extensions.godotStatic
-import godot.global.GD
 
 /**
  * Represents the position of a mailbox in a level.
@@ -12,12 +11,12 @@ import godot.global.GD
  * @property distanceFromPrevious The distance between this mailbox and the previous one.
  */
 data class MailboxPosition(
-    val hoz: HorizontalPosition,
-    val ver: VerticalPosition,
+    val hoz: Horizontal,
+    val ver: Vertical,
     val distanceFromPrevious: Double
 ) {
-    enum class HorizontalPosition { LEFT, RIGHT }
-    enum class VerticalPosition { TOP, BOTTOM }
+    enum class Horizontal { LEFT, RIGHT }
+    enum class Vertical { TOP, BOTTOM }
 }
 
 object LevelUtility {
@@ -67,8 +66,8 @@ sealed interface LevelLogic {
  * @param distanceFromPrevious The distance between this mailbox and the previous one.
  */
 suspend inline fun SequenceScope<MailboxPosition>.yieldBox(
-    hoz: MailboxPosition.HorizontalPosition,
-    ver: MailboxPosition.VerticalPosition,
+    hoz: MailboxPosition.Horizontal,
+    ver: MailboxPosition.Vertical,
     distanceFromPrevious: Double
 ) {
     yield(MailboxPosition(hoz, ver, distanceFromPrevious))
@@ -102,10 +101,10 @@ fun <T> LevelLogic.generateAlternativeRandomly(alt1: T, alt2: T, probability: Do
  * @param leftProb The probability of generating a position on the left side. Must be a number in the range [0.0, 1.0].
  * @return The generated horizontal position, either LEFT or RIGHT.
  */
-fun LevelLogic.randomHorizontalPosition(leftProb: Double): MailboxPosition.HorizontalPosition =
+fun LevelLogic.randomHorizontalPosition(leftProb: Double): MailboxPosition.Horizontal =
     generateAlternativeRandomly(
-        MailboxPosition.HorizontalPosition.LEFT,
-        MailboxPosition.HorizontalPosition.RIGHT,
+        MailboxPosition.Horizontal.LEFT,
+        MailboxPosition.Horizontal.RIGHT,
         leftProb
     )
 
@@ -124,9 +123,9 @@ fun LevelLogic.randomHorizontalPosition(leftProb: Double): MailboxPosition.Horiz
  * @return The generated vertical position, either TOP or BOTTOM.
  * @throws IllegalArgumentException if the probability is not in the range [0.0, 1.0].
  */
-fun LevelLogic.randomVerticalPosition(topProb: Double): MailboxPosition.VerticalPosition =
+fun LevelLogic.randomVerticalPosition(topProb: Double): MailboxPosition.Vertical =
     generateAlternativeRandomly(
-        MailboxPosition.VerticalPosition.TOP,
-        MailboxPosition.VerticalPosition.BOTTOM,
+        MailboxPosition.Vertical.TOP,
+        MailboxPosition.Vertical.BOTTOM,
         topProb
     )

@@ -1,10 +1,6 @@
 package me.gabryon.kodeedelivery.managers
 
-import ch.hippmann.godot.utilities.logging.debug
-import godot.AudioStreamPlayer3D
-import godot.Node
-import godot.Node3D
-import godot.PackedScene
+import godot.*
 import godot.annotation.Export
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
@@ -21,7 +17,6 @@ class LevelManager : Node() {
 
     //region Level Management
     private val levels: Array<LevelLogic> = arrayOf(
-        DebugLevel0,
         Level1,
         Level2,
         Level3
@@ -46,7 +41,7 @@ class LevelManager : Node() {
     private var currentLevel: Int = -1
 
     private lateinit var currentLevelLogic: LevelLogic
-    private lateinit var mailboxGenerator: MailBoxGenerator
+    private lateinit var mailboxGenerator: MailBoxManager
     //endregion
 
     //region Actors
@@ -61,6 +56,20 @@ class LevelManager : Node() {
     @Export
     @RegisterProperty
     lateinit var dog: Dog
+
+    @Export
+    @RegisterProperty
+    lateinit var topLeftWarning: TextureRect
+    @Export
+    @RegisterProperty
+    lateinit var bottomLeftWarning: TextureRect
+    @Export
+    @RegisterProperty
+    lateinit var topRightWarning: TextureRect
+    @Export
+    @RegisterProperty
+    lateinit var bottomRightWarning: TextureRect
+
     //endregion
 
     val pointsToNextLevel: Int
@@ -89,8 +98,15 @@ class LevelManager : Node() {
             dog.angularSpeed = currentLevelLogic.maximumCharacterSpeed
         }
 
-        mailboxGenerator = MailBoxGenerator(
-            currentLevelLogic, world, kodee, sideOffset, smallMailBoxScene, tallMailBoxScene, scoreManager, dog
+        mailboxGenerator = MailBoxManager(
+            currentLevelLogic,
+            world,
+            kodee,
+            sideOffset,
+            smallMailBoxScene,
+            tallMailBoxScene,
+            scoreManager,
+            arrayOf(topLeftWarning, bottomLeftWarning, topRightWarning, bottomRightWarning)
         )
     }
 
