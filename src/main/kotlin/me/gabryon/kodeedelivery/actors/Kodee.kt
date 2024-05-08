@@ -3,7 +3,6 @@ package me.gabryon.kodeedelivery.actors
 import godot.*
 import godot.Input.isActionJustReleased
 import godot.annotation.*
-import godot.core.StringName
 import godot.core.asNodePath
 import godot.core.asStringName
 import godot.signals.signal
@@ -56,12 +55,6 @@ class Kodee : Area3D(), Orbiting {
     override var initialAngularSpeed: Double = 5.0
     override var maximumAngularSpeed: Double = 10.0
     override var deltaSpeed: Double = 1.0
-
-    val parentRotationX: Double
-        get() {
-            val parent = getParent() as Node3D
-            return parent.rotation.x
-        }
     //endregion
 
     @RegisterSignal
@@ -132,9 +125,6 @@ class Kodee : Area3D(), Orbiting {
         animationTree.changeAnimation("stretching".asStringName())
         animationTree.set("parameters/conditions/isStretchingUp".asStringName(), true)
         animationTree.set("parameters/conditions/isStretchingDown".asStringName(), false)
-
-        // 1.512 - 1.190 = 0.322
-        positionMutate { z += HEIGHT_DELTA }
     }
 
     @RegisterFunction
@@ -146,7 +136,6 @@ class Kodee : Area3D(), Orbiting {
         animationTree.set("parameters/conditions/isStretchingUp".asStringName(), false)
         animationTree.set("parameters/conditions/isStretchingDown".asStringName(), true)
         isStretched = false
-        positionMutate { z -= HEIGHT_DELTA }
     }
 
     private fun updateHorizontalPosition(movePoint: HorizontalMovePoint, reset: Boolean = false) {
