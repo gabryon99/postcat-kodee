@@ -6,16 +6,16 @@ fqName = me.gabryon.kodeedelivery.managers.Referee
 relativeSourcePath = src/main/kotlin/me/gabryon/kodeedelivery/managers/Referee.kt
 baseType = Node
 supertypes = [
-    godot.Node,
+	godot.Node,
 	godot.Object,
 	godot.core.KtObject,
 	kotlin.Any
 ]
 signals = [
-    distance_changed
+	distance_changed
 ]
 properties = [
-    kodee_orbit_point,
+	kodee_orbit_point,
 	dog_orbit_point,
 	max_distance_dog_and_kodee,
 	bounciness,
@@ -26,6 +26,6 @@ properties = [
 	dog
 ]
 functions = [
-    _ready,
+	_ready,
 	_process
 ]
