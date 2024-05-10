@@ -28,7 +28,7 @@ Shout-out to the remarkable individuals who made 'PostCat Kodee' possible.
 **JetBrains**:
 * Pavel Alekseev (Graphics and Design)
 * Ekaterina Petrova 
-* Wout Werkmann
+* Wout Werkman
 * Anastasiia Kapanina (Kodot Member)
 * Roman Belov (Kotlin Moonshot Group Lead)
 * Gabriele Pappalardo (Kodot Member)

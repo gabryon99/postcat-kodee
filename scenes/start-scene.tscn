@@ -92,10 +92,12 @@ texture = ExtResource("1_ex0py")
 expand_mode = 5
 
 [node name="PersonalRecordRect" type="TextureRect" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.985
 offset_left = 152.0
 offset_top = 624.0
-offset_right = 574.0
+offset_right = -135.2
 offset_bottom = 706.0
 theme = SubResource("Theme_jsobr")
 texture = ExtResource("9_x276a")
@@ -148,7 +150,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -360.0
+offset_top = -390.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("9_7qd30")
@@ -158,6 +160,7 @@ theme_override_constants/margin_right = 80
 [node name="VBoxContainer" type="VBoxContainer" parent="LowerPart"]
 layout_mode = 2
 theme_override_constants/separation = 16
+alignment = 1
 
 [node name="StartButton" type="Button" parent="LowerPart/VBoxContainer"]
 layout_mode = 2
@@ -173,7 +176,7 @@ text = "About
 "
 script = ExtResource("7_auahq")
 
-[node name="sep" type="Panel" parent="LowerPart/VBoxContainer"]
+[node name="Sep" type="Panel" parent="LowerPart/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 14)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kbr3e")
@@ -181,12 +184,14 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_kbr3e")
 [node name="JetBrainsLogo" type="TextureRect" parent="LowerPart/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 64)
 layout_mode = 2
+size_flags_vertical = 8
 theme = SubResource("Theme_a7lm1")
 texture = ExtResource("10_f2qp5")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="sep2" type="Panel" parent="LowerPart/VBoxContainer"]
+[node name="Sep2" type="Panel" parent="LowerPart/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 14)
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kbr3e")
