@@ -1,11 +1,10 @@
 package me.gabryon.kodeedelivery.managers
 
-import ch.hippmann.godot.utilities.logging.debug
 import godot.Node
 import godot.Node3D
 import godot.annotation.*
-import godot.core.StringName
-import godot.core.asStringName
+import godot.core.Quaternion
+import godot.core.Vector3
 import godot.global.GD
 import godot.signals.signal
 import me.gabryon.kodeedelivery.actors.Dog
@@ -66,15 +65,27 @@ class Referee : Node() {
     private var currentDistance = FAR_AWAY
 
     @RegisterFunction
+    override fun _ready() {
+        // At the beginning of the game, Kodee's position must be the same as the one in the editor.
+        // However, we want to keep abs(kodee.pos - dog.pos) <= Vector.ONE * maxDogDistanceDogAndKodee true
+        val currentKodeeEditorPosition = kodeeOrbitPoint.quaternion
+        // The dog should always fall behind Kodee, let's project how much distant
+        val distanceFromKodee = Quaternion(Vector3.RIGHT, -maxDistanceDogAndKodee)
+        // The dog's position is given by the quaternion sum of Kodee and the projected distance from him.
+        dogOrbitPoint.quaternion = distanceFromKodee * currentKodeeEditorPosition
+    }
+
+    @RegisterFunction
     override fun _process(delta: Double) {
-        debugLine(silence = true) {
+        debugLine(silent = true) {
 
             val currentDistance by dogOrbitPoint.quaternion.angleTo(kodeeOrbitPoint.quaternion).also {
+                // Only emit the `distanceChanged` signal when the actual distance is different
+                // from the previous frame.
                 val newDistance = it.toDistance()
                 if (newDistance != currentDistance) {
-                    distanceChanged.emit(newDistance).also {
-                        currentDistance = newDistance
-                    }
+                    distanceChanged.emit(newDistance)
+                    currentDistance = newDistance
                 }
             }
 
@@ -83,7 +94,8 @@ class Referee : Node() {
 
             val speedDiff by (dog.angularSpeed - kodee.angularSpeed + overtakeSpeed)
 
-            val dogIsCloseToKodee = x < 2.0 / 3.0
+            val dogIsCloseToKodee by x < 2.0 / 3.0
+
             val kodeeIsFasterThanDog = speedDiff > 0
             val kodeeMadeProgressWhileDogWasClose = dogIsCloseToKodee && kodeeIsFasterThanDog
 
@@ -96,6 +108,7 @@ class Referee : Node() {
 
     /**
      * x \in [0, 1]
+     * x==1 when distanceDogKodee==1.6
      */
     private fun dogMaxSpeedCurve(x: Double): Double =
         GD.pow(x, dogMaxSpeedCurviness) * (kodee.maximumAngularSpeed - minMaxSpeedDog) + minMaxSpeedDog
@@ -130,10 +143,12 @@ class Referee : Node() {
     private fun dogSpeedFreedomCurve(x: Double): Double =
         GD.pow(GD.clamp(3 * x - 2, -1.0, 1.0), bounciness)
 
-    private fun Double.toDistance(): Int = when {
-        this > 1.6 -> FAR_AWAY
-        this in 1.0 .. 1.6 -> FAR
-        this in 0.5 .. 1.0 -> CLOSE
-        else -> VERY_CLOSE
+    private fun Double.toDistance(): Int {
+        return when (this) {
+            in 1.5.. Double.MAX_VALUE -> FAR_AWAY
+            in 1.0.. 1.5 -> FAR
+            in 0.4.. 1.0 -> CLOSE
+            else -> VERY_CLOSE
+        }
     }
 }

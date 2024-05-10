@@ -15,7 +15,8 @@ signals = [
     
 ]
 properties = [
-    score_manager,
+    referee,
+	score_manager,
 	small_mail_box_scene,
 	tall_mail_box_scene,
 	side_offset,
