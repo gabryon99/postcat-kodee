@@ -24,6 +24,10 @@ class LevelManager : Node() {
 
     @Export
     @RegisterProperty
+    lateinit var referee: Referee
+
+    @Export
+    @RegisterProperty
     lateinit var scoreManager: ScoreManager
 
     @Export
@@ -90,10 +94,11 @@ class LevelManager : Node() {
             kodee.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.angularSpeed = currentLevelLogic.maximumCharacterSpeed
-
             dog.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             dog.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             dog.angularSpeed = currentLevelLogic.maximumCharacterSpeed
+
+            referee.minMaxSpeedDog = dog.maximumAngularSpeed * 0.5
         }
 
         mailboxGenerator = MailBoxManager(
@@ -125,10 +130,13 @@ class LevelManager : Node() {
             currentLevelLogic = newLevelLogic
 
             kodee.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
-            kodee.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.angularSpeed = currentLevelLogic.maximumCharacterSpeed
 
             dog.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
+            dog.angularSpeed = currentLevelLogic.maximumCharacterSpeed
+
+            referee.minMaxSpeedDog = dog.maximumAngularSpeed * 0.5
+
             mailboxGenerator.changeLevelLogic(newLevelLogic)
         }
     }

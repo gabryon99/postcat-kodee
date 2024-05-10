@@ -1,5 +1,6 @@
 package me.gabryon.kodeedelivery.actors
 
+import ch.hippmann.godot.utilities.logging.debug
 import godot.*
 import godot.Input.isActionJustReleased
 import godot.annotation.*
@@ -21,6 +22,9 @@ class Kodee : Area3D(), Orbiting {
     private val animationTree by child<KodeeAnimation>("AnimationTree")
     private val resetPositionTimer by child<Timer>("ResetPositionTimer")
     private val resetStretchTimer by child<Timer>("ResetStretchTimer")
+
+    private val collisionShapeTop by child<CollisionShape3D>("CollisionShapeTop")
+    private val collisionShapeBottom by child<CollisionShape3D>("CollisionShapeBottom")
 
     @Export
     @RegisterProperty
@@ -117,14 +121,17 @@ class Kodee : Area3D(), Orbiting {
         // We already stretched up, so we do nothing...
         if (isStretched) return
 
-        isStretched = true
-        resetStretchTimer.start(stretchTimeout)
         stretchSound.play()
 
         // Run animations
         animationTree.changeAnimation("stretching".asStringName())
         animationTree.set("parameters/conditions/isStretchingUp".asStringName(), true)
         animationTree.set("parameters/conditions/isStretchingDown".asStringName(), false)
+
+        resetStretchTimer.start(stretchTimeout)
+        isStretched = true
+        collisionShapeTop.disabled = false
+        collisionShapeBottom.disabled = true
     }
 
     @RegisterFunction
@@ -135,7 +142,10 @@ class Kodee : Area3D(), Orbiting {
 
         animationTree.set("parameters/conditions/isStretchingUp".asStringName(), false)
         animationTree.set("parameters/conditions/isStretchingDown".asStringName(), true)
+
         isStretched = false
+        collisionShapeTop.disabled = true
+        collisionShapeBottom.disabled = false
     }
 
     private fun updateHorizontalPosition(movePoint: HorizontalMovePoint, reset: Boolean = false) {
@@ -157,7 +167,7 @@ class Kodee : Area3D(), Orbiting {
         }
 
         createTween()?.apply {
-            tweenProperty(this@Kodee, "position:x".asNodePath(), movePointNode.position.x, 0.25)
+            tweenProperty(this@Kodee, "position:x".asNodePath(), movePointNode.position.x, 0.3)
                 ?.setEase(Tween.EaseType.EASE_IN)
                 ?.setTrans(Tween.TransitionType.TRANS_LINEAR)
                 ?.from(position.x)
@@ -177,6 +187,7 @@ class Kodee : Area3D(), Orbiting {
         if (skipCollidingAreas.isEmpty() && !mailboxTouched) {
             comboLost.emit()
             decelerate()
+            // debug("Kodee is slowing down: angularSpeed=$angularSpeed, initialAngularSpeed=$initialAngularSpeed")
         }
 
         if (skipCollidingAreas.isEmpty() && mailboxTouched) {
@@ -194,6 +205,7 @@ class Kodee : Area3D(), Orbiting {
             area3D.isInGroup(MailBox.GROUP_NAME.asStringName()) -> {
                 mailboxTouched = true
                 comboChanged.emit(1)
+                accelerate()
             }
         }
     }

@@ -14,8 +14,8 @@ import me.gabryon.kodeedelivery.utility.infiniteSequence
  */
 data object Level1 : LevelLogic {
 
-    override val maximumCharacterSpeed: Double = 0.8
-    override val pointsToNextLevel: Int = 1500
+    override val maximumCharacterSpeed: Double = 0.3
+    override val pointsToNextLevel: Int = 400
 
     private var sameSideCounter = 0
     private var lastSide: MailboxPosition.Horizontal? = null
@@ -63,7 +63,7 @@ data object Level1 : LevelLogic {
  */
 data object Level2 : LevelLogic {
 
-    override val maximumCharacterSpeed = 1.4
+    override val maximumCharacterSpeed = 0.6
     override val pointsToNextLevel = Level1.pointsToNextLevel + 2500 // 4000
 
     private var sameSideCounter = 0
@@ -123,7 +123,7 @@ data object Level2 : LevelLogic {
  */
 data object Level3 : LevelLogic {
 
-    override val maximumCharacterSpeed = 1.8
+    override val maximumCharacterSpeed = 1.0
 
     override val pointsToNextLevel = -1 // Never reachable :)
 

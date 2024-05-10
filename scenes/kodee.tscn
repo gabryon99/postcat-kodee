@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cievqhh3ge716"]
+[gd_scene load_steps=61 format=3 uid="uid://cievqhh3ge716"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Kodee.gdj" id="1_dr7ii"]
 [ext_resource type="Texture2D" uid="uid://1qjqut1h5pxy" path="res://assets/2d/kodee/run/run-1-1.png" id="2_0mwef"]
@@ -24,8 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://c3k5flvg2peao" path="res://assets/2d/kodee/stretching-running/34.png" id="21_m2c07"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/KodeeAnimation.gdj" id="23_33ae6"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pmqch"]
-size = Vector3(2.08165e-12, 0.5, 0.5)
+[sub_resource type="Animation" id="Animation_g7uo5"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_6vfw2"]
 resource_name = "running"
@@ -97,7 +97,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_l1fns"]
 resource_name = "stretching"
-length = 3.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -111,30 +111,14 @@ tracks/0/keys = {
 "values": [ExtResource("14_6kpgc"), ExtResource("15_i04co"), ExtResource("16_vo7f3"), ExtResource("17_8dvvd")]
 }
 
-[sub_resource type="Animation" id="Animation_swv0s"]
-resource_name = "stretching-down"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("17_8dvvd"), ExtResource("16_vo7f3"), ExtResource("15_i04co"), ExtResource("14_6kpgc"), ExtResource("13_wd4sp")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eno3b"]
 _data = {
+"RESET": SubResource("Animation_g7uo5"),
 "running": SubResource("Animation_6vfw2"),
 "running-normal": SubResource("Animation_76wqq"),
 "running-scared": SubResource("Animation_x2504"),
 "running-stretched": SubResource("Animation_4vdj0"),
-"stretching": SubResource("Animation_l1fns"),
-"stretching-down": SubResource("Animation_swv0s")
+"stretching": SubResource("Animation_l1fns")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t1b8j"]
@@ -192,12 +176,13 @@ nodes/output/position = Vector2(310, 160)
 node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gwwl0"]
-animation = &"stretching-down"
+animation = &"stretching"
+play_mode = 1
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_bvdjg"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_nsnxx"]
-graph_offset = Vector2(-16.902, 108.087)
+graph_offset = Vector2(-182, 91)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_gwwl0")
 nodes/Animation/position = Vector2(30, 210)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_bvdjg")
@@ -255,7 +240,7 @@ advance_mode = 2
 advance_expression = "next_animation == 2 || next_animation == 3"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lvcbn"]
-states/End/position = Vector2(946, 347.5)
+states/End/position = Vector2(887, -19.5)
 states/Start/position = Vector2(225.5, -157.334)
 states/running/node = SubResource("AnimationNodeBlendTree_nrqv8")
 states/running/position = Vector2(445.802, -156.113)
@@ -270,7 +255,13 @@ states/stretch-down/position = Vector2(674.552, 22.65)
 states/stretching/node = SubResource("AnimationNodeBlendTree_t4gaw")
 states/stretching/position = Vector2(447.052, 23.4)
 transitions = ["stretching", "running-stretched", SubResource("AnimationNodeStateMachineTransition_ecabv"), "running-stretched", "stretch-down", SubResource("AnimationNodeStateMachineTransition_503w1"), "running-scared", "running-normal", SubResource("AnimationNodeStateMachineTransition_8xufi"), "running-scared", "running", SubResource("AnimationNodeStateMachineTransition_017p8"), "stretch-down", "running-scared", SubResource("AnimationNodeStateMachineTransition_ps6dj"), "Start", "running", SubResource("AnimationNodeStateMachineTransition_yvu02"), "running-normal", "running", SubResource("AnimationNodeStateMachineTransition_tlroy"), "running", "running-normal", SubResource("AnimationNodeStateMachineTransition_nm8k0"), "running-normal", "running-scared", SubResource("AnimationNodeStateMachineTransition_bklbs")]
-graph_offset = Vector2(-45.0757, -267.14)
+graph_offset = Vector2(208.924, -65.14)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wa8bu"]
+size = Vector3(0.2, 0.325439, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ukr85"]
+size = Vector3(0.2, 0.325439, 0.1)
 
 [node name="Kodee" type="Area3D" groups=["Player"]]
 script = ExtResource("1_dr7ii")
@@ -283,7 +274,7 @@ delta_speed = 0.25
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
 billboard = 1
 alpha_cut = 2
-texture = ExtResource("5_l2sb7")
+texture = ExtResource("14_6kpgc")
 
 [node name="ResetPositionTimer" type="Timer" parent="."]
 wait_time = 0.8
@@ -291,10 +282,6 @@ one_shot = true
 autostart = true
 
 [node name="ResetStretchTimer" type="Timer" parent="."]
-
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.167635, 2.08165e-12)
-shape = SubResource("BoxShape3D_pmqch")
 
 [node name="SwooshSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_250d6")
@@ -322,6 +309,15 @@ parameters/running-stretched/TimeScale/scale = 8.0
 parameters/stretch-down/TimeScale/scale = 8.0
 parameters/stretching/TimeScale/scale = 8.0
 script = ExtResource("23_33ae6")
+
+[node name="CollisionShapeBottom" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.323969, 0)
+shape = SubResource("BoxShape3D_wa8bu")
+
+[node name="CollisionShapeTop" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.325, 2.08165e-12)
+shape = SubResource("BoxShape3D_ukr85")
+disabled = true
 
 [connection signal="timeout" from="ResetPositionTimer" to="." method="on_reset_position_timeout"]
 [connection signal="timeout" from="ResetStretchTimer" to="." method="stretch_down"]
