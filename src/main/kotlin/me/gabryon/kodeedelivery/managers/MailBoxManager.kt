@@ -47,8 +47,7 @@ class MailBoxManager(
      */
     private fun createMailBox(
         mailboxScene: PackedScene,
-        positionOffset: Double,
-        localYRotation: Double
+        hozPosition: MailboxPosition.Horizontal,
     ): Node3D {
 
         val mailboxOrbitPoint = Node3D().apply {
@@ -63,6 +62,9 @@ class MailBoxManager(
 
         mailboxOrbitPoint.addChild(mailbox)
 
+        val localYRotation = hozPosition.selectBoxLocalYRotation()
+        val positionOffset = hozPosition.selectBoxOffset()
+
         // Then, connect the signal to the score manager.
         mailbox.apply {
             rotation = Vector3(0, localYRotation, 0)
@@ -73,25 +75,13 @@ class MailBoxManager(
         val mailboxScript = mailbox as? MailBox
         requireNotNull(mailboxScript) { "No MailBox script attached to the MailBox scene: $mailboxScene" }
         mailboxScript.scored.connect(scoreManager, ScoreManager::increaseScore)
+        mailboxScript.flightDirection = if (hozPosition == MailboxPosition.Horizontal.LEFT) {
+            MailBox.LEFT_FLIGHT_DIRECTION
+        } else {
+            MailBox.RIGHT_FLIGHT_DIRECTION
+        }
 
         return mailboxOrbitPoint
-    }
-
-    /**
-     * Remove mailboxes that are not visible anymore in the scene.
-     */
-    private fun despawnBoxes() {
-        var topBox = generatedBoxes.firstOrNull()
-        val kodeeRotation = kodee.getParentAs<Node3D>().quaternion
-
-        // A mailbox is not visible anymore after 45 degrees (PI/4)
-
-        while (topBox != null && (kodeeRotation.angleTo(topBox.mailboxParent.quaternion)) <= PI / 4.0) {
-            generatedBoxes.removeFirst() // Since we are peeking we remove the current box
-            // TODO: it would be a good idea creating a pool!
-            topBox.mailboxParent.callDeferred(topBox.mailboxParent::queueFree)
-            topBox = generatedBoxes.firstOrNull()
-        }
     }
 
     private fun spawnBoxes(deltaTime: Double) {
@@ -115,8 +105,6 @@ class MailBoxManager(
             }
 
             val scene = mailbox.ver.selectScene()
-            val offset = mailbox.hoz.selectBoxOffset()
-            val localYRotation = mailbox.hoz.selectBoxLocalYRotation()
 
             val kodeeOrbitPointQuat = kodee.getParentAs<Node3D>().quaternion
             val projectedMailBoxQuat = Quaternion(
@@ -125,7 +113,7 @@ class MailBoxManager(
             )
             val actualMailBoxQuat = kodeeOrbitPointQuat * projectedMailBoxQuat
 
-            val mailboxOrbitPoint = createMailBox(scene, offset, localYRotation)
+            val mailboxOrbitPoint = createMailBox(scene, mailbox.hoz)
             mailboxOrbitPoint.quaternion = actualMailBoxQuat
 
             // Add the mailbox to the world
@@ -144,8 +132,6 @@ class MailBoxManager(
     }
 
     fun runLevelLogic(deltaTime: Double) {
-        // Remove old boxes that are not visible anymore
-        despawnBoxes()
         // Generate new boxes for the current frame
         spawnBoxes(deltaTime)
         // Generate alerts for incoming mailboxes.
@@ -157,7 +143,7 @@ class MailBoxManager(
         warningSigns.forEach { it.visible = false }
 
         // 0: top-left, 1: top-right, 2: bottom-left, 3: bottom-right
-        var maximumBoxes = min(max(generatedBoxes.size, 0),2)
+        var maximumBoxes = min(max(generatedBoxes.size, 0), 2)
         var prevBox: MailBoxWrapper? = null
         var index = 0
 

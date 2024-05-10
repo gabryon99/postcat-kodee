@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8lojovbow0xr"]
+[gd_scene load_steps=13 format=3 uid="uid://b8lojovbow0xr"]
 
 [ext_resource type="ArrayMesh" uid="uid://bqqrnmbgj4gg7" path="res://assets/3d/mailbox/box-top.obj" id="1_3yc30"]
 [ext_resource type="Texture2D" uid="uid://b7uvxeeefqyt" path="res://assets/3d/mailbox/box-texture.png" id="2_k1fyu"]
 [ext_resource type="ArrayMesh" uid="uid://cjkq31vd65odc" path="res://assets/3d/mailbox/box-flag.obj" id="2_x4ufo"]
 [ext_resource type="ArrayMesh" uid="uid://cv3y4o1hcqoy1" path="res://assets/3d/mailbox/box-door.obj" id="3_lv00i"]
 [ext_resource type="AudioStream" uid="uid://d2g3qcreuga6n" path="res://assets/sounds/letterbox_close.mp3" id="4_jqcc2"]
+[ext_resource type="AudioStream" uid="uid://1etsnn8h6gsj" path="res://assets/sounds/whistle.mp3" id="6_ontyo"]
 
 [sub_resource type="Animation" id="Animation_21whi"]
 resource_name = "close_box"
@@ -78,9 +79,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_b3nwc")
 [node name="Box-sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_jqcc2")
 
+[node name="Box-fly-sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_ontyo")
+volume_db = -4.0
+
 [node name="Box-collision" type="Area3D" parent="." groups=["Box"]]
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box-collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032959, 0.843983, -0.0365906)
 shape = SubResource("BoxShape3D_t3tpu")
+
+[node name="Box-screen-notifier" type="VisibleOnScreenNotifier3D" parent="."]

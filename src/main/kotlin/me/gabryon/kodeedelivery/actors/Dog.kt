@@ -15,9 +15,9 @@ import me.gabryon.kodeedelivery.utility.child
 @RegisterClass
 class Dog: Node3D(), Orbiting {
 
-    @Export
-    @RegisterProperty
-    var rotationSpeed = Vector3(0, 90, 0)
+    companion object {
+        const val GROUP_NAME = "Boulder"
+    }
 
     @Export
     @RegisterProperty

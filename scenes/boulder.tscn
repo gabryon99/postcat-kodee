@@ -52,7 +52,6 @@ radius = 0.544379
 
 [node name="Dog" type="Node3D"]
 script = ExtResource("1_3ite4")
-rotation_speed = Vector3(90, 2.08165e-12, 2.08165e-12)
 
 [node name="DogPantingSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_gdhwy")
