@@ -24,7 +24,7 @@ data object DebugLevel0 : LevelLogic {
         )
         yieldBox(
             hoz = MailboxPosition.Horizontal.RIGHT,
-            ver = MailboxPosition.Vertical.BOTTOM,
+            ver = MailboxPosition.Vertical.TOP,
             distanceFromPrevious = 0.0,
         )
     }
