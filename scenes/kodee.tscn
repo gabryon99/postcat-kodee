@@ -274,7 +274,7 @@ delta_speed = 0.25
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
 billboard = 1
 alpha_cut = 2
-texture = ExtResource("5_l2sb7")
+texture = ExtResource("3_h0sru")
 
 [node name="ResetPositionTimer" type="Timer" parent="."]
 wait_time = 0.8
