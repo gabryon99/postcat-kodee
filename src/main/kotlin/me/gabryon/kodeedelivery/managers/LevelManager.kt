@@ -10,16 +10,20 @@ import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.levels.*
 import me.gabryon.kodeedelivery.utility.child
 
+
 @RegisterClass
 class LevelManager : Node() {
 
     data class NextLevel(val newLevel: Int, val newLevelLogic: LevelLogic)
 
     //region Level Management
-    private val levels: Array<LevelLogic> = arrayOf(
-        Level1,
-        Level2,
-        Level3
+    private var levels: Array<LevelLogic> = arrayOf(
+        Level1(),
+        Level2(),
+        Level3(),
+        Level4(),
+        Level5(),
+        Level6()
     )
 
     @Export
@@ -42,7 +46,8 @@ class LevelManager : Node() {
     @RegisterProperty
     var sideOffset: Double = 0.5
 
-    private var currentLevel: Int = -1
+    private var currentLevel = -1
+    private var loops = 0
 
     private lateinit var currentLevelLogic: LevelLogic
     private lateinit var mailboxGenerator: MailBoxManager
@@ -64,12 +69,15 @@ class LevelManager : Node() {
     @Export
     @RegisterProperty
     lateinit var topLeftWarning: TextureRect
+
     @Export
     @RegisterProperty
     lateinit var bottomLeftWarning: TextureRect
+
     @Export
     @RegisterProperty
     lateinit var topRightWarning: TextureRect
+
     @Export
     @RegisterProperty
     lateinit var bottomRightWarning: TextureRect
@@ -78,7 +86,6 @@ class LevelManager : Node() {
 
     val pointsToNextLevel: Int
         get() = currentLevelLogic.pointsToNextLevel
-
 
     private val nextLevelSound by child<AudioStreamPlayer3D>("NextLevelSound")
 
@@ -120,6 +127,24 @@ class LevelManager : Node() {
 
     @RegisterFunction
     fun onNextLevel() {
+
+        if (currentLevel == levels.size) {
+            currentLevel = -1
+            loops += 1
+
+            // Re-initialize the array of levels
+            if (loops == 1) {
+                levels = arrayOf(
+                    Level1(MAXIMUM_CHARACTER_SPEED),
+                    Level2(MAXIMUM_CHARACTER_SPEED),
+                    Level3(MAXIMUM_CHARACTER_SPEED),
+                    Level4(MAXIMUM_CHARACTER_SPEED),
+                    Level5(MAXIMUM_CHARACTER_SPEED),
+                    Level6(MAXIMUM_CHARACTER_SPEED)
+                )
+            }
+        }
+
         levels.nextLevel(currentLevel).run {
             currentLevel = newLevel
 
@@ -135,7 +160,7 @@ class LevelManager : Node() {
             dog.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             dog.angularSpeed = currentLevelLogic.maximumCharacterSpeed
 
-            referee.minMaxSpeedDog = dog.maximumAngularSpeed * 0.5
+            referee.minMaxSpeedDog = dog.maximumAngularSpeed * 0.9
 
             mailboxGenerator.changeLevelLogic(newLevelLogic)
         }
