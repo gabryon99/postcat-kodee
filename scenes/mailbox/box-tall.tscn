@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/MailBox.gdj" id="1_ys8of"]
 [ext_resource type="ArrayMesh" uid="uid://c20bejvjw1yd5" path="res://assets/3d/mailbox/box-base.obj" id="2_1cq1k"]
 [ext_resource type="Texture2D" uid="uid://b7uvxeeefqyt" path="res://assets/3d/mailbox/box-texture.png" id="2_lfr3v"]
-[ext_resource type="PackedScene" uid="uid://b8lojovbow0xr" path="res://scenes/mailbox/box-top.tscn" id="3_0pr1y"]
+[ext_resource type="PackedScene" uid="uid://d1ovflyohxdpt" path="res://scenes/mailbox/box-top-pink.tscn" id="5_28et4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cv4ji"]
 resource_name = "mailbox-texture"
@@ -35,8 +35,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.0
 mesh = ExtResource("2_1cq1k")
 surface_material_override/0 = SubResource("StandardMaterial3D_dgt71")
 
-[node name="Box-top" parent="." instance=ExtResource("3_0pr1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10401, 0)
+[node name="Box-top" parent="." instance=ExtResource("5_28et4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.01572, 2.08165e-12)
 
 [node name="Box-skip-area" type="Area3D" parent="." groups=["Box-skip-area"]]
 collision_layer = 3

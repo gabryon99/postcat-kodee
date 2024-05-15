@@ -35,6 +35,7 @@ mesh = ExtResource("2_1cq1k")
 surface_material_override/0 = SubResource("StandardMaterial3D_snhn8")
 
 [node name="Box-top" parent="." instance=ExtResource("3_0pr1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0892403, 0)
 
 [node name="Box-skip-area" type="Area3D" parent="." groups=["Box-skip-area"]]
 collision_layer = 3
