@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccloja1xf3wpi"]
+[gd_scene load_steps=15 format=3 uid="uid://ccloja1xf3wpi"]
 
 [ext_resource type="Texture2D" uid="uid://cd8mytusnu8mp" path="res://assets/ui/bg-alt.png" id="1_ex0py"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartScreen.gdj" id="1_pmpft"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/OpenAboutButton.gdj" id="7_auahq"]
 [ext_resource type="Theme" uid="uid://cf4fohto4wav8" path="res://resources/theme.tres" id="9_7qd30"]
 [ext_resource type="Texture2D" uid="uid://dtxm2qqngw8nv" path="res://assets/ui/personal-record-bg.png" id="9_x276a"]
-[ext_resource type="Texture2D" uid="uid://ohm1yvqp8lw3" path="res://assets/ui/jb-wide-logo.png" id="10_f2qp5"]
 
 [sub_resource type="Animation" id="Animation_oxan6"]
 resource_name = "start_game"
@@ -62,10 +61,6 @@ _data = {
 font = ExtResource("4_avjnp")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbr3e"]
-
-[sub_resource type="Theme" id="Theme_a7lm1"]
 
 [node name="StartScene" type="Control"]
 layout_mode = 3
@@ -135,7 +130,7 @@ anchor_bottom = 0.5
 offset_left = -360.0
 offset_top = -528.0
 offset_right = 349.0
-offset_bottom = -84.9969
+offset_bottom = -84.9974
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_rtvin")
@@ -145,19 +140,21 @@ position = Vector2(678, 506)
 speed = -8.0
 
 [node name="LowerPart" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -390.0
+offset_top = -384.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("9_7qd30")
 theme_override_constants/margin_left = 80
 theme_override_constants/margin_right = 80
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LowerPart"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
@@ -175,23 +172,3 @@ disabled = true
 text = "About
 "
 script = ExtResource("7_auahq")
-
-[node name="Sep" type="Panel" parent="LowerPart/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 14)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_kbr3e")
-
-[node name="JetBrainsLogo" type="TextureRect" parent="LowerPart/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 64)
-layout_mode = 2
-size_flags_vertical = 8
-theme = SubResource("Theme_a7lm1")
-texture = ExtResource("10_f2qp5")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Sep2" type="Panel" parent="LowerPart/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 14)
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxEmpty_kbr3e")
