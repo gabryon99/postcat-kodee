@@ -168,7 +168,8 @@ script = ExtResource("6_d48si")
 [node name="AboutButton" type="Button" parent="LowerPart/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("9_7qd30")
-disabled = true
 text = "About
 "
 script = ExtResource("7_auahq")
+
+[connection signal="button_down" from="LowerPart/VBoxContainer/AboutButton" to="LowerPart/VBoxContainer/AboutButton" method="open_about_link"]
