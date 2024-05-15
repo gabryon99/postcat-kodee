@@ -1,6 +1,5 @@
 package me.gabryon.kodeedelivery.actors
 
-import ch.hippmann.godot.utilities.logging.debug
 import godot.*
 import godot.Input.isActionJustReleased
 import godot.annotation.*
@@ -14,7 +13,7 @@ class Kodee : Area3D(), Orbiting {
 
     companion object {
         const val GROUP_NAME = "Player"
-        private const val HEIGHT_DELTA = 0.322
+        private const val MOVEMENT_DURATION_TIME = 0.1
     }
 
     enum class HorizontalMovePoint { LEFT, CENTER, RIGHT }
@@ -111,7 +110,8 @@ class Kodee : Area3D(), Orbiting {
     fun onSwipeToLeft() {
         updateHorizontalPosition(HorizontalMovePoint.LEFT, reset = true)
     }
-        @RegisterFunction
+
+    @RegisterFunction
     fun onSwipeToRight() {
         updateHorizontalPosition(HorizontalMovePoint.RIGHT, reset = true)
     }
@@ -167,7 +167,7 @@ class Kodee : Area3D(), Orbiting {
         }
 
         createTween()?.apply {
-            tweenProperty(this@Kodee, "position:x".asNodePath(), movePointNode.position.x, 0.3)
+            tweenProperty(this@Kodee, "position:x".asNodePath(), movePointNode.position.x, MOVEMENT_DURATION_TIME)
                 ?.setEase(Tween.EaseType.EASE_IN)
                 ?.setTrans(Tween.TransitionType.TRANS_LINEAR)
                 ?.from(position.x)

@@ -5,16 +5,14 @@ import godot.annotation.Export
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
-import godot.core.Vector3
+import godot.annotation.RegisterSignal
 import godot.core.asStringName
-import me.gabryon.kodeedelivery.managers.Scene
-import me.gabryon.kodeedelivery.managers.ScoreStorage
-import me.gabryon.kodeedelivery.managers.sceneManager
+import godot.signals.signal
 import me.gabryon.kodeedelivery.utility.child
 
 @RegisterClass
 class Dog: Node3D(), Orbiting {
-
+    // -68.8 -180, 180
     companion object {
         const val GROUP_NAME = "Boulder"
     }
@@ -23,7 +21,10 @@ class Dog: Node3D(), Orbiting {
     @RegisterProperty
     lateinit var camera: Camera3D
 
-//    private val body by child<Area3D>("Body")
+    @RegisterSignal
+    val onKodeeTouched by signal()
+
+    private val animationPlayer by child<AnimationPlayer>()
 
     override var angularSpeed: Double = 0.0
     override var initialAngularSpeed: Double = 1.0
@@ -31,13 +32,7 @@ class Dog: Node3D(), Orbiting {
     override var deltaSpeed: Double = 1.0
 
     @RegisterFunction
-    override fun _ready() {
-//        body.areaEntered.connect(this, Dog::onAreaEnter)
-    }
-
-    @RegisterFunction
     override fun _process(delta: Double) {
-        // body.rotationDegrees += rotationSpeed * delta
         //val up = (globalPosition - (getParent()!! as Node3D).globalPosition)
         //lookAt(camera.globalPosition, up.normalized(), useModelFront = true)
     }
@@ -50,10 +45,14 @@ class Dog: Node3D(), Orbiting {
     @RegisterFunction
     fun onAreaEntered(area3D: Area3D) {
         // When the dog catches Kodee, the game is over.
-        // Save maximum user score and change to the next scene
+        // Save max user score and change to the next scene
         if (area3D.isInGroup(Kodee.GROUP_NAME.asStringName())) {
-            ScoreStorage.saveUserScoreToDevice()
-            sceneManager.changeTo(scene = Scene.EndGame)
+           onKodeeTouched.emit()
         }
+    }
+
+    @RegisterFunction
+    fun barkAndJump() {
+        animationPlayer.play("bark_and_jump".asStringName())
     }
 }

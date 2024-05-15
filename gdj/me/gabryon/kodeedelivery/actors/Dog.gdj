@@ -15,7 +15,7 @@ supertypes = [
 	me.gabryon.kodeedelivery.actors.HasParent
 ]
 signals = [
-	
+	on_kodee_touched
 ]
 properties = [
 	camera,
@@ -25,8 +25,8 @@ properties = [
 	delta_speed
 ]
 functions = [
-	_ready,
 	_process,
 	_physics_process,
-	on_area_entered
+	on_area_entered,
+	bark_and_jump
 ]
