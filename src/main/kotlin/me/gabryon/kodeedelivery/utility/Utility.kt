@@ -7,6 +7,8 @@ import godot.global.GD.abs
 import kotlin.experimental.ExperimentalTypeInference
 import kotlin.reflect.KProperty
 
+const val ABOUT_LINK = "https://github.com/gabryon99/kodee-delivery/blob/main/ABOUT.md"
+
 /**
  * Adds two integers safely, ensuring no arithmetic overflow occurs.
  *
