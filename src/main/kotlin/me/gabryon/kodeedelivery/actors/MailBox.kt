@@ -1,6 +1,5 @@
 package me.gabryon.kodeedelivery.actors
 
-import ch.hippmann.godot.utilities.logging.debug
 import godot.*
 import godot.annotation.*
 import godot.core.Vector3
@@ -76,7 +75,6 @@ class MailBox : Node3D() {
 
     @RegisterFunction
     fun onScreenExit() {
-        debug("bye bye from the mailbox!")
         queueFree()
     }
 }

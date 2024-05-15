@@ -1,6 +1,5 @@
 package me.gabryon.kodeedelivery.managers
 
-import ch.hippmann.godot.utilities.logging.debug
 import godot.Node3D
 import godot.PackedScene
 import godot.TextureRect
@@ -15,6 +14,7 @@ import me.gabryon.kodeedelivery.actors.Kodee
 import me.gabryon.kodeedelivery.actors.MailBox
 import me.gabryon.kodeedelivery.levels.LevelLogic
 import me.gabryon.kodeedelivery.levels.MailboxPosition
+import me.gabryon.kodeedelivery.utility.debug
 import me.gabryon.kodeedelivery.utility.getParentAs
 import kotlin.math.absoluteValue
 import kotlin.math.max
