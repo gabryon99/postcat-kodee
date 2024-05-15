@@ -1,13 +1,9 @@
 package me.gabryon.kodeedelivery.utility
 
-import ch.hippmann.godot.utilities.logging.debug
 import godot.FileAccess
 import godot.core.Quaternion
 import godot.global.GD
 import godot.global.GD.abs
-import godot.global.GD.fmod
-import godot.util.PI
-import godot.util.TAU
 import kotlin.experimental.ExperimentalTypeInference
 import kotlin.reflect.KProperty
 
@@ -65,6 +61,10 @@ inline fun <T> fileAccess(path: String, modes: FileAccess.ModeFlags, body: FileA
     } finally {
         file?.close()
     }
+}
+
+fun debug(message: String) {
+    GD.prints("[Debug] :: $message")
 }
 
 inline fun <T> debugLine(silent: Boolean = false, writer: DebugLineSession.() -> T): T {
