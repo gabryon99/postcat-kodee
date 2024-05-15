@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1ovflyohxdpt"]
+
+[ext_resource type="ArrayMesh" uid="uid://cjkq31vd65odc" path="res://assets/3d/mailbox/box-flag.obj" id="2_3mebq"]
+[ext_resource type="Texture2D" uid="uid://b7uvxeeefqyt" path="res://assets/3d/mailbox/box-texture.png" id="3_qimmy"]
+[ext_resource type="AudioStream" uid="uid://d2g3qcreuga6n" path="res://assets/sounds/letterbox_close.mp3" id="4_k7p6a"]
+[ext_resource type="AudioStream" uid="uid://1etsnn8h6gsj" path="res://assets/sounds/whistle.mp3" id="5_g7k76"]
+[ext_resource type="PackedScene" uid="uid://cuw2ollum3l8i" path="res://scenes/mailbox/box-door-pink.tscn" id="5_greih"]
+[ext_resource type="PackedScene" uid="uid://c2aoxvfttky0v" path="res://scenes/mailbox/box-home-pink.tscn" id="6_xoke6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lllub"]
+resource_name = "mailbox-texture"
+shading_mode = 0
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("3_qimmy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0cehp"]
+size = Vector3(0.550537, 0.334839, 0.831116)
+
+[sub_resource type="Animation" id="Animation_21whi"]
+resource_name = "close_box"
+length = 0.3
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box-door")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.707107, 2.4663e-16, 2.4663e-16, 0.707107, 0.3, 1, 0, -1.5246e-23, 3.48787e-16, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Box-flag")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1.74393e-16, 1, -1.74393e-16, 7.54979e-08, 0.3, 1, 5.33851e-08, 0.707107, 0.707107, 5.33851e-08)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r7cie"]
+_data = {
+"close_box": SubResource("Animation_21whi")
+}
+
+[node name="Box-top" type="Node3D" groups=["Box"]]
+
+[node name="Box-flag" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 3.48786e-16, 1.50996e-07, 3.48786e-16, 1, -3.48786e-16, -1.50996e-07, -3.48786e-16, -1, -0.1, 0.95, -0.145)
+mesh = ExtResource("2_3mebq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_lllub")
+
+[node name="Box-sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_k7p6a")
+volume_db = -10.0
+
+[node name="Box-fly-sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_g7k76")
+volume_db = -10.0
+
+[node name="Box-collision" type="Area3D" parent="." groups=["Box"]]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box-collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032959, 0.843983, -0.0365906)
+shape = SubResource("BoxShape3D_0cehp")
+
+[node name="Box-screen-notifier" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="Box-door" parent="." instance=ExtResource("5_greih")]
+transform = Transform3D(1, -6.97575e-16, -3.0492e-23, 0, -4.37114e-08, 1, -6.97575e-16, -1, -4.37114e-08, 2.08165e-12, 0.909712, -0.189788)
+
+[node name="Box-anim-player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r7cie")
+}
+
+[node name="box-top-pink" parent="." instance=ExtResource("6_xoke6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
