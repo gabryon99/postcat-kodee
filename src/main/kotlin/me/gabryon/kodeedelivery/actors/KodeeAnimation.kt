@@ -1,6 +1,5 @@
 package me.gabryon.kodeedelivery.actors
 
-import ch.hippmann.godot.utilities.logging.debug
 import godot.AnimationNodeStateMachinePlayback
 import godot.AnimationTree
 import godot.annotation.Export
@@ -18,7 +17,6 @@ class KodeeAnimation : AnimationTree() {
     var nextAnimation = Referee.FAR_AWAY
 
     fun changeAnimation(animationName: StringName) {
-        debug("Changing animation to: $animationName")
         val stateMachine = get("parameters/playback".asStringName()) as AnimationNodeStateMachinePlayback
         stateMachine.travel(animationName)
     }
