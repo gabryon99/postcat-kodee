@@ -255,7 +255,7 @@ states/stretch-down/position = Vector2(674.552, 22.65)
 states/stretching/node = SubResource("AnimationNodeBlendTree_t4gaw")
 states/stretching/position = Vector2(447.052, 23.4)
 transitions = ["stretching", "running-stretched", SubResource("AnimationNodeStateMachineTransition_ecabv"), "running-stretched", "stretch-down", SubResource("AnimationNodeStateMachineTransition_503w1"), "running-scared", "running-normal", SubResource("AnimationNodeStateMachineTransition_8xufi"), "running-scared", "running", SubResource("AnimationNodeStateMachineTransition_017p8"), "stretch-down", "running-scared", SubResource("AnimationNodeStateMachineTransition_ps6dj"), "Start", "running", SubResource("AnimationNodeStateMachineTransition_yvu02"), "running-normal", "running", SubResource("AnimationNodeStateMachineTransition_tlroy"), "running", "running-normal", SubResource("AnimationNodeStateMachineTransition_nm8k0"), "running-normal", "running-scared", SubResource("AnimationNodeStateMachineTransition_bklbs")]
-graph_offset = Vector2(208.924, -65.14)
+graph_offset = Vector2(-161.076, -378.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wa8bu"]
 size = Vector3(0.2, 0.325439, 0.1)
@@ -272,7 +272,6 @@ delta_speed = 0.25
 
 [node name="Sprite" type="Sprite3D" parent="." groups=["Player"]]
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
-billboard = 1
 alpha_cut = 2
 texture = ExtResource("3_h0sru")
 
@@ -306,8 +305,8 @@ parameters/running/TimeScale/scale = 8.0
 parameters/running-normal/TimeScale/scale = 8.0
 parameters/running-scared/TimeScale/scale = 8.0
 parameters/running-stretched/TimeScale/scale = 8.0
-parameters/stretch-down/TimeScale/scale = 8.0
-parameters/stretching/TimeScale/scale = 8.0
+parameters/stretch-down/TimeScale/scale = 15.0
+parameters/stretching/TimeScale/scale = 15.0
 script = ExtResource("23_33ae6")
 
 [node name="CollisionShapeBottom" type="CollisionShape3D" parent="."]
@@ -318,6 +317,9 @@ shape = SubResource("BoxShape3D_wa8bu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.325, 2.08165e-12)
 shape = SubResource("BoxShape3D_ukr85")
 disabled = true
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.390436, -0.607586, -0.421954, 0.780871, 0.822593, 0.843908)
 
 [connection signal="timeout" from="ResetPositionTimer" to="." method="on_reset_position_timeout"]
 [connection signal="timeout" from="ResetStretchTimer" to="." method="stretch_down"]
