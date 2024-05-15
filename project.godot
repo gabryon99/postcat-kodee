@@ -15,8 +15,8 @@ config/description="A Kotlin-written game for the KotlinConf of 2024."
 config/version="0.0.1"
 run/main_scene="res://scenes/start-scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/bg_color=Color(0.478431, 0.737255, 0.976471, 1)
-boot_splash/image="res://assets/ui/splash.png"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://assets/launch_screens/Black.png"
 config/icon="res://assets/icons/ios/1024.png"
 run/bg_color=Color(0.478431, 0.737255, 0.976471, 1)
 run/fullsize=true
@@ -24,7 +24,6 @@ run/image="res://assets/jetbrains-logo.png"
 
 [autoload]
 
-UtilDispatcherSingleton="*res://gdj/dependencies/utilities/ch/hippmann/godot/utilities/coroutines/UTILDispatcherSingleton.gdj"
 SceneManagement="*res://gdj/me/gabryon/kodeedelivery/managers/SceneManager.gdj"
 
 [display]
