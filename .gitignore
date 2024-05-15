@@ -12,3 +12,8 @@ builds/
 # Ignore embedded jre
 jre
 jre-arm64
+
+# Graal Related Compilation files
+graal_isolate.h
+graal_isolate_dynamic.h
+reports/
