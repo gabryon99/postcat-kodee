@@ -11,8 +11,8 @@ import godot.signals.signal
 import me.gabryon.kodeedelivery.utility.child
 
 @RegisterClass
-class Dog: Node3D(), Orbiting {
-    // -68.8 -180, 180
+class Dog : Node3D(), Orbiting {
+
     companion object {
         const val GROUP_NAME = "Boulder"
     }
@@ -24,7 +24,7 @@ class Dog: Node3D(), Orbiting {
     @RegisterSignal
     val onKodeeTouched by signal()
 
-    private val animationPlayer by child<AnimationPlayer>()
+    private val animationTree by child<AnimationTree>()
 
     override var angularSpeed: Double = 0.0
     override var initialAngularSpeed: Double = 1.0
@@ -47,12 +47,12 @@ class Dog: Node3D(), Orbiting {
         // When the dog catches Kodee, the game is over.
         // Save max user score and change to the next scene
         if (area3D.isInGroup(Kodee.GROUP_NAME.asStringName())) {
-           onKodeeTouched.emit()
+            onKodeeTouched.emit()
         }
     }
 
     @RegisterFunction
     fun barkAndJump() {
-        animationPlayer.play("bark_and_jump".asStringName())
+        animationTree.set("parameters/conditions/caughtKodee".asStringName(), true)
     }
 }

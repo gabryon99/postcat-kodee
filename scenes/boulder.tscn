@@ -1,19 +1,18 @@
-[gd_scene load_steps=26 format=3 uid="uid://cwcoujfpirj1h"]
+[gd_scene load_steps=33 format=3 uid="uid://cwcoujfpirj1h"]
 
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/Dog.gdj" id="1_3ite4"]
 [ext_resource type="AudioStream" uid="uid://b3oqnkhlx5ru8" path="res://assets/sounds/fork_media_cartoon_dog_bark_growl.mp3" id="3_goh8w"]
 [ext_resource type="ArrayMesh" uid="uid://cslxg61u25a54" path="res://assets/3d/new-dog/outlin.obj" id="4_ctvo1"]
-[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/actors/SinusoidalAnimation.gdj" id="4_d2d3q"]
 [ext_resource type="ArrayMesh" uid="uid://dmhl6koy0d368" path="res://assets/3d/new-dog/bg-details.obj" id="6_dxhxw"]
-[ext_resource type="Texture2D" uid="uid://5ohyo6yd745c" path="res://assets/3d/dog/r-paw.png" id="7_uam4j"]
 [ext_resource type="AudioStream" uid="uid://bf0j24y3h122x" path="res://assets/sounds/dog_panting.mp3" id="8_gdhwy"]
-[ext_resource type="Texture2D" uid="uid://b3cpkyxllkeuu" path="res://assets/3d/dog/fg-details-1.png" id="8_gxrsw"]
 [ext_resource type="Texture2D" uid="uid://casg0nfnwxfhu" path="res://assets/3d/dog/outline.png" id="9_cb8bw"]
-[ext_resource type="Texture2D" uid="uid://qprrxo84ak7p" path="res://assets/3d/new-dog/face.png" id="9_k8a7q"]
 [ext_resource type="AudioStream" uid="uid://b8k7jg4sqcg3m" path="res://assets/sounds/slurp.mp3" id="9_uwqhk"]
 [ext_resource type="ArrayMesh" uid="uid://c76st36qumeyu" path="res://assets/3d/new-dog/egg.obj" id="10_ehdsy"]
-[ext_resource type="Texture2D" uid="uid://d0bygi4vest0b" path="res://assets/3d/dog/l-paw.png" id="10_tenga"]
+[ext_resource type="Texture2D" uid="uid://cqhfw8cqxubd0" path="res://assets/3d/dog/anim/dog-1.png" id="10_uw65b"]
+[ext_resource type="Texture2D" uid="uid://dsavc1jvgi75c" path="res://assets/3d/dog/anim/dog-2.png" id="11_6jvo6"]
 [ext_resource type="Texture2D" uid="uid://33kj44fpq4mx" path="res://assets/3d/dog/bg-details.png" id="11_8mju0"]
+[ext_resource type="Texture2D" uid="uid://5uka37g7s2un" path="res://assets/3d/dog/anim/dog-3.png" id="12_54gch"]
+[ext_resource type="Texture2D" uid="uid://ci23t2pc2x3ha" path="res://assets/3d/dog/anim/dog-4.png" id="13_enuxd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_encj2"]
 transparency = 1
@@ -25,31 +24,50 @@ transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("11_8mju0")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02w8m"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("8_gxrsw")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fabh7"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("9_k8a7q")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8pj4"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("10_tenga")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igwys"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("7_uam4j")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy8kl"]
 albedo_color = Color(0.968627, 0.784314, 0.305882, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_urjgv"]
 radius = 0.544379
+
+[sub_resource type="Animation" id="Animation_2l21j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.08165e-12, 2.08165e-12, 1.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BarkSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("face:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_uw65b")]
+}
 
 [sub_resource type="Animation" id="Animation_u6afo"]
 resource_name = "bark_and_jump"
@@ -79,38 +97,79 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_2l21j"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_2fyjj"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("face:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(2.08165e-12, 2.08165e-12, 1.6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BarkSound:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false]
+"values": [ExtResource("10_uw65b"), ExtResource("11_6jvo6"), ExtResource("12_54gch"), ExtResource("13_enuxd")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r7342"]
 _data = {
 "RESET": SubResource("Animation_2l21j"),
-"bark_and_jump": SubResource("Animation_u6afo")
+"bark_and_jump": SubResource("Animation_u6afo"),
+"idle": SubResource("Animation_2fyjj")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e2nds"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_wp4ve"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_n4yo5"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_e2nds")
+nodes/Animation/position = Vector2(242.5, 179.5)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_wp4ve")
+nodes/TimeScale/position = Vector2(450, 170)
+nodes/output/position = Vector2(650, 130)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bsvr5"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_boavq"]
+animation = &"bark_and_jump"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_naxss"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_xkq0q"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_n5xtn"]
+graph_offset = Vector2(-635, 62)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_boavq")
+nodes/Animation/position = Vector2(-170, 330)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_bsvr5")
+"nodes/Animation 2/position" = Vector2(-300, 130)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_naxss")
+nodes/Blend2/position = Vector2(150, 70)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_xkq0q")
+nodes/TimeScale/position = Vector2(-110, 110)
+nodes/output/position = Vector2(480, 130)
+node_connections = [&"Blend2", 0, &"TimeScale", &"Blend2", 1, &"Animation", &"TimeScale", 0, &"Animation 2", &"output", 0, &"Blend2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q42km"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rotd2"]
+advance_mode = 2
+advance_condition = &"caughtKodee"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_r7wp8"]
+"states/idle 2/node" = SubResource("AnimationNodeBlendTree_n4yo5")
+"states/idle 2/position" = Vector2(367, 126)
+states/jump/node = SubResource("AnimationNodeBlendTree_n5xtn")
+states/jump/position = Vector2(582.5, 108)
+transitions = ["Start", "idle 2", SubResource("AnimationNodeStateMachineTransition_q42km"), "idle 2", "jump", SubResource("AnimationNodeStateMachineTransition_rotd2")]
 
 [node name="Dog" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 1.6)
@@ -140,28 +199,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.0
 mesh = ExtResource("6_dxhxw")
 surface_material_override/0 = SubResource("StandardMaterial3D_5qt2q")
 
-[node name="fg-details" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.516156, 2.08165e-12, 2.08165e-12)
-mesh = ExtResource("4_ctvo1")
-surface_material_override/0 = SubResource("StandardMaterial3D_02w8m")
-
-[node name="face" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.478197, 2.08165e-12, 2.08165e-12)
-mesh = ExtResource("4_ctvo1")
-surface_material_override/0 = SubResource("StandardMaterial3D_fabh7")
-
-[node name="left-paw" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.522496, 2.08165e-12, 2.08165e-12)
-mesh = ExtResource("4_ctvo1")
-surface_material_override/0 = SubResource("StandardMaterial3D_u8pj4")
-script = ExtResource("4_d2d3q")
-
-[node name="right-paw" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.522496, 2.08165e-12, 2.08165e-12)
-mesh = ExtResource("4_ctvo1")
-surface_material_override/0 = SubResource("StandardMaterial3D_igwys")
-script = ExtResource("4_d2d3q")
-speed = -0.002
+[node name="face" type="Sprite3D" parent="."]
+transform = Transform3D(-4.80825e-09, 3.83666e-17, 0.11, 3.83666e-17, 0.11, -3.83666e-17, -0.11, 3.83666e-17, -4.80825e-09, 0.481361, 0.211741, 0)
+texture = ExtResource("10_uw65b")
 
 [node name="egg" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
@@ -179,5 +219,14 @@ shape = SubResource("SphereShape3D_urjgv")
 libraries = {
 "": SubResource("AnimationLibrary_r7342")
 }
+speed_scale = 8.0
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_r7wp8")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/caughtKodee = false
+"parameters/idle 2/TimeScale/scale" = 8.0
+parameters/jump/Blend2/blend_amount = 0.11
+parameters/jump/TimeScale/scale = 4.0
 
 [connection signal="area_entered" from="egg/Body" to="." method="on_area_entered"]
