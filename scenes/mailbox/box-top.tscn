@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8lojovbow0xr"]
+[gd_scene load_steps=14 format=3 uid="uid://b8lojovbow0xr"]
 
 [ext_resource type="ArrayMesh" uid="uid://bqqrnmbgj4gg7" path="res://assets/3d/mailbox/box-top.obj" id="1_3yc30"]
 [ext_resource type="Texture2D" uid="uid://b7uvxeeefqyt" path="res://assets/3d/mailbox/box-texture.png" id="2_k1fyu"]
@@ -6,6 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cv3y4o1hcqoy1" path="res://assets/3d/mailbox/box-door.obj" id="3_lv00i"]
 [ext_resource type="AudioStream" uid="uid://d2g3qcreuga6n" path="res://assets/sounds/letterbox_close.mp3" id="4_jqcc2"]
 [ext_resource type="AudioStream" uid="uid://1etsnn8h6gsj" path="res://assets/sounds/whistle.mp3" id="6_ontyo"]
+[ext_resource type="PackedScene" uid="uid://cmqwtl1ar5hl" path="res://scenes/box_stars.tscn" id="7_r0t5e"]
 
 [sub_resource type="Animation" id="Animation_21whi"]
 resource_name = "close_box"
@@ -24,6 +25,25 @@ tracks/1/path = NodePath("Box-flag")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 1.74393e-16, 1, -1.74393e-16, 7.54979e-08, 0.3, 1, 5.33851e-08, 0.707107, 0.707107, 5.33851e-08)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box-flag2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array()
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Box-flag2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5708, 3.48787e-16, 3.48787e-16)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r7cie"]
 _data = {
@@ -70,6 +90,12 @@ mesh = ExtResource("2_x4ufo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_6ex87")
 
+[node name="Box-flag2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.95, -0.145)
+mesh = ExtResource("2_x4ufo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ex87")
+
 [node name="Box-door" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, -6.97575e-16, -3.0492e-23, 0, -4.37114e-08, 1, -6.97575e-16, -1, -4.37114e-08, 2.08165e-12, 0.909712, -0.189788)
 mesh = ExtResource("3_lv00i")
@@ -92,3 +118,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032959, 0.843983, -0.0365
 shape = SubResource("BoxShape3D_t3tpu")
 
 [node name="Box-screen-notifier" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="Box-stars" parent="." instance=ExtResource("7_r0t5e")]

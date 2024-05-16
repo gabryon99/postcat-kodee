@@ -41,6 +41,7 @@ class MailBox : Node3D() {
     private val collisionArea by child<Area3D>("Box-top/Box-collision")
     private val animationPlayer by child<AnimationPlayer>("Box-top/Box-anim-player")
     private val screeNotifier by child<VisibleOnScreenNotifier3D>("Box-top/Box-screen-notifier")
+    private val stars by child<GPUParticles3D>("Box-top/Box-stars")
 
     @RegisterFunction
     override fun _ready() {
@@ -62,6 +63,7 @@ class MailBox : Node3D() {
         when {
             body.isInGroup(Kodee.GROUP_NAME.asStringName()) && !mailDelivered -> {
                 animationPlayer.play("close_box".asStringName())
+                stars.emitting = true
                 letterboxSound.play()
                 scored.emit(score)
                 mailDelivered = true
