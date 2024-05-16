@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1ovflyohxdpt"]
+[gd_scene load_steps=12 format=3 uid="uid://d1ovflyohxdpt"]
 
+[ext_resource type="PackedScene" uid="uid://cmqwtl1ar5hl" path="res://scenes/box_stars.tscn" id="1_dfrkw"]
 [ext_resource type="ArrayMesh" uid="uid://cjkq31vd65odc" path="res://assets/3d/mailbox/box-flag.obj" id="2_3mebq"]
 [ext_resource type="Texture2D" uid="uid://b7uvxeeefqyt" path="res://assets/3d/mailbox/box-texture.png" id="3_qimmy"]
 [ext_resource type="AudioStream" uid="uid://d2g3qcreuga6n" path="res://assets/sounds/letterbox_close.mp3" id="4_k7p6a"]
@@ -40,6 +41,8 @@ _data = {
 }
 
 [node name="Box-top" type="Node3D" groups=["Box"]]
+
+[node name="Box-stars" parent="." instance=ExtResource("1_dfrkw")]
 
 [node name="Box-flag" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 3.48786e-16, 1.50996e-07, 3.48786e-16, 1, -3.48786e-16, -1.50996e-07, -3.48786e-16, -1, -0.1, 0.95, -0.145)
