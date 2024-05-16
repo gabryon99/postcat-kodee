@@ -19,7 +19,7 @@ albedo_color = Color(0.8, 0.8, 0.8, 1)
 albedo_texture = ExtResource("2_lfr3v")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqts0"]
-size = Vector3(1, 1, 3.48428)
+size = Vector3(0.45, 1.792, 3.484)
 
 [node name="Box-tall" type="Node3D"]
 script = ExtResource("1_ys8of")
@@ -42,5 +42,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.01572, 2.08165
 collision_layer = 3
 
 [node name="Box-skip-area-shape" type="CollisionShape3D" parent="Box-skip-area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65036, 0.0364838)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0207825, 1.04642, 0.0364838)
 shape = SubResource("BoxShape3D_tqts0")
