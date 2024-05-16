@@ -249,7 +249,8 @@ kodee_orbit_point = NodePath("../World/KodeeOrbitPoint")
 kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
 dog = NodePath("../World/DogOrbitPoint/Dog")
 world = NodePath("../World")
-flight_direction = Vector3(2.08165e-12, 2.08165e-12, 1)
+flight_speed = 2.1
+flight_direction = Vector3(2.08165e-12, 1, 1)
 
 [node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("level_manager")]
 unique_name_in_owner = true
@@ -403,7 +404,7 @@ visible = false
 
 [node name="Kodee" parent="World/KodeeOrbitPoint" node_paths=PackedStringArray("left_move_point", "center_move_point", "right_move_point") instance=ExtResource("4_vf74w")]
 unique_name_in_owner = true
-transform = Transform3D(1, -2.10344e-17, 1.19292e-16, 1.19292e-16, 0.34202, -0.939693, -2.10344e-17, 0.939693, 0.34202, 2.08165e-12, -0.123, 1.6)
+transform = Transform3D(1, -5.29885e-18, 6.05663e-17, 6.05663e-17, 0.173648, -0.984808, -5.29885e-18, 0.984808, 0.173648, 2.08165e-12, -0.123, 1.6)
 left_move_point = NodePath("../Left_mvp")
 center_move_point = NodePath("../Center_mvp")
 right_move_point = NodePath("../Right_mvp")

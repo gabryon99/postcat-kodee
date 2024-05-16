@@ -210,4 +210,8 @@ class Kodee : Area3D(), Orbiting {
     fun onDistanceWithDogChanged(distance: Int) {
         animationTree.onDistanceWithDogChanged(distance)
     }
+
+    fun flyAway() {
+        animationTree.changeAnimation("flying".asStringName())
+    }
 }

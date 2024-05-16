@@ -47,6 +47,7 @@ class EndGameManager : Node() {
         setKodeeNotifier()
         reparentKodeeOrbitPointChildren()
         dog.barkAndJump()
+        kodee.flyAway()
         gameHasEnded = true
     }
 
@@ -54,7 +55,6 @@ class EndGameManager : Node() {
     override fun _process(delta: Double) {
         if (!gameHasEnded) return
         kodee.position += (flightDirection.times(delta * flightSpeed))
-        kodee.rotateZ((flightSpeed * delta).toFloat())
     }
 
     private fun stopKodeeAndDog() {
