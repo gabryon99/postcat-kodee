@@ -16,8 +16,7 @@ signals = [
 	score_changed
 ]
 properties = [
-    level_manager,
-	combo_manager
+    level_manager
 ]
 functions = [
     increase_score

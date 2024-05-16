@@ -23,7 +23,7 @@ size = Vector3(1, 1, 3.48428)
 
 [node name="Box-tall" type="Node3D"]
 script = ExtResource("1_ys8of")
-score = 300
+score = 100
 
 [node name="Box-mid" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.45126, 0, 0, 0, 1, 2.08165e-12, -0.10354, 2.08165e-12)
