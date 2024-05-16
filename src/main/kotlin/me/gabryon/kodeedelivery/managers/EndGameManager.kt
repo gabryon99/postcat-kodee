@@ -16,9 +16,11 @@ class EndGameManager : Node() {
     @Export
     @RegisterProperty
     lateinit var kodee: Kodee
+
     @Export
     @RegisterProperty
     lateinit var dog: Dog
+
     @Export
     @RegisterProperty
     lateinit var world: Node3D
@@ -26,6 +28,7 @@ class EndGameManager : Node() {
     @Export
     @RegisterProperty
     var flightSpeed = 2.0
+
     @Export
     @RegisterProperty
     var flightDirection = Vector3(1.0, 1.0, 0.0)
@@ -51,7 +54,7 @@ class EndGameManager : Node() {
 
     private fun stopKodeeAndDog() {
         dog.angularSpeed = 0.0
-        kodee.angularSpeed= 0.0
+        kodee.angularSpeed = 0.0
     }
 
     private fun detachCameraFromKodee() {

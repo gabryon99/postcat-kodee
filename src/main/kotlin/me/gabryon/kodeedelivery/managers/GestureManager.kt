@@ -22,10 +22,13 @@ class GestureManager : Camera2D() {
 
     @RegisterSignal
     val onSwipeToLeft by signal()
+
     @RegisterSignal
     val onSwipeToRight by signal()
+
     @RegisterSignal
     val onSwipeUp by signal()
+
     @RegisterSignal
     val onSwipeDown by signal()
 

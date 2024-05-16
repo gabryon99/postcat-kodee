@@ -18,12 +18,15 @@ class MusicManager : Node() {
             Referee.VERY_CLOSE -> {
                 bgMusic.pitchScale = 1.1f
             }
+
             Referee.CLOSE -> {
                 bgMusic.pitchScale = 1.08f
             }
+
             Referee.FAR -> {
                 bgMusic.pitchScale = 1.02f
             }
+
             else -> {
                 bgMusic.pitchScale = 1.0f
             }

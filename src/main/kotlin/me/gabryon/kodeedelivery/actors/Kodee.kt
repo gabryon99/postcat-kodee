@@ -5,7 +5,6 @@ import godot.Input.isActionJustReleased
 import godot.annotation.*
 import godot.core.asNodePath
 import godot.core.asStringName
-import godot.signals.signal
 import me.gabryon.kodeedelivery.utility.child
 
 @RegisterClass

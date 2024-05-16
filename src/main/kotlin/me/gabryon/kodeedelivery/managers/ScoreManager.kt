@@ -10,6 +10,7 @@ class ScoreManager : Node() {
 
     @RegisterSignal
     val nextLevel by signal()
+
     @RegisterSignal
     val scoreChanged by signal<Int>("newScore")
 
