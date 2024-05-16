@@ -89,15 +89,16 @@ expand_mode = 5
 [node name="PersonalRecordRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.985
+anchor_top = 0.494
+anchor_right = 1.0
+anchor_bottom = 0.55
 offset_left = 152.0
-offset_top = 624.0
-offset_right = -135.2
-offset_bottom = 706.0
+offset_top = -8.32002
+offset_right = -146.0
+offset_bottom = 1.99998
 theme = SubResource("Theme_jsobr")
 texture = ExtResource("9_x276a")
 expand_mode = 2
-stretch_mode = 4
 
 [node name="PersonalRecordLabel" type="Label" parent="PersonalRecordRect"]
 layout_mode = 1
@@ -122,18 +123,15 @@ speed = 10.0
 
 [node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -360.0
-offset_top = -528.0
-offset_right = 349.0
-offset_bottom = -84.9974
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.425
+offset_top = 112.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_rtvin")
+stretch_mode = 3
 
 [node name="Cloud" parent="." instance=ExtResource("2_kpx6n")]
 position = Vector2(678, 506)
