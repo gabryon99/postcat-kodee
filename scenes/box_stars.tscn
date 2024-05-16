@@ -1,0 +1,75 @@
+[gd_scene load_steps=14 format=3 uid="uid://cmqwtl1ar5hl"]
+
+[ext_resource type="Texture2D" uid="uid://cug1v86vkjsnc" path="res://assets/2d/env/star.svg" id="1_k6mwv"]
+
+[sub_resource type="Gradient" id="Gradient_q6kmk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_makee"]
+gradient = SubResource("Gradient_q6kmk")
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_oqkxt"]
+
+[sub_resource type="Curve" id="Curve_dicrs"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lm4sw"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_o3hyx"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_jl3ha"]
+curve_x = SubResource("Curve_dicrs")
+curve_y = SubResource("Curve_lm4sw")
+curve_z = SubResource("Curve_o3hyx")
+
+[sub_resource type="Curve" id="Curve_6sa27"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_s2eh8"]
+curve = SubResource("Curve_6sa27")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8055p"]
+angular_velocity_min = 1.4988e-14
+angular_velocity_max = 1.4988e-14
+directional_velocity_min = -0.5
+directional_velocity_max = 0.5
+directional_velocity_curve = SubResource("CurveXYZTexture_oqkxt")
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+orbit_velocity_curve = SubResource("CurveXYZTexture_jl3ha")
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 0.01
+scale_max = 0.08
+scale_curve = SubResource("CurveTexture_s2eh8")
+color_ramp = SubResource("GradientTexture1D_makee")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3pma"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_k6mwv")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_yntgr"]
+material = SubResource("StandardMaterial3D_c3pma")
+
+[node name="Box-stars" type="GPUParticles3D"]
+transform = Transform3D(0.05, -1.74393e-17, 1.74393e-17, 1.74393e-17, 0.05, -1.74393e-17, -1.74393e-17, 1.74393e-17, 0.05, 0, 0.990007, -0.292942)
+emitting = false
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_8055p")
+draw_pass_1 = SubResource("QuadMesh_yntgr")
