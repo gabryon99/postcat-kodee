@@ -9,8 +9,7 @@ import me.gabryon.kodeedelivery.annotations.Autoload
 enum class Scene(val scenePath: String) {
     StartGame("scenes/start-scene.tscn"),
     MainGame("scenes/main.tscn"),
-    EndGame("scenes/end-scene.tscn"),
-    About("scenes/about.tscn"); // TODO: to implement!
+    EndGame("scenes/end-scene.tscn")
 }
 
 @Autoload
