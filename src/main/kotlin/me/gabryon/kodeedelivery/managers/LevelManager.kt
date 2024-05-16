@@ -47,7 +47,7 @@ class LevelManager : Node() {
     var sideOffset: Double = 0.5
 
     private var currentLevel = -1
-    private var loops = 0
+    private var loops = 1
 
     private lateinit var currentLevelLogic: LevelLogic
     private lateinit var mailboxGenerator: MailBoxManager
@@ -133,16 +133,14 @@ class LevelManager : Node() {
             loops += 1
 
             // Re-initialize the array of levels
-            if (loops == 1) {
-                levels = arrayOf(
-                    Level1(MAXIMUM_CHARACTER_SPEED),
-                    Level2(MAXIMUM_CHARACTER_SPEED),
-                    Level3(MAXIMUM_CHARACTER_SPEED),
-                    Level4(MAXIMUM_CHARACTER_SPEED),
-                    Level5(MAXIMUM_CHARACTER_SPEED),
-                    Level6(MAXIMUM_CHARACTER_SPEED)
-                )
-            }
+            levels = arrayOf(
+                Level1(MAXIMUM_CHARACTER_SPEED, Level1.DEFAULT_POINTS_TO_NEXT_LEVEL * loops),
+                Level2(MAXIMUM_CHARACTER_SPEED, Level2.DEFAULT_POINTS_TO_NEXT_LEVEL * loops),
+                Level3(MAXIMUM_CHARACTER_SPEED, Level3.DEFAULT_POINTS_TO_NEXT_LEVEL * loops),
+                Level4(MAXIMUM_CHARACTER_SPEED, Level4.DEFAULT_POINTS_TO_NEXT_LEVEL * loops),
+                Level5(MAXIMUM_CHARACTER_SPEED, Level5.DEFAULT_POINTS_TO_NEXT_LEVEL * loops),
+                Level6(MAXIMUM_CHARACTER_SPEED, Level6.DEFAULT_POINTS_TO_NEXT_LEVEL * loops)
+            )
         }
 
         levels.nextLevel(currentLevel).run {

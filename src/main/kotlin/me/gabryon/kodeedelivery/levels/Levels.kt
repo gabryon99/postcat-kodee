@@ -15,8 +15,14 @@ const val MAXIMUM_CHARACTER_SPEED = 1.5
  *  generated on the same side as the previous two, then the next tower WILL be on the opposite side.
  */
 
-class Level1(override val maximumCharacterSpeed: Double = 0.3) : LevelLogic {
-    override val pointsToNextLevel: Int = 500
+class Level1(
+    override val maximumCharacterSpeed: Double = 0.3,
+    override val pointsToNextLevel: Int = DEFAULT_POINTS_TO_NEXT_LEVEL
+) : LevelLogic {
+
+    companion object {
+        const val DEFAULT_POINTS_TO_NEXT_LEVEL = 500
+    }
 
     private var sameSideCounter = 0
     private var lastSide: MailboxPosition.Horizontal? = null
@@ -70,8 +76,14 @@ class Level1(override val maximumCharacterSpeed: Double = 0.3) : LevelLogic {
  *  side as the previous one. This rule holds up to 3 towers, then
  *  the next one will surely be on the opposite side.
  */
-class Level2(override val maximumCharacterSpeed: Double = 0.4) : LevelLogic {
-    override val pointsToNextLevel = 1300
+class Level2(
+    override val maximumCharacterSpeed: Double = 0.4,
+    override val pointsToNextLevel: Int = DEFAULT_POINTS_TO_NEXT_LEVEL
+) : LevelLogic {
+
+    companion object {
+        const val DEFAULT_POINTS_TO_NEXT_LEVEL = 1300
+    }
 
     private var sameSideCounter = 0
     private var lastSide: MailboxPosition.Horizontal? = null
@@ -143,9 +155,14 @@ class Level2(override val maximumCharacterSpeed: Double = 0.4) : LevelLogic {
  * speed stays the same as the previous level
  */
 
-class Level3(override val maximumCharacterSpeed: Double = 0.5) : LevelLogic {
+class Level3(
+    override val maximumCharacterSpeed: Double = 0.5,
+    override val pointsToNextLevel: Int = DEFAULT_POINTS_TO_NEXT_LEVEL
+) : LevelLogic {
 
-    override val pointsToNextLevel = 2100
+    companion object {
+        const val DEFAULT_POINTS_TO_NEXT_LEVEL = 2100
+    }
 
     private var lastSide: MailboxPosition.Horizontal? = null
     private var lastHeight: MailboxPosition.Vertical? = null
@@ -228,8 +245,13 @@ class Level3(override val maximumCharacterSpeed: Double = 0.5) : LevelLogic {
  *      - 2 mailboxes: 40% probable
  *      - 3 mailboxes: 60% probable
  */
-class Level4(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
-    override val pointsToNextLevel = 2900
+class Level4(
+    override val maximumCharacterSpeed: Double = 0.6, override val pointsToNextLevel: Int = DEFAULT_POINTS_TO_NEXT_LEVEL
+) : LevelLogic {
+
+    companion object {
+        const val DEFAULT_POINTS_TO_NEXT_LEVEL = 5000
+    }
 
     private var lastSide: MailboxPosition.Horizontal? = null
     private var lastHeight: MailboxPosition.Vertical? = null
@@ -306,8 +328,15 @@ class Level4(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
  * - In a sequence there are at most 5 mailboxes
  * - 80% probable that the mailbox is short
  */
-class Level5(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
-    override val pointsToNextLevel = 3700
+class Level5(
+    override val maximumCharacterSpeed: Double = 0.6,
+    override val pointsToNextLevel: Int = DEFAULT_POINTS_TO_NEXT_LEVEL
+) : LevelLogic {
+
+    companion object {
+        const val DEFAULT_POINTS_TO_NEXT_LEVEL = 3700
+    }
+
     private var dist: Double? = null
     private var lastSide: MailboxPosition.Horizontal? = null
     private var countSides = 0
@@ -366,8 +395,14 @@ class Level5(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
  * - speed increase by 0.1
  */
 
-class Level6(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
-    override val pointsToNextLevel = -1 // Last level
+class Level6(
+    override val maximumCharacterSpeed: Double = 0.6,
+    override val pointsToNextLevel: Int = DEFAULT_POINTS_TO_NEXT_LEVEL
+) : LevelLogic {
+
+    companion object {
+        const val DEFAULT_POINTS_TO_NEXT_LEVEL = 5000
+    }
 
     private var dist: Double = 0.4
     private var lastSide: MailboxPosition.Horizontal? = null
