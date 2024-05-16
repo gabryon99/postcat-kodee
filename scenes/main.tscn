@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cwcoujfpirj1h" path="res://scenes/boulder.tscn" id="1_8lew4"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/Referee.gdj" id="1_xu7tv"]
-[ext_resource type="Texture2D" uid="uid://47jq3h3x0i02" path="res://assets/2d/env/bg.png" id="2_a3vuc"]
+[ext_resource type="Texture2D" uid="uid://cd8mytusnu8mp" path="res://assets/ui/bg-alt.png" id="2_202b7"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/LevelManager.gdj" id="3_kn65t"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/ScoreManager.gdj" id="4_r8rnm"]
 [ext_resource type="PackedScene" uid="uid://cievqhh3ge716" path="res://scenes/kodee.tscn" id="4_vf74w"]
@@ -83,11 +83,15 @@ length = 18.0
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Background" type="Sprite2D" parent="BackgroundLayer"]
-modulate = Color(0.831543, 0.927438, 0.986083, 1)
-position = Vector2(360, 640)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_a3vuc")
+[node name="BackgroundImage" type="TextureRect" parent="BackgroundLayer"]
+modulate = Color(0.71998, 0.878273, 0.975882, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_202b7")
+expand_mode = 5
 
 [node name="Clouds" type="Node2D" parent="BackgroundLayer"]
 
@@ -121,17 +125,20 @@ grow_vertical = 2
 
 [node name="Indicator" parent="UILayer/HUD" instance=ExtResource("9_5fin4")]
 layout_mode = 1
-offset_left = 256.0
+anchors_preset = -1
+anchor_left = 0.002
+anchor_bottom = 0.0
+offset_left = 254.56
 offset_top = 360.0
-offset_right = 256.0
-offset_bottom = 360.0
+offset_right = 48.0
+offset_bottom = 507.0
 rotation = 0.0698132
 scale = Vector2(0.5, 0.5)
 
 [node name="ScoreLabel" type="RichTextLabel" parent="UILayer/HUD"]
 layout_mode = 2
+anchor_right = 1.0
 offset_top = 192.0
-offset_right = 720.0
 offset_bottom = 432.0
 grow_horizontal = 2
 theme = SubResource("Theme_xjbmh")
