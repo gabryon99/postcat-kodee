@@ -2,7 +2,7 @@ package me.gabryon.kodeedelivery.levels
 
 import me.gabryon.kodeedelivery.utility.infiniteSequence
 
-const val MAXIMUM_CHARACTER_SPEED = 1.0
+const val MAXIMUM_CHARACTER_SPEED = 1.5
 
 /**
  * Level 1:
@@ -16,7 +16,7 @@ const val MAXIMUM_CHARACTER_SPEED = 1.0
  */
 
 class Level1(override val maximumCharacterSpeed: Double = 0.3) : LevelLogic {
-    override val pointsToNextLevel: Int = 1500
+    override val pointsToNextLevel: Int = 500
 
     private var sameSideCounter = 0
     private var lastSide: MailboxPosition.Horizontal? = null
@@ -35,7 +35,7 @@ class Level1(override val maximumCharacterSpeed: Double = 0.3) : LevelLogic {
         val ver = MailboxPosition.Vertical.BOTTOM
         val hoz1 = randomHorizontalPosition(0.5)
         val hoz2 = hoz1.switchDirection()
-        yieldBox(hoz = hoz1, ver = ver, distanceFromPrevious = 0.7)
+        yieldBox(hoz = hoz1, ver = ver, distanceFromPrevious = 0.6)
         yieldBox(hoz = hoz2, ver = ver, distanceFromPrevious = 0.3)
     }
 
@@ -52,7 +52,7 @@ class Level1(override val maximumCharacterSpeed: Double = 0.3) : LevelLogic {
         sameSideCounter = if (hoz == lastSide) sameSideCounter + 1 else 1
         lastSide = hoz
 
-        yieldBox(hoz = hoz!!, ver = ver, distanceFromPrevious = 0.7)
+        yieldBox(hoz = hoz!!, ver = ver, distanceFromPrevious = 0.6)
     }
 }
 
@@ -71,7 +71,7 @@ class Level1(override val maximumCharacterSpeed: Double = 0.3) : LevelLogic {
  *  the next one will surely be on the opposite side.
  */
 class Level2(override val maximumCharacterSpeed: Double = 0.4) : LevelLogic {
-    override val pointsToNextLevel = 3500
+    override val pointsToNextLevel = 1300
 
     private var sameSideCounter = 0
     private var lastSide: MailboxPosition.Horizontal? = null
@@ -92,7 +92,7 @@ class Level2(override val maximumCharacterSpeed: Double = 0.4) : LevelLogic {
     private suspend fun SequenceScope<MailboxPosition>.generateTallTower() {
         firstMailbox = false
         val hoz = randomHorizontalPosition(0.5)
-        yieldBox(hoz = hoz, ver = MailboxPosition.Vertical.TOP, distanceFromPrevious = 0.7)
+        yieldBox(hoz = hoz, ver = MailboxPosition.Vertical.TOP, distanceFromPrevious = 0.6)
     }
 
     private suspend fun SequenceScope<MailboxPosition>.generateSequence() {
@@ -104,10 +104,10 @@ class Level2(override val maximumCharacterSpeed: Double = 0.4) : LevelLogic {
         val hoz2 = if (sameSide) hoz1 else hoz1.switchDirection()
         val hoz3 = if (sameSide) hoz2 else hoz2.switchDirection()
 
-        yieldBox(hoz = hoz1, ver = ver, distanceFromPrevious = 0.7)
-        yieldBox(hoz = hoz2, ver = ver, distanceFromPrevious = 0.3)
+        yieldBox(hoz = hoz1, ver = ver, distanceFromPrevious = 0.6)
+        yieldBox(hoz = hoz2, ver = ver, distanceFromPrevious = 0.2)
 
-        if (areThree) yieldBox(hoz = hoz3, ver = ver, distanceFromPrevious = 0.3)
+        if (areThree) yieldBox(hoz = hoz3, ver = ver, distanceFromPrevious = 0.2)
     }
 
     private suspend fun SequenceScope<MailboxPosition>.generateOneTower() {
@@ -123,7 +123,7 @@ class Level2(override val maximumCharacterSpeed: Double = 0.4) : LevelLogic {
         sameSideCounter = if (hoz == lastSide) sameSideCounter + 1 else 1
         lastSide = hoz
 
-        yieldBox(hoz = hoz!!, ver = ver, distanceFromPrevious = 0.7)
+        yieldBox(hoz = hoz!!, ver = ver, distanceFromPrevious = 0.2)
     }
 }
 
@@ -145,7 +145,7 @@ class Level2(override val maximumCharacterSpeed: Double = 0.4) : LevelLogic {
 
 class Level3(override val maximumCharacterSpeed: Double = 0.5) : LevelLogic {
 
-    override val pointsToNextLevel = 8500
+    override val pointsToNextLevel = 2100
 
     private var lastSide: MailboxPosition.Horizontal? = null
     private var lastHeight: MailboxPosition.Vertical? = null
@@ -154,7 +154,7 @@ class Level3(override val maximumCharacterSpeed: Double = 0.5) : LevelLogic {
 
     private var countSides = 0
 
-    private var dist = 0.6  // when in a sequence (numMailboxes>0) dist = 0.3
+    private var dist = 0.5  // when in a sequence (numMailboxes>0) dist = 0.3
     // otherwise dist = 0.6 (start of a new sequence)
 
     override fun mailboxes(): Sequence<MailboxPosition> = infiniteSequence {
@@ -166,7 +166,7 @@ class Level3(override val maximumCharacterSpeed: Double = 0.5) : LevelLogic {
 
     // Set all the parameters for a sequence (num of mailboxes and if they will have the same height)
     private fun setSequence() {
-        dist = 0.6
+        dist = 0.5
         lastHeight = null
 
         // Decides if the new sequence will have mailboxes
@@ -209,7 +209,7 @@ class Level3(override val maximumCharacterSpeed: Double = 0.5) : LevelLogic {
 
         lastSide = hoz
         lastHeight = ver
-        dist = 0.3
+        dist = 0.2
         numMailboxes--
     }
 }
@@ -221,7 +221,7 @@ class Level3(override val maximumCharacterSpeed: Double = 0.5) : LevelLogic {
  *   side as the previous
  * - It is 20% probable that the next mailbox ha the same height as
  *   the previous
- * - After three mailboxes of the same height/side the next will be
+ * - After two mailboxes of the same height/side the next will be
  *   on the opposite side/height
  * - 30% probable that a mailbox is short (70% tall)
  * - Sequences of at most 3 mailboxes are 50% probable:
@@ -229,7 +229,7 @@ class Level3(override val maximumCharacterSpeed: Double = 0.5) : LevelLogic {
  *      - 3 mailboxes: 60% probable
  */
 class Level4(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
-    override val pointsToNextLevel = 11000
+    override val pointsToNextLevel = 2900
 
     private var lastSide: MailboxPosition.Horizontal? = null
     private var lastHeight: MailboxPosition.Vertical? = null
@@ -253,11 +253,9 @@ class Level4(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
         dist = 0.5
 
         val twoMailboxes = rng.randf() <= 0.4
-        val threeMailboxes = rng.randf() <= 0.6
 
         numMailboxes = when {
             twoMailboxes -> 2
-            !twoMailboxes && threeMailboxes -> 3
             else -> 1
         }
     }
@@ -284,7 +282,7 @@ class Level4(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
 
         lastSide = hoz
         lastHeight = ver
-        dist = 0.3
+        dist = 0.2
         numMailboxes--
     }
 }
@@ -309,8 +307,7 @@ class Level4(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
  * - 80% probable that the mailbox is short
  */
 class Level5(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
-    override val pointsToNextLevel = 13500
-
+    override val pointsToNextLevel = 3700
     private var dist: Double? = null
     private var lastSide: MailboxPosition.Horizontal? = null
     private var countSides = 0
@@ -327,19 +324,17 @@ class Level5(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
     private fun setSequence() {
         numMailboxes = (rng.randi() % 5 + 1).toInt()
 
-        val threeDist = rng.randf() <= 0.2
-        val fourDist = rng.randf() <= 0.3
-        val fiveDist = rng.randf() <= 0.1
-        val sixDist = rng.randf() <= 0.1
+        val twoDist = rng.randf() <= 0.4
+        val threeDist = rng.randf() <= 0.3
+        val fourDist = rng.randf() <= 0.1
 
         dist = if (dist == null) {
             0.6
         } else {
             when {
+                twoDist -> 0.2
                 threeDist -> 0.3
                 !threeDist && fourDist -> 0.4
-                fiveDist -> 0.5
-                !fiveDist && sixDist -> 0.6
                 else -> 0.3
             }
         }
@@ -374,7 +369,7 @@ class Level5(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
 class Level6(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
     override val pointsToNextLevel = -1 // Last level
 
-    private var dist: Double = 0.6
+    private var dist: Double = 0.4
     private var lastSide: MailboxPosition.Horizontal? = null
     private var lastHeight: MailboxPosition.Vertical? = null
     private var countHeight: Int = 0
@@ -391,6 +386,6 @@ class Level6(override val maximumCharacterSpeed: Double = 0.6) : LevelLogic {
 
         lastSide = hoz
         lastHeight = ver
-        dist = 0.4
+        dist = 0.2
     }
 }
