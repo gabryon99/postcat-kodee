@@ -145,9 +145,9 @@ class Referee : Node() {
 
     private fun Double.toDistance(): Int {
         return when (this) {
-            in 1.5.. Double.MAX_VALUE -> FAR_AWAY
-            in 1.0.. 1.5 -> FAR
-            in 0.4.. 1.0 -> CLOSE
+            in 1.5..Double.MAX_VALUE -> FAR_AWAY
+            in 1.0..1.5 -> FAR
+            in 0.4..1.0 -> CLOSE
             else -> VERY_CLOSE
         }
     }
