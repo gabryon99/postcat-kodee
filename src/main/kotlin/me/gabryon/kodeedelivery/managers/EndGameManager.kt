@@ -13,7 +13,6 @@ import me.gabryon.kodeedelivery.actors.Kodee
 
 @RegisterClass
 class EndGameManager : Node() {
-    //5037
     @Export
     @RegisterProperty
     lateinit var kodee: Kodee
@@ -69,5 +68,4 @@ class EndGameManager : Node() {
     fun onKodeeNotVisibleAnymore() {
         sceneManager.changeTo(scene = Scene.EndGame)
     }
-
 }
