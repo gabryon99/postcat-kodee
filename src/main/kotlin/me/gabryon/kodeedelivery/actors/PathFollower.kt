@@ -11,11 +11,15 @@ class PathFollower : PathFollow3D() {
 
     @Export
     @RegisterProperty
-    var speed = 1.0f
+    var speed = 0.1f
+
+    @Export
+    @RegisterProperty
+    lateinit var kodee: Kodee
 
     @RegisterFunction
     override fun _process(delta: Double) {
-        progressRatio += speed * delta.toFloat()
+        progressRatio += (speed * delta.toFloat() * kodee.angularSpeed.toFloat())
     }
 
 }

@@ -243,11 +243,13 @@ stream = ExtResource("7_ay1vm")
 
 [node name="GestureManager" type="Node" parent="."]
 
-[node name="EndGameManager" type="Node" parent="." node_paths=PackedStringArray("kodee", "dog", "world")]
+[node name="EndGameManager" type="Node" parent="." node_paths=PackedStringArray("kodee_orbit_point", "kodee", "dog", "world")]
 script = ExtResource("18_fhpg6")
+kodee_orbit_point = NodePath("../World/KodeeOrbitPoint")
 kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
 dog = NodePath("../World/DogOrbitPoint/Dog")
 world = NodePath("../World")
+flight_direction = Vector3(2.08165e-12, 2.08165e-12, 1)
 
 [node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("level_manager")]
 unique_name_in_owner = true
@@ -344,11 +346,11 @@ transform = Transform3D(1, -6.76539e-16, 1.19292e-16, 1.19292e-16, 0.34202, 0.93
 transform = Transform3D(1, 1.19292e-16, -6.76539e-16, -6.76539e-16, 0.34202, -0.939693, 1.19292e-16, 0.939693, 0.34202, -2.585, 0.133, 1.143)
 curve = SubResource("Curve3D_ufoip")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/KodeeOrbitPoint/LeftHouses"]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/KodeeOrbitPoint/LeftHouses" node_paths=PackedStringArray("kodee")]
 transform = Transform3D(0.960548, 0, -0.277943, 0, 0.999993, 0, 0.277941, 0, 0.960554, 0, 0, 0)
 rotation_mode = 1
 script = ExtResource("19_t1hnw")
-speed = 0.1
+kodee = NodePath("../../Kodee")
 
 [node name="House-v2" type="MeshInstance3D" parent="World/KodeeOrbitPoint/LeftHouses/PathFollow3D"]
 transform = Transform3D(0.342032, 2.08462e-16, 0.939721, 3.48799e-16, 1.00001, -3.48797e-16, -0.939725, 4.47048e-16, 0.34203, 0, 0, 0)
@@ -365,11 +367,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5l2ij")
 transform = Transform3D(1, 1.19292e-16, -6.76539e-16, -6.76539e-16, 0.34202, -0.939693, 1.19292e-16, 0.939693, 0.34202, 2.585, 0.132838, 1.14342)
 curve = SubResource("Curve3D_lajp4")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/KodeeOrbitPoint/RightHouses"]
+[node name="PathFollow3D" type="PathFollow3D" parent="World/KodeeOrbitPoint/RightHouses" node_paths=PackedStringArray("kodee")]
 transform = Transform3D(0.961215, 0, 0.275666, 0, 0.999993, 0, -0.275665, 0, 0.96122, 0, 0, 0)
 rotation_mode = 1
 script = ExtResource("19_t1hnw")
-speed = 0.1
+kodee = NodePath("../../Kodee")
 
 [node name="House-v2" type="MeshInstance3D" parent="World/KodeeOrbitPoint/RightHouses/PathFollow3D"]
 transform = Transform3D(0.342032, -4.47048e-16, -0.939721, 3.48799e-16, 1.00001, -3.48797e-16, 0.939725, -2.08462e-16, 0.342031, 2.08165e-12, 2.08165e-12, 2.08165e-12)

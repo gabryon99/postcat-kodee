@@ -13,6 +13,11 @@ import me.gabryon.kodeedelivery.actors.Kodee
 
 @RegisterClass
 class EndGameManager : Node() {
+
+    @Export
+    @RegisterProperty
+    lateinit var kodeeOrbitPoint: Node3D
+
     @Export
     @RegisterProperty
     lateinit var kodee: Kodee
@@ -40,7 +45,7 @@ class EndGameManager : Node() {
         ScoreStorage.saveUserScoreToDevice()
         stopKodeeAndDog()
         setKodeeNotifier()
-        detachCameraFromKodee()
+        reparentKodeeOrbitPointChildren()
         dog.barkAndJump()
         gameHasEnded = true
     }
@@ -57,9 +62,10 @@ class EndGameManager : Node() {
         kodee.angularSpeed = 0.0
     }
 
-    private fun detachCameraFromKodee() {
-        val camera = kodee.getParent()!!.findChild("Camera")!!
-        camera.reparent(world)
+    private fun reparentKodeeOrbitPointChildren() {
+        kodeeOrbitPoint.getChildren().forEach {
+            it.reparent(world)
+        }
     }
 
     private fun setKodeeNotifier() {

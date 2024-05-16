@@ -6,7 +6,7 @@ fqName = me.gabryon.kodeedelivery.actors.Kodee
 relativeSourcePath = src/main/kotlin/me/gabryon/kodeedelivery/actors/Kodee.kt
 baseType = Area3D
 supertypes = [
-    godot.Area3D,
+	godot.Area3D,
 	me.gabryon.kodeedelivery.actors.Orbiting,
 	godot.CollisionObject3D,
 	godot.Node3D,
@@ -17,10 +17,10 @@ supertypes = [
 	me.gabryon.kodeedelivery.actors.HasParent
 ]
 signals = [
-    
+	
 ]
 properties = [
-    reset_horizontal_position_time,
+	reset_horizontal_position_time,
 	stretch_timeout,
 	left_move_point,
 	center_move_point,
@@ -31,7 +31,7 @@ properties = [
 	delta_speed
 ]
 functions = [
-    _ready,
+	_ready,
 	_physics_process,
 	on_swipe_to_left,
 	on_swipe_to_right,
