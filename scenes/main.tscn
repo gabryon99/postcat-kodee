@@ -1,9 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://cp14fn4rvgpwd"]
+[gd_scene load_steps=36 format=3 uid="uid://cp14fn4rvgpwd"]
 
 [ext_resource type="PackedScene" uid="uid://cwcoujfpirj1h" path="res://scenes/boulder.tscn" id="1_8lew4"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/Referee.gdj" id="1_xu7tv"]
 [ext_resource type="Texture2D" uid="uid://47jq3h3x0i02" path="res://assets/2d/env/bg.png" id="2_a3vuc"]
-[ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/ComboManager.gdj" id="2_l4xqi"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/LevelManager.gdj" id="3_kn65t"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/ScoreManager.gdj" id="4_r8rnm"]
 [ext_resource type="PackedScene" uid="uid://cievqhh3ge716" path="res://scenes/kodee.tscn" id="4_vf74w"]
@@ -216,11 +215,6 @@ overtake_speed = 0.6
 kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
 dog = NodePath("../World/DogOrbitPoint/Dog")
 
-[node name="ComboManager" type="Node" parent="." node_paths=PackedStringArray("kodee")]
-unique_name_in_owner = true
-script = ExtResource("2_l4xqi")
-kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
-
 [node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("referee", "score_manager", "world", "kodee", "dog", "top_left_warning", "bottom_left_warning", "top_right_warning", "bottom_right_warning")]
 unique_name_in_owner = true
 script = ExtResource("3_kn65t")
@@ -248,11 +242,10 @@ kodee = NodePath("../World/KodeeOrbitPoint/Kodee")
 dog = NodePath("../World/DogOrbitPoint/Dog")
 world = NodePath("../World")
 
-[node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("level_manager", "combo_manager")]
+[node name="ScoreManager" type="Node" parent="." node_paths=PackedStringArray("level_manager")]
 unique_name_in_owner = true
 script = ExtResource("4_r8rnm")
 level_manager = NodePath("../LevelManager")
-combo_manager = NodePath("../ComboManager")
 
 [node name="World" parent="." instance=ExtResource("15_q5y16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)

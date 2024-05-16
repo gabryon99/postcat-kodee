@@ -10,7 +10,6 @@ class ScoreManager : Node() {
 
     @RegisterSignal
     val nextLevel by signal()
-
     @RegisterSignal
     val scoreChanged by signal<Int>("newScore")
 
@@ -18,18 +17,13 @@ class ScoreManager : Node() {
     @RegisterProperty
     lateinit var levelManager: LevelManager
 
-    @Export
-    @RegisterProperty
-    lateinit var comboManager: ComboManager
-
     private var storedScore = 0
 
     @RegisterFunction
     fun increaseScore(points: Int) {
         require(points >= 0) { "The points to add must be positive." }
 
-        val multipliedPoints = (points * comboManager.currentComboMultiplier).toInt()
-        val newScore = ScoreStorage.userScore safeAdd multipliedPoints
+        val newScore = ScoreStorage.userScore safeAdd points
 
         storedScore = storedScore safeAdd points
         ScoreStorage.userScore = newScore

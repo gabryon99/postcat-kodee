@@ -17,8 +17,7 @@ supertypes = [
 	me.gabryon.kodeedelivery.actors.HasParent
 ]
 signals = [
-	combo_lost,
-	combo_changed
+	
 ]
 properties = [
 	reset_horizontal_position_time,

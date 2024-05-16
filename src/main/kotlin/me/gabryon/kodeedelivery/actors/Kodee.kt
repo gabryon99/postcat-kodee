@@ -60,12 +60,6 @@ class Kodee : Area3D(), Orbiting {
     override var deltaSpeed: Double = 1.0
     //endregion
 
-    @RegisterSignal
-    val comboLost by signal()
-
-    @RegisterSignal
-    val comboChanged by signal<Int>("delta")
-
     private var mailboxTouched = false
     private var isStretched = false
 
@@ -185,7 +179,6 @@ class Kodee : Area3D(), Orbiting {
 
         // Did Kodee touch at least one mailbox?
         if (skipCollidingAreas.isEmpty() && !mailboxTouched) {
-            comboLost.emit()
             decelerate()
             // debug("Kodee is slowing down: angularSpeed=$angularSpeed, initialAngularSpeed=$initialAngularSpeed")
         }
@@ -204,7 +197,6 @@ class Kodee : Area3D(), Orbiting {
 
             area3D.isInGroup(MailBox.GROUP_NAME.asStringName()) -> {
                 mailboxTouched = true
-                comboChanged.emit(1)
                 accelerate()
             }
         }
