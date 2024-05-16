@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://2sg6ukwy5fhc" path="res://assets/2d/dog/warning.png" id="8_6fc5r"]
 [ext_resource type="PackedScene" uid="uid://dtqcwb6jya3ur" path="res://scenes/dynamic-indicator.tscn" id="9_5fin4"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/MusicManager.gdj" id="9_htmkd"]
-[ext_resource type="AudioStream" uid="uid://bog7uphw210c4" path="res://assets/sounds/KodeeBGM_WIP.mp3" id="11_hlqxk"]
+[ext_resource type="AudioStream" uid="uid://byiqdeebhb8et" path="res://assets/sounds/KodeeBGM_Loop.ogg" id="11_e7p0q"]
 [ext_resource type="PackedScene" uid="uid://bgfgbn3rn0r6y" path="res://scenes/cloud.tscn" id="12_8rbqv"]
 [ext_resource type="PackedScene" uid="uid://ce487phee6md5" path="res://scenes/mailbox/box-tall.tscn" id="13_l246n"]
 [ext_resource type="Texture2D" uid="uid://celwfak4wvcv5" path="res://assets/3d/houses/house-texture.png" id="14_q4uot"]
@@ -80,7 +80,6 @@ environment = SubResource("Environment_wnjxp")
 offset = Vector2(360, 640)
 script = ExtResource("21_wlnvy")
 length = 18.0
-threshold = 8
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -203,8 +202,7 @@ expand_mode = 2
 script = ExtResource("9_htmkd")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer3D" parent="MusicManager"]
-stream = ExtResource("11_hlqxk")
-volume_db = -10.0
+stream = ExtResource("11_e7p0q")
 autoplay = true
 
 [node name="Referee" type="Node" parent="." node_paths=PackedStringArray("kodee_orbit_point", "dog_orbit_point", "kodee", "dog")]
