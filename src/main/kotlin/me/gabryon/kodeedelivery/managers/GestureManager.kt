@@ -5,8 +5,9 @@ import godot.Input
 import godot.annotation.*
 import godot.core.Vector2
 import godot.core.asStringName
+import godot.global.GD
 import godot.signals.signal
-import kotlin.math.abs
+import kotlin.math.atan2
 
 @RegisterClass
 class GestureManager : Camera2D() {
@@ -14,10 +15,6 @@ class GestureManager : Camera2D() {
     @Export
     @RegisterProperty
     var length = 50.0
-
-    @Export
-    @RegisterProperty
-    var threshold = 10
 
     private var startPos = Vector2.ZERO
     private var currentPos = Vector2.ZERO
@@ -32,21 +29,21 @@ class GestureManager : Camera2D() {
     @RegisterSignal
     val onSwipeDown by signal()
 
-    private fun dispatchHorizontalSignal(diff: Vector2) {
-        if (diff.x < 0) {
-            onSwipeToLeft.emit()
-        }
-        else if (diff.x > 0) {
-            onSwipeToRight.emit()
-        }
+    private fun getSwipeAngle(start: Vector2, end: Vector2): Double {
+        val diff = end - start
+        val rad = atan2(diff.y, diff.x)
+        var deg = GD.radToDeg(rad)
+        if (deg < 0) deg += 360.0
+        return deg
     }
 
-    private fun dispatchVerticalSignal(diff: Vector2) {
-        if (diff.y < 0) {
-            onSwipeUp.emit()
-        }
-        else if (diff.y > 0) {
-            onSwipeDown.emit()
+    private fun dispatchSignal(start: Vector2, end: Vector2) {
+        val angle = getSwipeAngle(start, end)
+        when {
+            (angle in 315.0..360.0) || (angle in 0.0..45.0) -> onSwipeToRight.emit()
+            (angle in 45.0..135.0) -> onSwipeDown.emit()
+            (angle in 135.0..225.0) -> onSwipeToLeft.emit()
+            (angle in 225.0..315.0) -> onSwipeUp.emit()
         }
     }
 
@@ -59,15 +56,8 @@ class GestureManager : Camera2D() {
         if (Input.isActionPressed("pressed".asStringName()) && swiping) {
             currentPos = getGlobalMousePosition()
             if (startPos.distanceTo(currentPos) >= length) {
-                if (abs(startPos.y - currentPos.y) <= threshold) {
-                    dispatchHorizontalSignal(currentPos - startPos)
-                    swiping = false
-                }
-                else if (abs(startPos.x - currentPos.x) <= threshold) {
-                    dispatchVerticalSignal(currentPos - startPos)
-                    swiping = false
-                }
-
+                dispatchSignal(startPos, currentPos)
+                swiping = false
             }
         } else {
             swiping = false
