@@ -21,9 +21,9 @@ albedo_texture = ExtResource("2_lfr3v")
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqts0"]
 size = Vector3(0.45, 1.792, 3.484)
 
-[node name="Box-tall" type="Node3D"]
+[node name="150" type="Node3D"]
 script = ExtResource("1_ys8of")
-score = 100
+score = 150
 
 [node name="Box-mid" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.45126, 0, 0, 0, 1, 2.08165e-12, -0.10354, 2.08165e-12)

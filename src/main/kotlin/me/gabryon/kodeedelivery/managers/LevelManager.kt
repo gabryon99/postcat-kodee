@@ -101,11 +101,11 @@ class LevelManager : Node() {
             kodee.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed
             kodee.angularSpeed = currentLevelLogic.maximumCharacterSpeed
-            dog.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed
-            dog.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed
-            dog.angularSpeed = currentLevelLogic.maximumCharacterSpeed
+            dog.maximumAngularSpeed = currentLevelLogic.maximumCharacterSpeed * 1.13
+            dog.initialAngularSpeed = currentLevelLogic.maximumCharacterSpeed * 1.13
+            dog.angularSpeed = currentLevelLogic.maximumCharacterSpeed * 1.13
 
-            referee.minMaxSpeedDog = dog.maximumAngularSpeed * 0.5
+            referee.minMaxSpeedDog = dog.maximumAngularSpeed * 1.13
         }
 
         mailboxGenerator = MailBoxManager(

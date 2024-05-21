@@ -30,6 +30,17 @@ fun MailboxPosition.Horizontal.switchDirection() = when (this) {
     MailboxPosition.Horizontal.RIGHT -> MailboxPosition.Horizontal.LEFT
 }
 
+/**
+ * Switches the vertical direction of the mailbox position.
+ * E.g., if `this == BOTTOM` then the returned value is `TOP`.
+ *
+ * @return The new vertical direction after switching.
+ */
+fun MailboxPosition.Vertical.switchDirection() = when (this) {
+    MailboxPosition.Vertical.BOTTOM -> MailboxPosition.Vertical.TOP
+    MailboxPosition.Vertical.TOP -> MailboxPosition.Vertical.BOTTOM
+}
+
 object LevelUtility {
     val rng by godotStatic {
         RandomNumberGenerator().apply { seed = "vogliobeneasallo97".hashCode().toLong() }

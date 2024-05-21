@@ -23,7 +23,7 @@ size = Vector3(0.45, 1, 3.484)
 
 [node name="Box-small" type="Node3D"]
 script = ExtResource("1_jdh5f")
-score = 100
+score = 150
 
 [node name="Box-mid" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.0354853, 2.08165e-12)
