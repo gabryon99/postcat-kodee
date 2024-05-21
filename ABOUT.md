@@ -18,9 +18,9 @@ Gabriele can also be contacted at
 Shout-out to the remarkable individuals who made 'PostCat Kodee' possible.
 
 **Godot Kotlin/JVM maintainers:**
-* Ced Naru
-* Piertho
-* Cedric
+* [Tristan Grespinet](https://github.com/CedNaru)
+* [Pierre-Thomas Meisels](https://github.com/piiertho)
+* [Cedric Hippmann](https://github.com/chippmann)
 
 **Game Design**:
 * Salvatore Salerno (@sallo97)
