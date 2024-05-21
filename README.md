@@ -14,8 +14,7 @@ The game can be exported to Android and iOS (through GraalVM).
 The screenshots below show the game running on a debug build for macOS.
 
 <p align="center">
-  <img src="web/screen1.png" alt="Title Scene: the game's logo is shown" width="200" />
-  <img src="web/screen2.png" alt="Game Scene: Kodee is running away from the spaghetti-dog" width="200" />
-  <img src="web/screen3.png" alt="Ending Scene: the reached score is shown" width="200" />
+  <img src="web/screen1.png" alt="Title Scene: the game's logo is shown" width="400" />
+  <img src="web/screen2.png" alt="Game Scene: Kodee is running away from the spaghetti-dog" width="400" />
 </p>
 
