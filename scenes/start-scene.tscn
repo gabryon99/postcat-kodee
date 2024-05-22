@@ -37,18 +37,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LowerPart:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2.08165e-12, 840), Vector2(0, 808)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xfsvx"]
 _data = {
@@ -89,11 +77,11 @@ expand_mode = 5
 [node name="PersonalRecordRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.494
+anchor_top = 0.487
 anchor_right = 1.0
 anchor_bottom = 0.55
 offset_left = 152.0
-offset_top = -8.32002
+offset_top = 0.639915
 offset_right = -146.0
 offset_bottom = 1.99998
 grow_horizontal = 2
@@ -126,7 +114,7 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.425
 offset_top = 112.0
-offset_bottom = 11.0
+offset_bottom = 11.0002
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_rtvin")
@@ -143,14 +131,14 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -328.0
+offset_top = -384.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 80
 theme_override_constants/margin_right = 80
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LowerPart"]
-custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+custom_minimum_size = Vector2(2.08165e-12, -20)
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
