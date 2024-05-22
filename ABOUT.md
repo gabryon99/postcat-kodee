@@ -1,8 +1,8 @@
 ## About
 
-<div style="text-align: center">
+<p align="center">
     <img src="assets/logo-better.png" alt="Postcat Kodee Logo" width="400"/>
-</div>
+</p>
 
 Welcome to **PostCat Kodee**'s About page!
 This mobile game is a simple endless runner written
@@ -20,10 +20,10 @@ If Kodee misses a mailbox, it will slow down a
 bit, giving Noodlez the chance to catch up.
 
 
-<div style="text-align: center">
+<p align="center">
   <img src="web/screen1.png" alt="Title Scene - the game's logo is shown" width="200" />
   <img src="web/screen2.png" alt="Game Scene - Kodee is running away from the spaghetti-dog" width="200" />
-</div>
+</p>
 
 
 The mailboxes are generated randomly, and as the player's score increases, the game becomes challenging.
