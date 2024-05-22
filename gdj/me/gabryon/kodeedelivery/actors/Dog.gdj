@@ -6,7 +6,7 @@ fqName = me.gabryon.kodeedelivery.actors.Dog
 relativeSourcePath = src/main/kotlin/me/gabryon/kodeedelivery/actors/Dog.kt
 baseType = Node3D
 supertypes = [
-	godot.Node3D,
+    godot.Node3D,
 	me.gabryon.kodeedelivery.actors.Orbiting,
 	godot.Node,
 	godot.Object,
@@ -15,17 +15,17 @@ supertypes = [
 	me.gabryon.kodeedelivery.actors.HasParent
 ]
 signals = [
-	on_kodee_touched
+    on_kodee_touched
 ]
 properties = [
-	camera,
+    camera,
 	angular_speed,
 	initial_angular_speed,
 	maximum_angular_speed,
 	delta_speed
 ]
 functions = [
-	_process,
+    _process,
 	_physics_process,
 	on_area_entered,
 	bark_and_jump

@@ -114,6 +114,10 @@ class Kodee : Area3D(), Orbiting {
         // We already stretched up, so we do nothing...
         if (isStretched) return
 
+        isStretched = true
+        collisionShapeTop.disabled = false
+        collisionShapeBottom.disabled = true
+
         stretchSound.play()
 
         // Run animations
@@ -122,23 +126,19 @@ class Kodee : Area3D(), Orbiting {
         animationTree.set("parameters/conditions/isStretchingDown".asStringName(), false)
 
         resetStretchTimer.start(stretchTimeout)
-        isStretched = true
-        collisionShapeTop.disabled = false
-        collisionShapeBottom.disabled = true
     }
 
     @RegisterFunction
     fun stretchDown() {
-
         if (!isStretched) return
         if (!resetStretchTimer.isStopped()) resetStretchTimer.stop()
-
-        animationTree.set("parameters/conditions/isStretchingUp".asStringName(), false)
-        animationTree.set("parameters/conditions/isStretchingDown".asStringName(), true)
 
         isStretched = false
         collisionShapeTop.disabled = true
         collisionShapeBottom.disabled = false
+
+        animationTree.set("parameters/conditions/isStretchingUp".asStringName(), false)
+        animationTree.set("parameters/conditions/isStretchingDown".asStringName(), true)
     }
 
     private fun updateHorizontalPosition(movePoint: HorizontalMovePoint, reset: Boolean = false) {
@@ -170,7 +170,6 @@ class Kodee : Area3D(), Orbiting {
     @RegisterFunction
     fun onAreaExit(area3D: Area3D) {
         // We deregister only skip area from the `collidingSkipArea`s
-//        debug(area3D.toString())
         if (!area3D.isInGroup(MailBox.SKIP_AREA_GROUP_NAME.asStringName())) return
 
         // Remove skip area from the set
@@ -179,7 +178,6 @@ class Kodee : Area3D(), Orbiting {
         // Did Kodee touch at least one mailbox?
         if (skipCollidingAreas.isEmpty() && !mailboxTouched) {
             decelerate()
-            // debug("Kodee is slowing down: angularSpeed=$angularSpeed, initialAngularSpeed=$initialAngularSpeed")
         }
 
         if (skipCollidingAreas.isEmpty() && mailboxTouched) {

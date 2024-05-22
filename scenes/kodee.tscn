@@ -28,6 +28,35 @@
 [ext_resource type="Texture2D" uid="uid://b25ttbi2b0uso" path="res://assets/2d/kodee/fly/fly-3.png" id="25_gpcfi"]
 [ext_resource type="Texture2D" uid="uid://b0pw0bhqkivfb" path="res://assets/2d/kodee/fly/fly-4.png" id="26_6t8mw"]
 
+[sub_resource type="Animation" id="Animation_tfsia"]
+resource_name = "flying"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_m4q61"), ExtResource("24_nmtta"), ExtResource("25_gpcfi"), ExtResource("26_6t8mw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.48787e-16, 3.48787e-16, 3.48787e-16), Vector3(3.48787e-16, 6.28319, 3.48787e-16)]
+}
+
 [sub_resource type="Animation" id="Animation_6vfw2"]
 resource_name = "running"
 length = 4.0
@@ -110,35 +139,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("14_6kpgc"), ExtResource("15_i04co"), ExtResource("16_vo7f3"), ExtResource("17_8dvvd")]
-}
-
-[sub_resource type="Animation" id="Animation_tfsia"]
-resource_name = "flying"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("2_m4q61"), ExtResource("24_nmtta"), ExtResource("25_gpcfi"), ExtResource("26_6t8mw")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(3.48787e-16, 3.48787e-16, 3.48787e-16), Vector3(3.48787e-16, 6.28319, 3.48787e-16)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eno3b"]
