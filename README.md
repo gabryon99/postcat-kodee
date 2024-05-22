@@ -2,12 +2,12 @@
 
 ### Abstract and Synopsis
 
-**Postcat Kodee** is a mobile 3D game written in Kotlin, using the [Godot/Kotlin JVM](https://godot-kotl.in/en/latest/)
-project.
+**Postcat Kodee** is a mobile 3D game written in Kotlin, using the [Godot/Kotlin JVM](https://godot-kotl.in/en/latest/) project.
+The game can be played during the [KotlinConf'24](https://kotlinconf.com) to win an awesome gadget.
 
 > Kodee is a post-cat in Denmark who loves his job. Each morning, he starts his day by doing his favorite thing: delivering messages. However, as is well-known, postmen, cats— moreover postcats —often face a common foe: dogs! In Kodee's world, these dogs are far from ordinary; they are made of... spaghetti code!? Thus, every morning, Kodee finds himself chased by a Spaghetti-Dog (name not final). Please help Kodee escape from the dog while safely delivering his precious mail!
 
-The game can be exported to Android and iOS (through GraalVM).
+The game can be exported to **Android** and **iOS** (through GraalVM).
 
 ### Screenshots
 
