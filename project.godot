@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Postcat Kodee"
 config/description="A Kotlin-written game for the KotlinConf of 2024."
-config/version="0.0.1"
+config/version="0.0.2"
 run/main_scene="res://scenes/start-scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -74,5 +74,7 @@ limits/message_queue/max_size_mb=820
 [rendering]
 
 renderer/rendering_method="mobile"
+renderer/rendering_method.web="mobile"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.478431, 0.737255, 0.976471, 1)
+environment/version="0.0.2"
