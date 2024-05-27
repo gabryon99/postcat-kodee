@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccloja1xf3wpi"]
+[gd_scene load_steps=14 format=3 uid="uid://ccloja1xf3wpi"]
 
 [ext_resource type="Texture2D" uid="uid://cd8mytusnu8mp" path="res://assets/ui/bg-alt.png" id="1_ex0py"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartScreen.gdj" id="1_pmpft"]
 [ext_resource type="PackedScene" uid="uid://bgfgbn3rn0r6y" path="res://scenes/cloud.tscn" id="2_kpx6n"]
-[ext_resource type="FontFile" uid="uid://cibhe6hbmfo1n" path="res://assets/JetBrains Sans.ttf" id="4_avjnp"]
 [ext_resource type="Texture2D" uid="uid://c25i6h57hpjmy" path="res://assets/logo-better.png" id="5_rtvin"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartGameButton.gdj" id="6_d48si"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PersonalRecordLabel.gdj" id="7_7wqdl"]
@@ -46,7 +45,6 @@ _data = {
 [sub_resource type="Theme" id="Theme_jsobr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6jmf"]
-font = ExtResource("4_avjnp")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 

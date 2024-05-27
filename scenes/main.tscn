@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cp14fn4rvgpwd"]
+[gd_scene load_steps=35 format=3 uid="uid://cp14fn4rvgpwd"]
 
 [ext_resource type="PackedScene" uid="uid://cwcoujfpirj1h" path="res://scenes/boulder.tscn" id="1_8lew4"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/managers/Referee.gdj" id="1_xu7tv"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://celwfak4wvcv5" path="res://assets/3d/houses/house-texture.png" id="14_q4uot"]
 [ext_resource type="ArrayMesh" uid="uid://d21b67rvhirf1" path="res://assets/3d/grass/grass-3.obj" id="15_j5rpt"]
 [ext_resource type="PackedScene" uid="uid://dc4krx2rs4fa0" path="res://scenes/new-world.tscn" id="15_q5y16"]
-[ext_resource type="FontFile" uid="uid://cibhe6hbmfo1n" path="res://assets/JetBrains Sans.ttf" id="15_xx8d1"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/TiltedEffect.gdj" id="16_0f7a5"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/ScoreLabel.gdj" id="16_6oxkd"]
 [ext_resource type="ArrayMesh" uid="uid://4p2an7wp3n6k" path="res://assets/3d/grass/grass-4.obj" id="16_bjvwa"]
@@ -44,7 +43,7 @@ RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/constants/outline_size = 12
 RichTextLabel/constants/shadow_offset_y = 8
 RichTextLabel/font_sizes/normal_font_size = 100
-RichTextLabel/fonts/normal_font = ExtResource("15_xx8d1")
+RichTextLabel/fonts/normal_font = null
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_fw8rg"]
 script = ExtResource("16_0f7a5")

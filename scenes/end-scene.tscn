@@ -1,9 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cobvrmmq3hpvs"]
+[gd_scene load_steps=10 format=3 uid="uid://cobvrmmq3hpvs"]
 
 [ext_resource type="Texture2D" uid="uid://cd8mytusnu8mp" path="res://assets/ui/bg-alt.png" id="1_j3uku"]
-[ext_resource type="FontFile" uid="uid://c5e13gemnpfpo" path="res://assets/JetBrainsSans-Bold.ttf" id="2_e0yk1"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PointsLabel.gdj" id="3_4bjox"]
-[ext_resource type="FontFile" uid="uid://cibhe6hbmfo1n" path="res://assets/JetBrains Sans.ttf" id="3_uyvke"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/PrizeLabel.gdj" id="4_2nxx4"]
 [ext_resource type="PackedScene" uid="uid://bgfgbn3rn0r6y" path="res://scenes/cloud.tscn" id="5_dbix1"]
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/StartGameButton.gdj" id="5_i4lrb"]
@@ -11,12 +9,10 @@
 [ext_resource type="Script" path="res://gdj/me/gabryon/kodeedelivery/ui/BackToStartGameButton.gdj" id="9_ba0wq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dy3na"]
-font = ExtResource("2_e0yk1")
 font_size = 140
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_c3dl2"]
-font = ExtResource("3_uyvke")
 font_size = 37
 font_color = Color(0, 0, 0, 1)
 

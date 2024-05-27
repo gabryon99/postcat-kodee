@@ -1,7 +1,6 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cf4fohto4wav8"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cf4fohto4wav8"]
 
 [ext_resource type="FontFile" uid="uid://c5e13gemnpfpo" path="res://assets/JetBrainsSans-Bold.ttf" id="1_m1e2s"]
-[ext_resource type="FontFile" uid="uid://cibhe6hbmfo1n" path="res://assets/JetBrains Sans.ttf" id="2_jjcsj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4pqf"]
 content_margin_left = 4.0
@@ -79,7 +78,6 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [resource]
-default_font = ExtResource("2_jjcsj")
 default_font_size = 16
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
